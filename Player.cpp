@@ -54,24 +54,3 @@ void Player::addItem(const std::string& item, int count) {
 void Player::delItem(const std::string& item, int count) {
     inventory[item] -= count;
 }
-
-//레벨업과 경험치 획득 관련 함수
-void Player::levelUp() {
-    level++;
-    maxHealth += level + (maxHealth / 7);
-    currentHealth = maxHealth;
-    attack += level + (attack / 10);
-    exp = 0;
-    std::cout << "Level up, current level is: " << level << ", Max Hp: " << currentHealth
-        << ", Damage: " << attack << "\n";
-}
-//경험치
-void Player::gainExp(int amount) {
-    exp += amount;
-    int maxExp = (100 * (1 + level) * level) / 2;
-    if (exp >= maxExp) {
-        exp -= maxExp;
-        levelUp();
-
-    }
-}
