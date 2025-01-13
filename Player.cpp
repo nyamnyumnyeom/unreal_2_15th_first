@@ -55,7 +55,7 @@ void Player::levelUp() {
     std::cout << "Level up, current level is: " << level << ", Max Hp: " << currentHealth
         << ", Damage: " << attack << "\n";
 }
-
+//경험치
 void Player::gainExp(int amount) {
     exp += amount;
     int maxExp = (100 * (1 + level) * level) / 2;
