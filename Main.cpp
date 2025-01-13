@@ -63,7 +63,7 @@ int main() {
 
     // 캐릭터 이름 입력
     while (true) {
-        cout << "캐릭터 이름을 입력하세요 (2~8글자, 한글/영어만 허용, 공백 및 특수문자 금지): ";
+        cout << "캐릭터 이름을 입력하세요 (2~8글자, 영어만 허용, 공백 및 특수문자 금지): ";
         cin >> characterName;
 
         if (isValidName(characterName)) {
