@@ -3,10 +3,13 @@
 #include <string>
 #include <map>
 
+using namespace std;
+
+
 // 수정!!
 class Player {
 private:
-    std::string name;
+    string name;
     int level;
     int maxHealth;
     int currentHealth;
@@ -16,10 +19,12 @@ private:
     int attack_1;
     int attack_2;
     int attack_3;
-    std::map<std::string, int> inventory;
+    map<string, int> inventory;
+    
+    void calculateMaxHealth();
 public:
    
-    Player(const std::string& playerName);
+    Player(const string& playerName);
 
     void showStat() const;
 
@@ -32,8 +37,8 @@ public:
     void setAttack(int newAttack);
 
     // 인벤토리 관련 함수
-    void addItem(const std::string& item, int count);
-    void delItem(const std::string& item, int count);
+    void addItem(const string& item, int count);
+    void delItem(const string& item, int count);
   
 };
 
