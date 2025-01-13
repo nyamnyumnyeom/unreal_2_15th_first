@@ -46,9 +46,10 @@ public:
     void gainExp(int amount);
 
     //데미지와 관련된 함수
-    void getDamage(int amount);
-
-
+    void takeDamage(int amount);
+    
+    //몬스터 공격시 출력
+    void attackMonster();
 };
 
 #endif
