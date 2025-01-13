@@ -5,13 +5,14 @@
 #include <algorithm> // for std::min
 #include <iostream>
 
+
 using namespace std;
 
 // 데미지 증가 스킬
 class Skill1 : public ISkill {
 public:
     void ApplyEffect(Player& player, Monster& monster, int skillLevel) override {
-        int extraDamage = player.Damage() * skillLevel * 0.1;   // 데미지 증가: 레벨 x 10% ,  GetHealth 플레이어 헤더파일에 따라 수정 또는 추가
+        int extraDamage = player.getAttack() * skillLevel * 0.1;   // 데미지 증가: 레벨 x 10% ,  getAttack 플레이어 헤더파일에 따라 수정 
         cout << "데미지 증가 스킬! 몬스터에게 추가 데미지: " << extraDamage << "\n";
         monster.TakeDamage(extraDamage);     //TakeDamage 몬스터 헤더파일에 따라 수정 또는 추가
     }
@@ -30,9 +31,9 @@ class Skill2 : public ISkill {
 public:
     void ApplyEffect(Player& player, Monster& /*monster*/, int skillLevel) override {
         double percentage = min(skillLevel * 0.05, 1.0); // 최대 100% 제한
-        int healAmount = player.GetMaxHP() * percentage; // 체력 회복 , GetMaxHP 플레이어 헤더파일에 따라 수정 또는 추가
+        int healAmount = player.getMaxHealth() * percentage; // 체력 회복 , getMaxHealth 플레이어 헤더파일에 추가
         cout << "체력 회복 스킬 발동! 회복량: " << healAmount << " (" << percentage * 100 << "%)\n";
-        player.Heal(healAmount);  //Heal 플레이어 헤더파일에 따라 수정 또는 추가
+        player.Heal(healAmount);  //Heal 플레이어 헤더파일에 추가
     }
 
     string GetName() const override {
