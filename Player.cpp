@@ -82,3 +82,4 @@ void Player::getDamage(int amount) {
         currentHealth = 0;
     }
 }
+//¾È³ç;
