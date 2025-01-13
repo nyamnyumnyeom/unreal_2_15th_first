@@ -1,9 +1,9 @@
-#ifndef PLAYER_H
+ï»¿#ifndef PLAYER_H
 #define PLAYER_H
 #include <string>
 #include <map>
 
-// ¼öÁ¤!!
+// ìˆ˜ì •!!
 class Player {
 private:
     std::string name;
@@ -23,18 +23,23 @@ public:
 
     void showStat() const;
 
-    // ±İ¾× °ü·Ã ÇÔ¼ö
+    // ê¸ˆì•¡ ê´€ë ¨ í•¨ìˆ˜
     int getGold() const;
     void setGold(int newGold);
 
-    // °ø°İ·Â °ü·Ã ÇÔ¼ö
+    // ê³µê²©ë ¥ ê´€ë ¨ í•¨ìˆ˜
     int getAttack() const;
     void setAttack(int newAttack);
 
-    // ÀÎº¥Åä¸® °ü·Ã ÇÔ¼ö
+    // ì¸ë²¤í† ë¦¬ ê´€ë ¨ í•¨ìˆ˜
     void addItem(const std::string& item, int count);
     void delItem(const std::string& item, int count);
+
+    //ê²½í—˜ì¹˜ íšë“ê³¼ ë ˆë²¨ì—… ê´€ë ¨ í•¨ìˆ˜
+    void levelUp();
+    void gainExp(int amount);
   
+
 };
 
 #endif

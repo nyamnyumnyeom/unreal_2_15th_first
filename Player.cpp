@@ -1,12 +1,12 @@
-#include "Player.h"
+ï»¿#include "Player.h"
 #include <iostream>
 
-// ÀÏ´Ü ´ëÃæ ¼³Á¤ÇØ³ö¼­ ´Ù½Ã ÇØ¾ß ÇÕ´Ï´Ù ...
+// ì¼ë‹¨ ëŒ€ì¶© ì„¤ì •í•´ë†”ì„œ ë‹¤ì‹œ í•´ì•¼ í•©ë‹ˆë‹¤ ...
 Player::Player(const std::string& playerName)
     : name(playerName), level(1), maxHealth(200), currentHealth(200), attack(30), exp(0) , gold(100) {
 }
 
-// ÃßÈÄ Ãß°¡
+// ì¶”í›„ ì¶”ê°€
 void Player::showStat() const {
         std::cout << "Name: " << name << std::endl;
         std::cout << "Level: " << level << std::endl;
@@ -42,4 +42,26 @@ void Player::addItem(const std::string& item, int count) {
 
 void Player::delItem(const std::string& item, int count) {
     inventory[item] -= count;
+}
+
+
+//ë ˆë²¨ì—…ê³¼ ê²½í—˜ì¹˜ íšë“ ê´€ë ¨ í•¨ìˆ˜
+void Player::levelUp() {
+    level++;
+    maxHealth += level + (maxHealth / 7);
+    currentHealth = maxHealth;
+    attack += level + (attack / 10);
+    exp = 0;
+    std::cout << "Level up, current level is: " << level << ", Max Hp: " << currentHealth
+        << ", Damage: " << attack << "\n";
+}
+
+void Player::gainExp(int amount) {
+    exp += amount;
+    int maxExp = (100 * (1 + level) * level) / 2;
+    if (exp >= maxExp) {
+        exp -= maxExp;
+        levelUp();
+
+    }
 }
