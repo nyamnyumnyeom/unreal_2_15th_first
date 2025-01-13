@@ -4,11 +4,12 @@
 #define SHOP_H
 
 #include "Player.h" 
+#include "SkillManager.h"
 
 class Shop {
 public:
-    void openShop(Player& player); // 상점을 열고 메뉴를 처리
-    void buySkill(Player& player);
+    void openShop(Player& player,SkillManager& skillManager); // 상점을 열고 메뉴를 처리  SkillManager에 따라 수정
+    void buySkill(Player& player,SkillManager& skillManager);                             
 };
 
 #endif
