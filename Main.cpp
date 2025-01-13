@@ -1,27 +1,37 @@
 ﻿#include <iostream>
-#include <iostream>
+#include <algorithm>
 #include <string>
+#include <cctype>
 #include "Player.h"   // 플레이어 클래스
 #include "Monster.h"  // 몬스터 클래스
 #include "Battle.h"   // 전투 클래스
 #include "Shop.h"     // 상점 클래스
+#include "printimg.cpp"      // 이미지 출력
 
 using namespace std;
 
 // 이름 유효성 검사 함수
 bool isValidName(const string& name) {
+
     if (name.length() < 2 || name.length() > 8 || name.find(' ') != string::npos) {
         return false;
     }
 
-    for (char c : name) {
-        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= 0xAC00 && c <= 0xD7A3))) {
+    string lowerName = name;
+    transform(lowerName.begin(), lowerName.end(), lowerName.begin(), tolower);
+    if (lowerName.find("null") != string::npos) {
+        return false;
+    }
+
+    for (unsigned char c : name) {
+        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) 
+        {
             return false;
         }
     }
-
     return true;
 }
+
 
 // 전투 후 선택 메뉴
 void ChoiceMenu(Player& player, Shop& shop) {
@@ -79,6 +89,10 @@ int main() {
         ChoiceMenu(player, shop);
 
         // 종료 여기도 수정?
+        cout << "\n";
+
+        print_img1();
+        
         cout << "\n게임을 계속하시겠습니까? (1: 계속, 0: 종료): ";
         int continueGame;
         cin >> continueGame;
@@ -90,4 +104,4 @@ int main() {
     }
 
     return 0;
-}
+    }
