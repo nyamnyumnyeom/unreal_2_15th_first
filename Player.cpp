@@ -54,3 +54,23 @@ void Player::addItem(const std::string& item, int count) {
 void Player::delItem(const std::string& item, int count) {
     inventory[item] -= count;
 }
+
+void Player::levelUp() {
+    level++;
+    maxHealth += level + (maxHealth / 7);
+    currentHealth = maxHealth;
+    attack += level + (attack / 10);
+    exp = 0;
+    std::cout << "Level up! current level is: " << level << ", MaxHealth: " << currentHealth
+        << ", Damage: " << attack << "\n";
+}
+
+void Player::gainExp(int amount) {
+    exp += amount;
+    int maxExp = (100 * (1 + level) * level) / 2;
+    if (exp >= maxExp) {
+        exp -= maxExp;
+        levelUp();
+
+    }
+}
