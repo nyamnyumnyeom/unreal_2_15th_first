@@ -40,6 +40,9 @@ public:
     void addItem(const string& item, int count);
     void delItem(const string& item, int count);
   
+    //경험치 획득과 레벨업 관련 함수
+    void levelUp();
+    void gainExp(int amount);
 };
 
 #endif
