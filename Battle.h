@@ -1,12 +1,12 @@
-#ifndef BATTLE_H
+ï»¿#ifndef BATTLE_H
 #define BATTLE_H
 
-#include "Player.h"    // Player Å¬·¡½º Æ÷ÇÔ
-#include "Monster.h"   // Monster Å¬·¡½º Æ÷ÇÔ
+#include "Player.h"    // Player í´ë˜ìŠ¤ í¬í•¨
+#include "Monster.h"   // Monster í´ë˜ìŠ¤ í¬í•¨
 
 class Battle {
 public:
-    void startBattle(Player& player, Monster& monster); // ÀüÅõ ½ÃÀÛ
+    void startBattle(Player& player, Monster& monster); // ì „íˆ¬ ì‹œì‘
 };
 
 #endif

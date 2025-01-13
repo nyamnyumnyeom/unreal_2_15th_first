@@ -1,4 +1,4 @@
-#ifndef SKILLMANAGER_H
+ï»¿#ifndef SKILLMANAGER_H
 #define SKILLMANAGER_H
 
 #include "ISkill.h"
@@ -10,22 +10,22 @@ using namespace std;
 
 class SkillManager {
 private:
-    unordered_map<string, int> skillLevels; // ½ºÅ³ ÀÌ¸§ -> ·¹º§
-    vector<unique_ptr<ISkill>> skills;     // ½ºÅ³ ¸ñ·Ï
+    unordered_map<string, int> skillLevels; // ìŠ¤í‚¬ ì´ë¦„ -> ë ˆë²¨
+    vector<unique_ptr<ISkill>> skills;     // ìŠ¤í‚¬ ëª©ë¡
 
 public:
     SkillManager();
 
-    // ½ºÅ³ Ãß°¡
+    // ìŠ¤í‚¬ ì¶”ê°€
     void AddSkill(unique_ptr<ISkill> skill);
 
-    // ½ºÅ³ ·¹º§ Áõ°¡
+    // ìŠ¤í‚¬ ë ˆë²¨ ì¦ê°€
     void LevelUpSkill(const string& skillName);
 
-    // ½ºÅ³ »ç¿ë
+    // ìŠ¤í‚¬ ì‚¬ìš©
     void UseSkill(const string& skillName, Player& player, Monster& monster);
 
-    // ¸ğµç ½ºÅ³ Á¤º¸ Ãâ·Â
+    // ëª¨ë“  ìŠ¤í‚¬ ì •ë³´ ì¶œë ¥
     void ShowSkills() const;
 };
 

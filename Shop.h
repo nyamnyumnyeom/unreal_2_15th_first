@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #ifndef SHOP_H
 #define SHOP_H
@@ -7,7 +7,7 @@
 
 class Shop {
 public:
-    void openShop(Player& player); // »óÁ¡À» ¿­°í ¸Ş´º¸¦ Ã³¸®
+    void openShop(Player& player); // ìƒì ì„ ì—´ê³  ë©”ë‰´ë¥¼ ì²˜ë¦¬
     void buySkill(Player& player);
 };
 

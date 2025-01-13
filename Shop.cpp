@@ -1,4 +1,4 @@
-#include "Shop.h"
+Ôªø#include "Shop.h"
 #include "printimg.cpp"
 #include <thread> 
 #include <chrono>
@@ -9,14 +9,14 @@
 
 using namespace std;
 
-// ªÛ¡° ø≠±‚
+// ÏÉÅÏ†ê Ïó¥Í∏∞
 void Shop::openShop(Player& player) {
     while (true) {
-        cout << "\n=== ªÛ¡° ===\n";
-        cout << "1. ±∏∏≈ HP ∆˜º« (100 Gold)\n";
-        cout << "2. Ω∫≈≥ ±∏∏≈ (1000 Gold)\n";
-        cout << "3. ªÛ¡° ≥™∞°±‚\n";
-        cout << "º±≈√: ";
+        cout << "\n=== ÏÉÅÏ†ê ===\n";
+        cout << "1. Íµ¨Îß§ HP Ìè¨ÏÖò (100 Gold)\n";
+        cout << "2. Ïä§ÌÇ¨ Íµ¨Îß§ (1000 Gold)\n";
+        cout << "3. ÏÉÅÏ†ê ÎÇòÍ∞ÄÍ∏∞\n";
+        cout << "ÏÑ†ÌÉù: ";
 
         int choice;
         cin >> choice;
@@ -25,24 +25,24 @@ void Shop::openShop(Player& player) {
             if (player.getGold() >= 100) {
                 player.setGold(player.getGold() - 100);
                 player.addItem("hppotion", 1); 
-                cout << "HP ∆˜º«¿ª ±∏∏≈«ﬂΩ¿¥œ¥Ÿ.\n";
+                cout << "HP Ìè¨ÏÖòÏùÑ Íµ¨Îß§ÌñàÏäµÎãàÎã§.\n";
             }
             else {
-                cout << "µ∑¿Ã ∫Œ¡∑«’¥œ¥Ÿ.\n";
+                cout << "ÎèàÏù¥ Î∂ÄÏ°±Ìï©ÎãàÎã§.\n";
             }
         }
         else if (choice == 2) {
                 buySkill(player);
         }
         else if (choice == 3) {
-            cout << "ªÛ¡°¿ª ≥™∞©¥œ¥Ÿ.\n";
+            cout << "ÏÉÅÏ†êÏùÑ ÎÇòÍ∞ëÎãàÎã§.\n";
             break;
         }
         else if (choice == 99) {
             player.setGold(player.getGold() + 100000);
         }
         else {
-            cout << "¿ﬂ∏¯µ» º±≈√¿‘¥œ¥Ÿ. ¥ŸΩ√ ¿‘∑¬«ÿ¡÷ººø‰.\n";
+            cout << "ÏûòÎ™ªÎêú ÏÑ†ÌÉùÏûÖÎãàÎã§. Îã§Ïãú ÏûÖÎ†•Ìï¥Ï£ºÏÑ∏Ïöî.\n";
         }
     }
 }
@@ -51,27 +51,27 @@ void Shop::openShop(Player& player) {
 void Shop::buySkill(Player& player) {
     if (player.getGold() >= 1000) {
         player.setGold(player.getGold() - 1000);  
-        cout << "Ω∫≈≥ªÛ¿⁄∏¶ ±∏∏≈«ﬂΩ¿¥œ¥Ÿ.\n";
+        cout << "Ïä§ÌÇ¨ÏÉÅÏûêÎ•º Íµ¨Îß§ÌñàÏäµÎãàÎã§.\n";
         Sleep(1000);
         print_close();
         std::cout << "\n";
-        std::cout << "\nªÛ¿⁄ ∞≥∫¿ ¡ﬂ .";
-        std::flush(std::cout);  // √‚∑¬ πˆ∆€∏¶ ¡ÔΩ√ √‚∑¬
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));  // 0.5√  ¥Î±‚
-        std::cout << "\rªÛ¿⁄ ∞≥∫¿ ¡ﬂ ..";  // ƒ≥∏Æ¡ˆ ∏Æ≈œ¿∏∑Œ ¿Ã¿¸ ¡Ÿ¿ª µ§æÓæ∏
-        std::flush(std::cout);  // √‚∑¬ πˆ∆€∏¶ ¡ÔΩ√ √‚∑¬
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));  // 0.5√  ¥Î±‚
-        std::cout << "\rªÛ¿⁄ ∞≥∫¿ ¡ﬂ ...";  // ¥ŸΩ√ µ§æÓæ≤∞Ì √‚∑¬
-        std::flush(std::cout);  // √‚∑¬ πˆ∆€∏¶ ¡ÔΩ√ √‚∑¬
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));  // 0.5√  ¥Î±‚
-        std::cout << "\rªÛ¿⁄ ∞≥∫¿ ¡ﬂ .";
-        std::flush(std::cout);  // √‚∑¬ πˆ∆€∏¶ ¡ÔΩ√ √‚∑¬
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));  // 0.5√  ¥Î±‚
-        std::cout << "\rªÛ¿⁄ ∞≥∫¿ ¡ﬂ ..";  // ƒ≥∏Æ¡ˆ ∏Æ≈œ¿∏∑Œ ¿Ã¿¸ ¡Ÿ¿ª µ§æÓæ∏
-        std::flush(std::cout);  // √‚∑¬ πˆ∆€∏¶ ¡ÔΩ√ √‚∑¬
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));  // 0.5√  ¥Î±‚
-        std::cout << "\rªÛ¿⁄ ∞≥∫¿ ¡ﬂ ...";  // ¥ŸΩ√ µ§æÓæ≤∞Ì √‚∑¬
-        std::flush(std::cout);  // √‚∑¬ πˆ∆€∏¶ ¡ÔΩ√ √‚∑¬
+        std::cout << "\nÏÉÅÏûê Í∞úÎ¥â Ï§ë .";
+        std::flush(std::cout);  // Ï∂úÎ†• Î≤ÑÌçºÎ•º Ï¶âÏãú Ï∂úÎ†•
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));  // 0.5Ï¥à ÎåÄÍ∏∞
+        std::cout << "\rÏÉÅÏûê Í∞úÎ¥â Ï§ë ..";  // Ï∫êÎ¶¨ÏßÄ Î¶¨ÌÑ¥ÏúºÎ°ú Ïù¥Ï†Ñ Ï§ÑÏùÑ ÎçÆÏñ¥ÏîÄ
+        std::flush(std::cout);  // Ï∂úÎ†• Î≤ÑÌçºÎ•º Ï¶âÏãú Ï∂úÎ†•
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));  // 0.5Ï¥à ÎåÄÍ∏∞
+        std::cout << "\rÏÉÅÏûê Í∞úÎ¥â Ï§ë ...";  // Îã§Ïãú ÎçÆÏñ¥Ïì∞Í≥† Ï∂úÎ†•
+        std::flush(std::cout);  // Ï∂úÎ†• Î≤ÑÌçºÎ•º Ï¶âÏãú Ï∂úÎ†•
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));  // 0.5Ï¥à ÎåÄÍ∏∞
+        std::cout << "\rÏÉÅÏûê Í∞úÎ¥â Ï§ë .";
+        std::flush(std::cout);  // Ï∂úÎ†• Î≤ÑÌçºÎ•º Ï¶âÏãú Ï∂úÎ†•
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));  // 0.5Ï¥à ÎåÄÍ∏∞
+        std::cout << "\rÏÉÅÏûê Í∞úÎ¥â Ï§ë ..";  // Ï∫êÎ¶¨ÏßÄ Î¶¨ÌÑ¥ÏúºÎ°ú Ïù¥Ï†Ñ Ï§ÑÏùÑ ÎçÆÏñ¥ÏîÄ
+        std::flush(std::cout);  // Ï∂úÎ†• Î≤ÑÌçºÎ•º Ï¶âÏãú Ï∂úÎ†•
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));  // 0.5Ï¥à ÎåÄÍ∏∞
+        std::cout << "\rÏÉÅÏûê Í∞úÎ¥â Ï§ë ...";  // Îã§Ïãú ÎçÆÏñ¥Ïì∞Í≥† Ï∂úÎ†•
+        std::flush(std::cout);  // Ï∂úÎ†• Î≤ÑÌçºÎ•º Ï¶âÏãú Ï∂úÎ†•
         Sleep(1000);
         std::cout << "\n";
         print_open();
@@ -81,23 +81,23 @@ void Shop::buySkill(Player& player) {
         srand(time(0));  
         int randomChance = rand() % 100 + 1;  
 
-        if (randomChance <= 3) {  // 3% »Æ∑¸
-            // attack_1 ∑π∫ß 1¡ı∞°
+        if (randomChance <= 3) {  // 3% ÌôïÎ•†
+            // attack_1 Î†àÎ≤® 1Ï¶ùÍ∞Ä
             cout << "1!!!" << endl;
         }
         else if(randomChance >= 4 && randomChance <= 6) {
-            // attack_2 ∑π∫ß 1¡ı∞°
+            // attack_2 Î†àÎ≤® 1Ï¶ùÍ∞Ä
             cout << "2!!!" << endl;
         }
         else if (randomChance >= 7 && randomChance <= 9) {
-            // attack_3 ∑π∫ß 1¡ı∞°
+            // attack_3 Î†àÎ≤® 1Ï¶ùÍ∞Ä
             cout << "3!!!" << endl;
         }
         else {
-            cout << "¿Ã∑± ! ªÛ¿⁄∞° ≈÷≈÷ ∫ÒæÓ¿÷≥◊ø‰....\n";
+            cout << "Ïù¥Îü∞ ! ÏÉÅÏûêÍ∞Ä ÌÖÖÌÖÖ ÎπÑÏñ¥ÏûàÎÑ§Ïöî....\n";
         }
     }
     else {
-        cout << "µ∑¿Ã ∫Œ¡∑«’¥œ¥Ÿ.\n";
+        cout << "ÎèàÏù¥ Î∂ÄÏ°±Ìï©ÎãàÎã§.\n";
     }
 }

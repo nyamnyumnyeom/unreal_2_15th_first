@@ -1,23 +1,23 @@
-#include "SkillManager.h"
+ï»¿#include "SkillManager.h"
 #include <iostream>
 
 SkillManager::SkillManager() {
-    // ÃÊ±â ½ºÅ³ ·¹º§ ¼³Á¤
+    // ì´ˆê¸° ìŠ¤í‚¬ ë ˆë²¨ ì„¤ì •
 }
 
 void SkillManager::AddSkill(unique_ptr<ISkill> skill) {
     string name = skill->GetName();
     skills.push_back(move(skill));
-    skillLevels[name] = 0; // ÃÊ±â ·¹º§ ¼³Á¤
+    skillLevels[name] = 0; // ì´ˆê¸° ë ˆë²¨ ì„¤ì •
 }
 
 void SkillManager::LevelUpSkill(const string& skillName) {
     if (skillLevels.find(skillName) != skillLevels.end()) {
         skillLevels[skillName]++;
-        cout << skillName << "ÀÇ ·¹º§ÀÌ Áõ°¡Çß½À´Ï´Ù! ÇöÀç ·¹º§: " << skillLevels[skillName] << "\n";
+        cout << skillName << "ì˜ ë ˆë²¨ì´ ì¦ê°€í–ˆìŠµë‹ˆë‹¤! í˜„ìž¬ ë ˆë²¨: " << skillLevels[skillName] << "\n";
     }
     else {
-        cout << "ÇØ´ç ½ºÅ³À» Ã£À» ¼ö ¾ø½À´Ï´Ù.\n";
+        cout << "í•´ë‹¹ ìŠ¤í‚¬ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n";
     }
 }
 
@@ -29,19 +29,19 @@ void SkillManager::UseSkill(const string& skillName, Player& player, Monster& mo
                 skill->ApplyEffect(player, monster, level);
             }
             else {
-                cout << skillName << " ½ºÅ³ÀÇ ·¹º§ÀÌ 0ÀÔ´Ï´Ù. ½ºÅ³À» »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.\n";
+                cout << skillName << " ìŠ¤í‚¬ì˜ ë ˆë²¨ì´ 0ìž…ë‹ˆë‹¤. ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n";
             }
             return;
         }
     }
-    cout << "ÇØ´ç ½ºÅ³À» Ã£À» ¼ö ¾ø½À´Ï´Ù.\n";
+    cout << "í•´ë‹¹ ìŠ¤í‚¬ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n";
 }
 
 void SkillManager::ShowSkills() const {
-    cout << "=== ½ºÅ³ ¸ñ·Ï ===\n";
+    cout << "=== ìŠ¤í‚¬ ëª©ë¡ ===\n";
     for (const auto& skill : skills) {
         string name = skill->GetName();
-        cout << name << " (·¹º§: " << skillLevels.at(name) << ")\n";
-        cout << "¼³¸í: " << skill->GetDescription() << "\n";
+        cout << name << " (ë ˆë²¨: " << skillLevels.at(name) << ")\n";
+        cout << "ì„¤ëª…: " << skill->GetDescription() << "\n";
     }
 }
