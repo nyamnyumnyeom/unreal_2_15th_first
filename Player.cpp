@@ -53,6 +53,7 @@ void Player::addItem(const std::string& item, int count) {
 
 void Player::delItem(const std::string& item, int count) {
     inventory[item] -= count;
+
 }
 //·¹º§¾÷
 void Player::levelUp() {
@@ -81,4 +82,3 @@ void Player::getDamage(int amount) {
         currentHealth = 0;
     }
 }
-    
