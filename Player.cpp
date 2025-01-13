@@ -1,23 +1,23 @@
-ï»¿#include "Player.h"
+#include "Player.h"
 #include <iostream>
 #include <cmath>
 
-// ì¼ë‹¨ ëŒ€ì¶© ì„¤ì •í•´ë†”ì„œ ë‹¤ì‹œ í•´ì•¼ í•©ë‹ˆë‹¤ ...
+// ÀÏ´Ü ´ëÃæ ¼³Á¤ÇØ³ö¼­ ´Ù½Ã ÇØ¾ß ÇÕ´Ï´Ù ...
 Player::Player(const std::string& playerName)
     : name(playerName), level(1), maxHealth(200), currentHealth(200), attack(30), exp(0) , gold(100) {
 }
 
 void Player::calculateMaxHealth() {
     if (level == 1) {
-        maxHealth = 100; // ë ˆë²¨ 1ì˜ ì´ˆê¸° HP
+        maxHealth = 100; // ·¹º§ 1ÀÇ ÃÊ±â HP
     }
     else {
-        maxHealth = static_cast<int>(maxHealth + level + std::round(maxHealth / 7.0)); // ë°˜ì˜¬ë¦¼ ì²˜ë¦¬
+        maxHealth = static_cast<int>(maxHealth + level + std::round(maxHealth / 7.0)); // ¹İ¿Ã¸² Ã³¸®
     }
-    currentHealth = maxHealth; // í˜„ì¬ ì²´ë ¥ì„ ìµœëŒ€ ì²´ë ¥ìœ¼ë¡œ ì„¤ì •
+    currentHealth = maxHealth; // ÇöÀç Ã¼·ÂÀ» ÃÖ´ë Ã¼·ÂÀ¸·Î ¼³Á¤
 }
 
-// ì¶”í›„ ì¶”ê°€
+// ÃßÈÄ Ãß°¡
 void Player::showStat() const {
         std::cout << "Name: " << name << std::endl;
         std::cout << "Level: " << level << std::endl;

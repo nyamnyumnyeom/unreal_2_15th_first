@@ -1,4 +1,4 @@
-ï»¿#ifndef SKILLINTERFACES_H
+#ifndef SKILLINTERFACES_H
 #define SKILLINTERFACES_H
 
 #include "ISkill.h"
@@ -7,58 +7,58 @@
 
 using namespace std;
 
-// ë°ë¯¸ì§€ ì¦ê°€ ìŠ¤í‚¬
+// µ¥¹ÌÁö Áõ°¡ ½ºÅ³
 class Skill1 : public ISkill {
 public:
     void ApplyEffect(Player& player, Monster& monster, int skillLevel) override {
-        int extraDamage = player.Damage() * skillLevel * 0.1;   // ë°ë¯¸ì§€ ì¦ê°€: ë ˆë²¨ x 10% ,  GetHealth í”Œë ˆì´ì–´ í—¤ë”íŒŒì¼ì— ë”°ë¼ ìˆ˜ì • ë˜ëŠ” ì¶”ê°€
-        cout << "ë°ë¯¸ì§€ ì¦ê°€ ìŠ¤í‚¬! ëª¬ìŠ¤í„°ì—ê²Œ ì¶”ê°€ ë°ë¯¸ì§€: " << extraDamage << "\n";
-        monster.TakeDamage(extraDamage);     //TakeDamage ëª¬ìŠ¤í„° í—¤ë”íŒŒì¼ì— ë”°ë¼ ìˆ˜ì • ë˜ëŠ” ì¶”ê°€
+        int extraDamage = player.Damage() * skillLevel * 0.1;   // µ¥¹ÌÁö Áõ°¡: ·¹º§ x 10% ,  GetHealth ÇÃ·¹ÀÌ¾î Çì´õÆÄÀÏ¿¡ µû¶ó ¼öÁ¤ ¶Ç´Â Ãß°¡
+        cout << "µ¥¹ÌÁö Áõ°¡ ½ºÅ³! ¸ó½ºÅÍ¿¡°Ô Ãß°¡ µ¥¹ÌÁö: " << extraDamage << "\n";
+        monster.TakeDamage(extraDamage);     //TakeDamage ¸ó½ºÅÍ Çì´õÆÄÀÏ¿¡ µû¶ó ¼öÁ¤ ¶Ç´Â Ãß°¡
     }
 
     string GetName() const override {
-        return "ë°ë¯¸ì§€ ì¦ê°€ ìŠ¤í‚¬";
+        return "µ¥¹ÌÁö Áõ°¡ ½ºÅ³";
     }
 
     string GetDescription() const override {
-        return "ëª¬ìŠ¤í„°ì—ê²Œ ì¶”ê°€ ë°ë¯¸ì§€ë¥¼ ì…í™ë‹ˆë‹¤. (ë ˆë²¨ x 10% ì¶”ê°€)";
+        return "¸ó½ºÅÍ¿¡°Ô Ãß°¡ µ¥¹ÌÁö¸¦ ÀÔÈü´Ï´Ù. (·¹º§ x 10% Ãß°¡)";
     }
 };
 
-// ì²´ë ¥ íšŒë³µ ìŠ¤í‚¬
+// Ã¼·Â È¸º¹ ½ºÅ³
 class Skill2 : public ISkill {
 public:
     void ApplyEffect(Player& player, Monster& /*monster*/, int skillLevel) override {
-        double percentage = min(skillLevel * 0.05, 1.0); // ìµœëŒ€ 100% ì œí•œ
-        int healAmount = player.GetMaxHP() * percentage; // ì²´ë ¥ íšŒë³µ , GetMaxHP í”Œë ˆì´ì–´ í—¤ë”íŒŒì¼ì— ë”°ë¼ ìˆ˜ì • ë˜ëŠ” ì¶”ê°€
-        cout << "ì²´ë ¥ íšŒë³µ ìŠ¤í‚¬ ë°œë™! íšŒë³µëŸ‰: " << healAmount << " (" << percentage * 100 << "%)\n";
-        player.Heal(healAmount);  //Heal í”Œë ˆì´ì–´ í—¤ë”íŒŒì¼ì— ë”°ë¼ ìˆ˜ì • ë˜ëŠ” ì¶”ê°€
+        double percentage = min(skillLevel * 0.05, 1.0); // ÃÖ´ë 100% Á¦ÇÑ
+        int healAmount = player.GetMaxHP() * percentage; // Ã¼·Â È¸º¹ , GetMaxHP ÇÃ·¹ÀÌ¾î Çì´õÆÄÀÏ¿¡ µû¶ó ¼öÁ¤ ¶Ç´Â Ãß°¡
+        cout << "Ã¼·Â È¸º¹ ½ºÅ³ ¹ßµ¿! È¸º¹·®: " << healAmount << " (" << percentage * 100 << "%)\n";
+        player.Heal(healAmount);  //Heal ÇÃ·¹ÀÌ¾î Çì´õÆÄÀÏ¿¡ µû¶ó ¼öÁ¤ ¶Ç´Â Ãß°¡
     }
 
     string GetName() const override {
-        return "ì²´ë ¥ íšŒë³µ ìŠ¤í‚¬";
+        return "Ã¼·Â È¸º¹ ½ºÅ³";
     }
 
     string GetDescription() const override {
-        return "í”Œë ˆì´ì–´ì˜ ì²´ë ¥ì„ íšŒë³µí•©ë‹ˆë‹¤. (ë ˆë²¨ x 5% íšŒë³µ)";
+        return "ÇÃ·¹ÀÌ¾îÀÇ Ã¼·ÂÀ» È¸º¹ÇÕ´Ï´Ù. (·¹º§ x 5% È¸º¹)";
     }
 };
 
-// ë³´ìƒ ì¦ê°€ ìŠ¤í‚¬
+// º¸»ó Áõ°¡ ½ºÅ³
 class Skill3 : public ISkill {
 public:
     void ApplyEffect(Player& player, Monster& monster, int skillLevel) override {
-        double bonus = min(skillLevel * 0.05, 1.0); // ìµœëŒ€ 100% ì œí•œ
-        monster.RewardBonus(bonus); // ë³´ìƒ ì¦ê°€ , RewardBonus ëª¬ìŠ¤í„° í—¤ë”íŒŒì¼ì— ë”°ë¼ ìˆ˜ì • ë˜ëŠ” ì¶”ê°€
-        cout << "ë³´ìƒ ì¦ê°€ ìŠ¤í‚¬ ë°œë™! ë³´ìƒ ì¦ê°€ìœ¨: " << bonus * 100 << "%\n";
+        double bonus = min(skillLevel * 0.05, 1.0); // ÃÖ´ë 100% Á¦ÇÑ
+        monster.RewardBonus(bonus); // º¸»ó Áõ°¡ , RewardBonus ¸ó½ºÅÍ Çì´õÆÄÀÏ¿¡ µû¶ó ¼öÁ¤ ¶Ç´Â Ãß°¡
+        cout << "º¸»ó Áõ°¡ ½ºÅ³ ¹ßµ¿! º¸»ó Áõ°¡À²: " << bonus * 100 << "%\n";
     }
 
     string GetName() const override {
-        return "ë³´ìƒ ì¦ê°€ ìŠ¤í‚¬";
+        return "º¸»ó Áõ°¡ ½ºÅ³";
     }
 
     string GetDescription() const override {
-        return "ê³¨ë“œì™€ ê²½í—˜ì¹˜ ë³´ìƒì„ ì¦ê°€ì‹œí‚µë‹ˆë‹¤. (ë ˆë²¨ x 5% ì¦ê°€)";
+        return "°ñµå¿Í °æÇèÄ¡ º¸»óÀ» Áõ°¡½ÃÅµ´Ï´Ù. (·¹º§ x 5% Áõ°¡)";
     }
 };
 

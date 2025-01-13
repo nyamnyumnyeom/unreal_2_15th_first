@@ -1,4 +1,4 @@
-ï»¿#ifndef ISKILL_H
+#ifndef ISKILL_H
 #define ISKILL_H
 
 #include "Player.h"
@@ -7,18 +7,18 @@
 
 using namespace std;
 
-// ìŠ¤í‚¬ ì¸í„°í˜ì´ìŠ¤
+// ½ºÅ³ ÀÎÅÍÆäÀÌ½º
 class ISkill {
 public:
     virtual ~ISkill() = default;
 
-    // ìŠ¤í‚¬ íš¨ê³¼ë¥¼ ì ìš©í•˜ëŠ” ë©”ì„œë“œ
+    // ½ºÅ³ È¿°ú¸¦ Àû¿ëÇÏ´Â ¸Ş¼­µå
     virtual void ApplyEffect(Player& player, Monster& monster, int skillLevel) = 0;
 
-    // ìŠ¤í‚¬ ì´ë¦„ ë°˜í™˜
+    // ½ºÅ³ ÀÌ¸§ ¹İÈ¯
     virtual string GetName() const = 0;
 
-    // ìŠ¤í‚¬ ì„¤ëª… ë°˜í™˜
+    // ½ºÅ³ ¼³¸í ¹İÈ¯
     virtual string GetDescription() const = 0;
 };
 

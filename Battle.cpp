@@ -1,8 +1,8 @@
-ï»¿#include "Battle.h"
+#include "Battle.h"
 #include <iostream>
 
 using namespace std;
 
 void Battle::startBattle(Player& player, Monster& monster) {
-	cout << "ì¶”í›„ ìˆ˜ì • !" << endl;
+	cout << "ÃßÈÄ ¼öÁ¤ !" << endl;
 }

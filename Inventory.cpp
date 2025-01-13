@@ -1,56 +1,56 @@
-ï»¿#include "Inventory.h"
+#include "Inventory.h"
 #include <iostream>
 #include <iomanip>
 #include <map>
 using namespace std;
 
-//----------ì†Œëª¨í’ˆ ì¸ë²¤í† ë¦¬----------
-//ì¸ë²¤í† ë¦¬-ì†Œëª¨í’ˆ ì•„ì´í…œ ì¡°íšŒ
+//----------¼Ò¸ğÇ° ÀÎº¥Åä¸®----------
+//ÀÎº¥Åä¸®-¼Ò¸ğÇ° ¾ÆÀÌÅÛ Á¶È¸
 void Consumable::showInventory()
 {
 	if (slot_consum.empty())
 	{
-		cout << "Log : ì¸ë²¤í† ë¦¬ì— í‘œì‹œí•  ìˆ˜ ìˆëŠ” ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤." << endl;
+		cout << "Log : ÀÎº¥Åä¸®¿¡ Ç¥½ÃÇÒ ¼ö ÀÖ´Â ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù." << endl;
 		return;
 	}
 
-	cout << "â”Œ ------------- ì†Œëª¨í’ˆ -------------â”" << endl;
+	cout << "¦£ ------------- ¼Ò¸ğÇ° -------------¦¤" << endl;
 	for (auto iter = slot_consum.begin(); iter != slot_consum.end(); iter++)
 	{
 		cout << "|" << setw(15) << left << iter->first << "  : " << setw(16) << right << iter->second << "|" << endl;
 	}
-	cout << "â”” ------------ ì¸ë²¤í† ë¦¬ ------------â”˜" << endl;
+	cout << "¦¦ ------------ ÀÎº¥Åä¸® ------------¦¥" << endl;
 }
 
-//ì•„ì´í…œ íšë“
+//¾ÆÀÌÅÛ È¹µæ
 void Consumable::itemGet(string itemName)
 {
-	//ì¸ë²¤í† ë¦¬ì— í•´ë‹¹ ì•„ì´í…œì´ ìˆëŠ”ì§€ ê²€ì‚¬í•˜ì—¬ [ì•„ì´í…œ ì¶”ê°€ or ì•„ì´í…œ ê°¯ìˆ˜ ì¦ê°€]
+	//ÀÎº¥Åä¸®¿¡ ÇØ´ç ¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö °Ë»çÇÏ¿© [¾ÆÀÌÅÛ Ãß°¡ or ¾ÆÀÌÅÛ °¹¼ö Áõ°¡]
 	map<string, int>::iterator iter = slot_consum.find(itemName);
 	if (iter == slot_consum.end())
 	{
 		slot_consum.insert(make_pair(itemName, 1));
-		cout << "ì•„ì´í…œ '" << itemName << "'ì„/ë¥¼ ì†Œëª¨í’ˆ ì¸ë²¤í† ë¦¬ì— ë³´ê´€í•©ë‹ˆë‹¤." << endl;
+		cout << "¾ÆÀÌÅÛ '" << itemName << "'À»/¸¦ ¼Ò¸ğÇ° ÀÎº¥Åä¸®¿¡ º¸°üÇÕ´Ï´Ù." << endl;
 	}
 	else
 	{
 		iter->second++;
-		cout << "ì•„ì´í…œ '" << itemName << "'ì„/ë¥¼ ì†Œëª¨í’ˆ ì¸ë²¤í† ë¦¬ì— ë³´ê´€í•©ë‹ˆë‹¤. í˜„ì¬ ê°¯ìˆ˜ : " << iter->second << "ê°œ" << endl;
+		cout << "¾ÆÀÌÅÛ '" << itemName << "'À»/¸¦ ¼Ò¸ğÇ° ÀÎº¥Åä¸®¿¡ º¸°üÇÕ´Ï´Ù. ÇöÀç °¹¼ö : " << iter->second << "°³" << endl;
 	}
 }
 
-//ì•„ì´í…œ ì‚¬ìš©
+//¾ÆÀÌÅÛ »ç¿ë
 int Consumable::itemUse(string itemName)
 {
 	map<string, int>::iterator iter = slot_consum.find(itemName);
 	if (iter == slot_consum.end())
 	{
-		cout << "Error : ì‚¬ìš©í•˜ë ¤ëŠ” ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤.";
+		cout << "Error : »ç¿ëÇÏ·Á´Â ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù.";
 		return 0;
 	}
 
 	iter->second--;
-	cout << "ì•„ì´í…œ '" << itemName << "'ì„/ë¥¼ 1ê°œ ì‚¬ìš©í•©ë‹ˆë‹¤. í˜„ì¬ ê°¯ìˆ˜ : " << iter->second << "ê°œ" << endl;
+	cout << "¾ÆÀÌÅÛ '" << itemName << "'À»/¸¦ 1°³ »ç¿ëÇÕ´Ï´Ù. ÇöÀç °¹¼ö : " << iter->second << "°³" << endl;
 
 	if (iter->second == 0)
 	{
@@ -60,42 +60,42 @@ int Consumable::itemUse(string itemName)
 }
 
 
-//----------ì¥ë¹„ ì¸ë²¤í† ë¦¬----------
-//ì¸ë²¤í† ë¦¬ - ì¥ë¹„ ì•„ì´í…œ ì¡°íšŒ
+//----------Àåºñ ÀÎº¥Åä¸®----------
+//ÀÎº¥Åä¸® - Àåºñ ¾ÆÀÌÅÛ Á¶È¸
 void Equipment::showInventory()
 {
 	if (slot_Equip.empty())
 	{
-		cout << "Log : í˜„ì¬ ì¥ì°©ì¤‘ì¸ ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤." << endl;
+		cout << "Log : ÇöÀç ÀåÂøÁßÀÎ ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù." << endl;
 		return;
 	}
 
-	cout << "â”Œ ------------- ì¥ì°©ì¤‘ -------------â”" << endl;
+	cout << "¦£ ------------- ÀåÂøÁß -------------¦¤" << endl;
 	for (auto iter = slot_Equip.begin(); iter != slot_Equip.end(); iter++)
 	{
 		cout << "|" << setw(15) << left << iter->first << "  : " << setw(16) << right << iter->second << "|" << endl;
 	}
-	cout << "â”” ------------ íšë“ì¥ë¹„ ------------â”˜" << endl;
+	cout << "¦¦ ------------ È¹µæÀåºñ ------------¦¥" << endl;
 }
 
-//ì•„ì´í…œ íšë“
+//¾ÆÀÌÅÛ È¹µæ
 void Equipment::itemGet(string itemName)
 {
-	//ì¸ë²¤í† ë¦¬ì— í•´ë‹¹ ì•„ì´í…œì´ ìˆëŠ”ì§€ ê²€ì‚¬í•˜ì—¬ [ì•„ì´í…œ ì¶”ê°€ or ì•„ì´í…œ ê°¯ìˆ˜ ì¦ê°€]
+	//ÀÎº¥Åä¸®¿¡ ÇØ´ç ¾ÆÀÌÅÛÀÌ ÀÖ´ÂÁö °Ë»çÇÏ¿© [¾ÆÀÌÅÛ Ãß°¡ or ¾ÆÀÌÅÛ °¹¼ö Áõ°¡]
 	map<string, int>::iterator iter = slot_Equip.find(itemName);
 	if (iter == slot_Equip.end())
 	{
 		slot_Equip.insert(make_pair(itemName, 1));
-		cout << "'" << itemName << "'ì„/ë¥¼ ì¥ì°©í•©ë‹ˆë‹¤." << endl;
+		cout << "'" << itemName << "'À»/¸¦ ÀåÂøÇÕ´Ï´Ù." << endl;
 	}
 	else
 	{
 		iter->second++;
-		cout << "'" << itemName << "'ì„/ë¥¼ íšë“í•˜ì—¬ ê¸°ì¡´ ì¥ë¹„ê°€ ê°•í™”ë©ë‹ˆë‹¤. ì¤‘ì²© íšŸìˆ˜ : " << iter->second << "íšŒ" << endl;
+		cout << "'" << itemName << "'À»/¸¦ È¹µæÇÏ¿© ±âÁ¸ Àåºñ°¡ °­È­µË´Ï´Ù. ÁßÃ¸ È½¼ö : " << iter->second << "È¸" << endl;
 	}
 }
 
-//ì¥ë¹„ì— ì˜í•œ ëˆ„ì  ëŠ¥ë ¥ì¹˜ ë°˜í™˜
+//Àåºñ¿¡ ÀÇÇÑ ´©Àû ´É·ÂÄ¡ ¹İÈ¯
 int Equipment::equipStat_Sword()
 {
 	map<string, int>::iterator iter = slot_Equip.find("sword");
