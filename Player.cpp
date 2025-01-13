@@ -54,7 +54,7 @@ void Player::addItem(const std::string& item, int count) {
 void Player::delItem(const std::string& item, int count) {
     inventory[item] -= count;
 }
-
+//레벨업
 void Player::levelUp() {
     level++;
     maxHealth += level + (maxHealth / 7);
@@ -64,7 +64,7 @@ void Player::levelUp() {
     std::cout << "Level up! current level is: " << level << ", MaxHealth: " << currentHealth
         << ", Damage: " << attack << "\n";
 }
-
+//경험치 획득
 void Player::gainExp(int amount) {
     exp += amount;
     int maxExp = (100 * (1 + level) * level) / 2;
@@ -74,3 +74,11 @@ void Player::gainExp(int amount) {
 
     }
 }
+//입은 데미지를 입력받아 현재체력 수정,음수 일시 0으로 고정
+void Player::getDamage(int amount) {
+    currentHealth -= amount;
+    if (currentHealth <= 0) {
+        currentHealth = 0;
+    }
+}
+    
