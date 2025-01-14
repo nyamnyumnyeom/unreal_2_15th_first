@@ -77,7 +77,7 @@ void Player::levelUp() {
         << ", Attack: " << attack << endl;
 }
 
-//경험치
+//레벨
 int Player::getLevel()const {
     return level;
 }
