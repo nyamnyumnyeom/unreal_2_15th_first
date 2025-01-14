@@ -24,7 +24,7 @@ bool isValidName(const string& name) {
     }
 
     for (unsigned char c : name) {
-        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) 
+        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')))
         {
             return false;
         }
@@ -48,7 +48,7 @@ void ChoiceMenu(Player& player, Shop& shop) {
             choiceMade = true;
         }
         else if (choice == 2) {
-            
+
             cout << "체력을 회복했습니다!\n";
             choiceMade = true;
         }
@@ -63,7 +63,7 @@ int main() {
 
     // 캐릭터 이름 입력
     while (true) {
-        cout << "캐릭터 이름을 입력하세요 (2~8글자, 한글/영어만 허용, 공백 및 특수문자 금지): ";
+        cout << "캐릭터 이름을 입력하세요 (2~8글자, 영어만 허용, 공백 및 특수문자 금지): ";
         cin >> characterName;
 
         if (isValidName(characterName)) {
@@ -78,21 +78,20 @@ int main() {
     Player player(characterName);
     Shop shop;
     Battle battle;
-    Monster monster; // 기본 몬스터 생성
+
+    // 몬스터 예시 : 5스테이지
+    Monster monster(5);
 
     // 게임 루프
     while (true) {
+
         // 전투 시작
         battle.startBattle(player, monster);
 
         // 전투 후 선택
         ChoiceMenu(player, shop);
 
-        // 종료 여기도 수정?
-        cout << "\n";
-
-        print_img1();
-        
+        // 종료 선택
         cout << "\n게임을 계속하시겠습니까? (1: 계속, 0: 종료): ";
         int continueGame;
         cin >> continueGame;
@@ -104,4 +103,4 @@ int main() {
     }
 
     return 0;
-    }
+}

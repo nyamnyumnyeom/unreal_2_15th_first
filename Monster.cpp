@@ -2,16 +2,24 @@
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
+#include <iostream>
 
-Monster::Monster(MonsterType type, const std::string& name, int stage)
+Monster::Monster(int stage)
     : type(type), name(name), stage(stage) {
-    std::srand(static_cast<unsigned>(std::time(0))); // 랜덤 시드 설정
+    initializeRandomSeed();
     generateRandomMonster();
     swordDropRate = calculateSwordDropRate(stage); // 무기 드랍율 계산
     armorDropRate = calculateArmorDropRate(stage); // 방어구 드랍율 계산
     calculateGoldDrop(stage);                      // 골드 계산
     calculateExp(stage);                           // 경험치 계산
+}
 
+void Monster::initializeRandomSeed() {
+    static bool isInitialized = false;
+    if (!isInitialized) {
+        std::srand(static_cast<unsigned>(std::time(0)));
+        isInitialized = true;
+    }
 }
 
 void Monster::generateRandomMonster() {
@@ -38,65 +46,46 @@ void Monster::generateRandomMonster() {
     }
 }
 
-// 드랍율 설정
+// 무기 드랍율 계산
 double Monster::calculateSwordDropRate(int stage) {
-    double dropRate = 5.0; // 초기 드랍율 5.0%
+    double minDrop = 5.0; // 최소 드랍율
+    double maxDrop = 45.0; // 최대 드랍율
+    int maxStage = 50; // 최대 스테이지
 
-    // 디버깅 출력
-    std::cout << "Stage: " << stage << ", Initial Drop Rate: " << dropRate << std::endl;
+    double expMax = std::exp(0.1 * (maxStage - 1)) - 1;
+    double expStage = std::exp(0.1 * (stage - 1)) - 1;
 
-    // 스테이지별 드랍율 계산
-    for (int i = 2; i <= stage; ++i) {
-        double increment = dropRate * dropRate / 2.4; // 증가분 계산
-        dropRate = 5.0 + increment; // 초기값에 증가분 추가
-
-        if (dropRate > 45.0) {
-            dropRate = 45.0; // 최대값 제한
-            break;
-        }
-
-        // 디버깅 출력
-        std::cout << "After Stage " << i << ": Drop Rate = " << dropRate << std::endl;
-    }
-
-    return dropRate;
+    return minDrop + (maxDrop - minDrop) * (expStage / expMax);
 }
 
+// 방어구 드랍율 계산
 double Monster::calculateArmorDropRate(int stage) {
-    double dropRate = 5.0; // 초기 드랍율 5.0%
+    double minDrop = 5.0; // 최소 드랍율
+    double maxDrop = 45.0; // 최대 드랍율
+    int maxStage = 50; // 최대 스테이지
 
-    // 스테이지별 드랍율 계산
-    for (int i = 2; i <= stage; ++i) {
-        dropRate = dropRate + (dropRate * dropRate / 2.4);
-        if (dropRate > 45.0) {
-            dropRate = 45.0; // 최대값 제한
-            break;
-        }
-    }
+    double expMax = std::exp(0.1 * (maxStage - 1)) - 1;
+    double expStage = std::exp(0.1 * (stage - 1)) - 1;
 
-    return dropRate;
+    return minDrop + (maxDrop - minDrop) * (expStage / expMax);
 }
-void Monster::calculateGoldDrop(int stage) {
-    // 초기값 설정
-    int baseMin = 5;  // 1스테이지 초기 Gold_drop_min
-    int baseMax = 10; // 1스테이지 초기 Gold_drop_max
 
-    goldDropMin = baseMin; // 골드 최소값 초기화
-    goldDropMax = baseMax; // 골드 최대값 초기화
+void Monster::calculateGoldDrop(int stage) {
+
+
+    goldDropMin = 5;
+    goldDropMax = 10;
+
 
     // 스테이지별 골드 계산
     for (int i = 2; i <= stage; ++i) {
-        goldDropMin = static_cast<int>(goldDropMin * 1.1); // 최소값 정확히 10% 증가
-        goldDropMax = static_cast<int>(goldDropMax * 1.1); // 최대값 정확히 10% 증가
+        goldDropMin = static_cast<int>(std::round(goldDropMin * 1.1));
+        goldDropMax = static_cast<int>(std::round(goldDropMax * 1.1));
     }
 
-    // 디버깅용 출력
-    std::cout << "Debug: Stage = " << stage
-        << ", goldDropMin = " << goldDropMin
-        << ", goldDropMax = " << goldDropMax << std::endl;
-
-    // 랜덤 골드 값 생성
+    // 최종 랜덤 값 생성
     goldDrop = goldDropMin + (std::rand() % (goldDropMax - goldDropMin + 1));
+
 }
 
 void Monster::calculateExp(int stage) {
@@ -119,7 +108,7 @@ int Monster::calculateOrcHealth(int stage) {
 
 // 오크 데미지 
 int Monster::calculateOrcDamage(int stage) {
-    if (stage == 1) return 4;
+    if (stage == 1) return 5;
     int previousDamage = calculateOrcDamage(stage - 1);
     return static_cast<int>(previousDamage + stage + std::round(previousDamage / 10.5));
 }
@@ -154,28 +143,4 @@ int Monster::calculateGoblinDamage(int stage) {
     if (stage == 1) return 5;
     int previousDamage = calculateGoblinDamage(stage - 1);
     return static_cast<int>(previousDamage + stage + std::round(previousDamage / 9.0));
-}
-
-
-
-void Monster::printMonsterInfo() const {
-    std::string typeName;
-    switch (type) {
-    case MonsterType::Goblin: typeName = "Goblin"; break;
-    case MonsterType::Orc: typeName = "Orc"; break;
-    case MonsterType::Skeleton: typeName = "Skeleton"; break;
-    }
-
-    std::cout << "=== 몬스터 정보 ===\n";
-    std::cout << "이름: " << name << "\n";
-    std::cout << "유형: " << typeName << "\n";
-    std::cout << "체력: " << health << "\n";
-    std::cout << "공격력: " << damage << "\n";
-    std::cout << "스테이지: " << stage << "\n";
-    std::cout << "방어구드랍율: " << armorDropRate << "%\n";
-    std::cout << "무기드랍율: " << swordDropRate << "%\n";
-    std::cout << "골드 드랍: " << goldDrop << "G " << "min: " << goldDropMin << "max : " << goldDropMax;
-    //std::cout << "exp: " << exp;
-
-
 }
