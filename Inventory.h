@@ -1,50 +1,50 @@
-#ifndef INVENTORY_H
+ï»¿#ifndef INVENTORY_H
 #define INVENTORY_H
 #include <string>
 #include <map>
 using namespace std;
 
-//----------ÀÎº¥Åä¸® ÀÎÅÍÆäÀÌ½º----------
+//----------ì¸ë²¤í† ë¦¬ ì¸í„°í˜ì´ìŠ¤----------
 class IInventory {
 	virtual void showInventory() = 0;
 	virtual void itemGet(string itemName) = 0;
 };
 
-//----------¼Ò¸ğÇ° ÀÎº¥Åä¸®----------
+//----------ì†Œëª¨í’ˆ ì¸ë²¤í† ë¦¬----------
 class Consumable : IInventory {
 private:
 	map<string, int> slot_consum;
 
 public:
-	//»ı¼ºÀÚ ¹× ÀÎº¥Åä¸®-¼Ò¸ğÇ° getter
+	//ìƒì„±ì ë° ì¸ë²¤í† ë¦¬-ì†Œëª¨í’ˆ getter
 	Consumable() = default;
 	map<string, int> getConsumable() { return slot_consum; }
 
-	//ÀÎº¥Åä¸®-¼Ò¸ğÇ° ¾ÆÀÌÅÛ Á¶È¸
+	//ì¸ë²¤í† ë¦¬-ì†Œëª¨í’ˆ ì•„ì´í…œ ì¡°íšŒ
 	void showInventory();
-	//¾ÆÀÌÅÛ È¹µæ
+	//ì•„ì´í…œ íšë“
 	void itemGet(string itemName);
 
-	//¾ÆÀÌÅÛ »ç¿ë
+	//ì•„ì´í…œ ì‚¬ìš©
 	int itemUse(string itemName);
 };
 
-//----------Àåºñ ÀÎº¥Åä¸®----------
+//----------ì¥ë¹„ ì¸ë²¤í† ë¦¬----------
 class Equipment : IInventory {
 private:
 	map<string, int> slot_Equip;
 
 public:
-	//»ı¼ºÀÚ ¹× ÀÎº¥Åä¸®-¼Ò¸ğÇ° getter
+	//ìƒì„±ì ë° ì¸ë²¤í† ë¦¬-ì†Œëª¨í’ˆ getter
 	Equipment() = default;
 	map<string, int> getEquipment() { return slot_Equip; }
 
-	//ÀÎº¥Åä¸® - Àåºñ ¾ÆÀÌÅÛ Á¶È¸
+	//ì¸ë²¤í† ë¦¬ - ì¥ë¹„ ì•„ì´í…œ ì¡°íšŒ
 	void showInventory();
-	//¾ÆÀÌÅÛ È¹µæ
+	//ì•„ì´í…œ íšë“
 	void itemGet(string itemName);
 
-	//Àåºñ¿¡ ÀÇÇÑ ´©Àû ´É·ÂÄ¡ ¹İÈ¯
+	//ì¥ë¹„ì— ì˜í•œ ëˆ„ì  ëŠ¥ë ¥ì¹˜ ë°˜í™˜
 	int equipStat_Sword();
 	int equipStat_Armor();
 };

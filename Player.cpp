@@ -1,24 +1,23 @@
-#include "Player.h"
+ï»¿#include "Player.h"
 #include <iostream>
 #include <cmath>
 
-// ÀÏ´Ü ´ëÃæ ¼³Á¤ÇØ³ö¼­ ´Ù½Ã ÇØ¾ß ÇÕ´Ï´Ù ...
+// ì¼ë‹¨ ëŒ€ì¶© ì„¤ì •í•´ë†”ì„œ ë‹¤ì‹œ í•´ì•¼ í•©ë‹ˆë‹¤ ...
 Player::Player(const std::string& playerName)
     : name(playerName), level(1), maxHealth(200), currentHealth(200), attack(30), exp(0) , gold(100) {
 }
 
 void Player::calculateMaxHealth() {
     if (level == 1) {
-        maxHealth = 100; // ·¹º§ 1ÀÇ ÃÊ±â HP
+        maxHealth = 100; // ë ˆë²¨ 1ì˜ ì´ˆê¸° HP
     }
     else {
-        maxHealth = static_cast<int>(maxHealth + level + std::round(maxHealth / 7.0)); // ¹İ¿Ã¸² Ã³¸®
+        maxHealth = static_cast<int>(maxHealth + level + std::round(maxHealth / 7.0)); // ë°˜ì˜¬ë¦¼ ì²˜ë¦¬
     }
-    currentHealth = maxHealth; // ÇöÀç Ã¼·ÂÀ» ÃÖ´ë Ã¼·ÂÀ¸·Î ¼³Á¤
-    
+    currentHealth = maxHealth; // í˜„ì¬ ì²´ë ¥ì„ ìµœëŒ€ ì²´ë ¥ìœ¼ë¡œ ì„¤ì •
 }
 
-// ÃßÈÄ Ãß°¡
+// ì¶”í›„ ì¶”ê°€
 void Player::showStat() const {
         std::cout << "Name: " << name << std::endl;
         std::cout << "Level: " << level << std::endl;
@@ -56,29 +55,13 @@ void Player::delItem(const std::string& item, int count) {
     inventory[item] -= count;
 }
 
-void Player::levelUp() {
-    level++;
-    maxHealth += level + (maxHealth / 7);
-    currentHealth = maxHealth;
-    attack += level + (attack / 10);
-    exp = 0;
-    std::cout << "Level up! current level is: " << level << ", MaxHealth: " << currentHealth
-        << ", Damage: " << attack << "\n";
+void Player::recoverHealth() {
+    int recoveryAmount = maxHealth / 2;
+    currentHealth = std::min(currentHealth + recoveryAmount, maxHealth);
+    std::cout << "í˜„ì¬ ì²´ë ¥ì´ " << recoveryAmount << "ë§Œí¼ íšŒë³µë˜ì—ˆìŠµë‹ˆë‹¤! í˜„ì¬ ì²´ë ¥ : " << currentHealth << "/" << maxHealth << std::endl;
 }
 
-void Player::gainExp(int amount) {
-    exp += amount;
-    int maxExp = (100 * (1 + level) * level) / 2;
-    if (exp >= maxExp) {
-        exp -= maxExp;
-        levelUp();
-
-    }
-
-
-}
-
-int Player::getMaxHealth() const {
+int Player::getMaxHealth() const {              //*******ì¶”ê°€******** Skillinterfaces ì°¸ì¡°
     return maxHealth;
 }
 
@@ -87,5 +70,5 @@ void Player::Heal(int amount) {
     if (currentHealth > maxHealth) {
         currentHealth = maxHealth;
     }
-    cout << "ÇÃ·¹ÀÌ¾î Ã¼·ÂÀÌ " << amount << "¸¸Å­ È¸º¹µÇ¾ú½À´Ï´Ù. (ÇöÀç Ã¼·Â: " << currentHealth << "/" << maxHealth << ")\n";
+    cout << "í”Œë ˆì´ì–´ ì²´ë ¥ì´ " << amount << "ë§Œí¼ íšŒë³µë˜ì—ˆìŠµë‹ˆë‹¤. (í˜„ì¬ ì²´ë ¥: " << currentHealth << "/" << maxHealth << ")\n";
 }
