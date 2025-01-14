@@ -42,6 +42,7 @@ public:
   
 
     //경험치 획득과 레벨업 관련 함수
+    int getLevel()const;
     void levelUp();
     void gainExp(int amount);
 

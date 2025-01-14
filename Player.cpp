@@ -77,6 +77,11 @@ void Player::levelUp() {
         << ", Attack: " << attack << endl;
 }
 
+//경험치
+int Player::getLevel()const {
+    return level;
+}
+
 //경험치 획득
 void Player::gainExp(int amount) {
     exp += amount;
@@ -97,8 +102,8 @@ void Player::takeDamage(int amount) {
     std::cout << name << "가 " << amount << "의 피해를 입습니다, 남은체력: " << currentHealth << endl;
 }
 
-
 //몬스터 공격시 문구 출력
 void Player::attackMonster() {
     std::cout << name << "가 "<<attack<<"의 데미지로 공격합니다! " << endl;
 }
+
