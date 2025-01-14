@@ -1,8 +1,6 @@
 ﻿#ifndef BATTLE_H
 #define BATTLE_H
 
-#include "Player.h"
-#include "Monster.h"
 #include "SkillManager.h"
 #include "Inventory.h"
 
@@ -14,13 +12,13 @@ private:
 
 	Player* nowPlayer;
 	Monster* nowMonster;
-	SkillManager* skill;
-	Consumable* item;
-
+	SkillManager* skill = new SkillManager();
+	Consumable* item = new Consumable();
+	
 public:
 	//생성자, 소멸자
-	Battle(Player& player, Monster& monster) : nowPlayer(&player), nowMonster(&monster) {}
-	~Battle() { delete nowPlayer, nowMonster; }
+	Battle(const Player& playerV, const Monster& monsterV) { nowPlayer = new Player(playerV); nowMonster = new Monster(monsterV); }
+	~Battle() { delete nowPlayer, nowMonster, skill, item; }
 
 	//현재 stage를 반환하는 getter
 	int getStage() const { return stage; }

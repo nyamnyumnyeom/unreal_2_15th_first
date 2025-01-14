@@ -4,13 +4,23 @@
 
 using namespace std;
 
+//랜덤 엔진을 사용해 확률 구현
+int random(int min, int max)
+{
+	random_device rd;
+	mt19937 rdEngine(rd());
+	uniform_int_distribution<int> rdPrint(min, max);
+
+	return rdPrint(rdEngine);
+}
+
 //플레이어와 몬스터의 스텟을 출력하는 함수
 void Battle::showStats()
 {
 	nowPlayer->showStat();
 	cout << "~~~플레이어~~~\n\n\n\n" << endl;
 
-	nowMonster->showStat();
+	nowMonster->printMonsterInfo();
 	cout << "~~~몬스터~~~" << endl;
 }
 
@@ -19,25 +29,29 @@ void Battle::showStats()
 void Battle::playerAttack() 
 {
 	cout << nowPlayer->getName() << "은/는 기본 공격을 시도했다!\n" << "입힌 피해량 : " << nowPlayer->getAttack() << endl;
-	nowMonster->setCurrHP(nowMonster->getCurrHP() - nowPlayer->getAttack());
+	nowMonster->setCurrentHP(nowMonster->getCurrentHP() - nowPlayer->getAttack());
 }
 
 //플레이어 턴 : 스킬 사용
 void Battle::playerSkill() 
 {
-		skill->UseSkill();
+	int skillSize = skill->getSkills().size();
+	int num = random(0, skillSize - 1);
+
+	skill->getSkills()[num];
+	skill->UseSkill();
 }
 
 //플레이어 턴 : 아이템 사용
 void Battle::playerItem()
 {
-	cout << nowPlayer->getName() << "은/는 인벤토리에서 '" << item->itemUse() << "'을/를 꺼내 사용했다!" << endl;
+	cout << nowPlayer->getName() << "은/는 인벤토리에서 '" << item->itemUse("") << "'을/를 꺼내 사용했다!" << endl;
 }
 
 //플레이어 행동 랜덤으로 선택
 void Battle::playerBehavior()
 {
-	int ran = random();
+	int ran = random(1, 100);
 	if(ran < 60)
 	{
 		playerAttack();
@@ -93,17 +107,17 @@ void Battle::startBattle()
 	if (nowPlayer->getLevel() > getStage())
 	{
 		cout << "[ " << nowPlayer->getName() << " 선공 | " << nowMonster->getName() << " 후공 ] 플레이어의 레벨이 알 수 없는 힘에 저항했다!" << endl;
-		while (nowPlayer->currHP() > 0 || nowMonster->currHP() > 0)
+		while (nowPlayer->getCurrHP() > 0 || nowMonster->getCurrentHP() > 0)
 		{
 			playerBehavior();
-			if (nowMonster->currHP() < 0) 
+			if (nowMonster->getCurrentHP() < 0) 
 			{
 				isPlayerLive = true;
 				cout << "[ 승리 ] " << nowMonster->getName() << "을/를 처치했습니다. 승리를 축하합니다!" << endl;
 				break; 
 			}
 			monsterAttack();
-			if (nowPlayer->currHP() < 0)
+			if (nowPlayer->getCurrHP() < 0)
 			{
 				isPlayerLive = false;
 				cout << "[ 패배 ] " << nowMonster->getName() << "의 강력한 일격에 " << nowPlayer->getName() << "(이)가 사망했습니다." << endl;
@@ -114,10 +128,10 @@ void Battle::startBattle()
 	else
 	{
 		cout << "[ " << nowMonster->getName() << " 선공 | " << nowPlayer->getName() << " 후공 ] 스테이지의 알 수 없는 힘이 플레이어를 짓누른다!" << endl;
-		while (nowPlayer->currHP() != 0 || nowMonster->currHP() != 0)
+		while (nowPlayer->getCurrHP() != 0 || nowMonster->getCurrentHP() != 0)
 		{
 			monsterAttack();
-			if (nowPlayer->currHP() < 0)
+			if (nowPlayer->getCurrHP() < 0)
 			{
 				isPlayerLive = false;
 				cout << "[ 패배 ] " << nowMonster->getName() << "의 강력한 일격에 " << nowPlayer->getName() << "(이)가 쓰러졌습니다." << endl;
@@ -148,16 +162,4 @@ void Battle::startBattle()
 			cout << "눈이 점점 감기는 중에 인벤토리에서 부활권이 희미하게 빛나고 있습니다. 신비로운 힘이 " << nowPlayer->getName() << "을/를 감쌉니다." << endl;
 		}
 	}
-}
-
-
-
-//랜덤 엔진을 사용해 확률 구현
-int random()
-{
-	random_device rd;
-	mt19937 rdEngine(rd());
-	uniform_int_distribution<int> rdPrint(1, 100);
-
-	return rdPrint(rdEngine);
 }
