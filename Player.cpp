@@ -54,3 +54,9 @@ void Player::addItem(const std::string& item, int count) {
 void Player::delItem(const std::string& item, int count) {
     inventory[item] -= count;
 }
+
+void Player::recoverHealth() {
+    int recoveryAmount = maxHealth / 2;
+    currentHealth = std::min(currentHealth + recoveryAmount, maxHealth);
+    std::cout << "현재 체력이 " << recoveryAmount << "만큼 회복되었습니다! 현재 체력 : " << currentHealth << "/" << maxHealth << std::endl;
+}

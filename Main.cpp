@@ -50,7 +50,7 @@ void ChoiceMenu(Player& player, Shop& shop) {
             choiceMade = true;
         }
         else if (choice == 2) {
-            
+            player.recoverHealth();
             cout << "체력을 회복했습니다!\n";
             choiceMade = true;
         }
@@ -82,13 +82,13 @@ int main() {
 
     Player player(characterName);
     Shop shop;
-    Battle battle;
     Monster monster; // 기본 몬스터 생성
+	Battle battle(player, monster);
 
     // 게임 루프
     while (true) {
         // 전투 시작
-        battle.startBattle(player, monster);
+        battle.startBattle();
 
         // 전투 후 선택
         ChoiceMenu(player, shop);
