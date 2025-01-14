@@ -28,7 +28,7 @@ private:
     int goldDropMax;      // 골드 최대값
     int goldDrop;         // 실제 드랍될 골드
 
-    void initializeRandomSeed();
+ 
 
 public:
     Monster(int stage);
@@ -54,6 +54,7 @@ public:
     void calculateGoldDrop(int stage);
     void calculateExp(int stage);
 
+    void printMonsterInfo() const;
 };
 
 #endif

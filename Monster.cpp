@@ -6,7 +6,7 @@
 
 Monster::Monster(int stage)
     : type(type), name(name), stage(stage) {
-    initializeRandomSeed();
+  
     generateRandomMonster();
     swordDropRate = calculateSwordDropRate(stage); // 무기 드랍율 계산
     armorDropRate = calculateArmorDropRate(stage); // 방어구 드랍율 계산
@@ -14,13 +14,8 @@ Monster::Monster(int stage)
     calculateExp(stage);                           // 경험치 계산
 }
 
-void Monster::initializeRandomSeed() {
-    static bool isInitialized = false;
-    if (!isInitialized) {
-        std::srand(static_cast<unsigned>(std::time(0)));
-        isInitialized = true;
-    }
-}
+
+
 
 void Monster::generateRandomMonster() {
     type = static_cast<MonsterType>(std::rand() % 3);
@@ -143,4 +138,23 @@ int Monster::calculateGoblinDamage(int stage) {
     if (stage == 1) return 5;
     int previousDamage = calculateGoblinDamage(stage - 1);
     return static_cast<int>(previousDamage + stage + std::round(previousDamage / 9.0));
+}
+
+void Monster::printMonsterInfo() const {
+    std::string typeName;
+    switch (type) {
+    case MonsterType::Goblin: typeName = "Goblin"; break;
+    case MonsterType::Orc: typeName = "Orc"; break;
+    case MonsterType::Skeleton: typeName = "Skeleton"; break;
+    }
+
+    std::cout << "=== 몬스터 정보 ===\n";
+    std::cout << "이름: " << name << "\n";
+    std::cout << "유형: " << typeName << "\n";
+    std::cout << "체력: " << health << "\n";
+    std::cout << "공격력: " << damage << "\n";
+    std::cout << "스테이지: " << stage << "\n";
+    std::cout << "방어구드랍율: " << armorDropRate << "%\n";
+    std::cout << "무기드랍율: " << swordDropRate << "%\n";
+    std::cout << "골드 드랍: " << goldDrop << "G\n" << goldDropMin <<" ///" << goldDropMax;
 }
