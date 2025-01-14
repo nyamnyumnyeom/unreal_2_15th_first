@@ -60,3 +60,15 @@ void Player::recoverHealth() {
     currentHealth = std::min(currentHealth + recoveryAmount, maxHealth);
     std::cout << "현재 체력이 " << recoveryAmount << "만큼 회복되었습니다! 현재 체력 : " << currentHealth << "/" << maxHealth << std::endl;
 }
+
+int Player::getMaxHealth() const {              //*******추가******** Skillinterfaces 참조
+    return maxHealth;
+}
+
+void Player::Heal(int amount) {
+    currentHealth += amount;
+    if (currentHealth > maxHealth) {
+        currentHealth = maxHealth;
+    }
+    cout << "플레이어 체력이 " << amount << "만큼 회복되었습니다. (현재 체력: " << currentHealth << "/" << maxHealth << ")\n";
+}

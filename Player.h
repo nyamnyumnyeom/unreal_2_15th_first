@@ -41,7 +41,9 @@ public:
     void delItem(const string& item, int count);
   
     //체력 회복 관련 함수
-    void recoverHealth();
+    void recoverHealth();                                     
+    int getMaxHealth() const;    //    ***** 추가 *****   Skillinterfaces 참조
+    void Heal(int amount);
 };
 
 #endif
