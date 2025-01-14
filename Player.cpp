@@ -15,6 +15,7 @@ void Player::calculateMaxHealth() {
         maxHealth = static_cast<int>(maxHealth + level + std::round(maxHealth / 7.0)); // 반올림 처리
     }
     currentHealth = maxHealth; // 현재 체력을 최대 체력으로 설정
+    
 }
 
 // 추후 추가
@@ -53,4 +54,38 @@ void Player::addItem(const std::string& item, int count) {
 
 void Player::delItem(const std::string& item, int count) {
     inventory[item] -= count;
+}
+
+void Player::levelUp() {
+    level++;
+    maxHealth += level + (maxHealth / 7);
+    currentHealth = maxHealth;
+    attack += level + (attack / 10);
+    exp = 0;
+    std::cout << "Level up! current level is: " << level << ", MaxHealth: " << currentHealth
+        << ", Damage: " << attack << "\n";
+}
+
+void Player::gainExp(int amount) {
+    exp += amount;
+    int maxExp = (100 * (1 + level) * level) / 2;
+    if (exp >= maxExp) {
+        exp -= maxExp;
+        levelUp();
+
+    }
+
+
+}
+
+int Player::getMaxHealth() const {
+    return maxHealth;
+}
+
+void Player::Heal(int amount) {
+    currentHealth += amount;
+    if (currentHealth > maxHealth) {
+        currentHealth = maxHealth;
+    }
+    cout << "플레이어 체력이 " << amount << "만큼 회복되었습니다. (현재 체력: " << currentHealth << "/" << maxHealth << ")\n";
 }
