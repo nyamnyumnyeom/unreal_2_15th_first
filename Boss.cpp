@@ -1,4 +1,4 @@
-#include "Boss.h"
+ï»¿#include "Boss.h"
 #include <iostream>
 
 Boss::Boss() :Monster("Boss", 300000, 15000) {
@@ -7,5 +7,5 @@ Boss::Boss() :Monster("Boss", 300000, 15000) {
 
 void Boss::bossSkill() {
 	std::cout << "Boss skill \n";
-	//º¸½º½ºÅ³ ±¸Çö ¿¹Á¤   
+	//ë³´ìŠ¤ìŠ¤í‚¬ êµ¬í˜„ ì˜ˆì •   
 }

@@ -1,4 +1,4 @@
-#ifndef PLAYER_H
+﻿#ifndef PLAYER_H
 #define PLAYER_H
 #include <string>
 #include <map>
@@ -6,7 +6,7 @@
 using namespace std;
 
 
-// ����!!
+// 수정!!
 class Player {
 private:
     string name;
@@ -28,19 +28,19 @@ public:
 
     void showStat() const;
 
-    // �ݾ� ���� �Լ�
+    // 금액 관련 함수
     int getGold() const;
     void setGold(int newGold);
 
-    // ���ݷ� ���� �Լ�
+    // 공격력 관련 함수
     int getAttack() const;
     void setAttack(int newAttack);
 
-    // �κ��丮 ���� �Լ�
+    // 인벤토리 관련 함수
     void addItem(const string& item, int count);
     void delItem(const string& item, int count);
   
-    //ü�� ȸ�� ���� �Լ�
+    //체력 회복 관련 함수
     void recoverHealth();
 };
 
