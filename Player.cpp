@@ -135,4 +135,13 @@ int Player::getCurrHP()const {
 void Player::setCurrHP(int newHP) {
     currentHealth = newHP;
 }
+//체력바 표시
+void Player::displayHealthBar() {
+    const int totalBars = 10;
+    int filledBars = round(double(currentHealth) / double(maxHealth)*10);
+    int emptyBars = totalBars - filledBars;
 
+    std::string bar = std::string(filledBars, '=') + std::string(emptyBars, ' ');
+    std::cout << "\r[" << bar << "] " << double(currentHealth) / double(maxHealth) * 100 << "%"; // 캐리지 리턴으로 한 줄에 출력
+    std::cout.flush();
+}
