@@ -6,8 +6,8 @@
 
 Monster::Monster(int stage)
     : type(type), name(name), stage(stage) {
-  
     generateRandomMonster();
+    currentHP = health; // 현재 체력을 최대 체력으로 초기화
     swordDropRate = calculateSwordDropRate(stage); // 무기 드랍율 계산
     armorDropRate = calculateArmorDropRate(stage); // 방어구 드랍율 계산
     calculateGoldDrop(stage);                      // 골드 계산
@@ -140,21 +140,29 @@ int Monster::calculateGoblinDamage(int stage) {
     return static_cast<int>(previousDamage + stage + std::round(previousDamage / 9.0));
 }
 
-void Monster::printMonsterInfo() const {
-    std::string typeName;
-    switch (type) {
-    case MonsterType::Goblin: typeName = "Goblin"; break;
-    case MonsterType::Orc: typeName = "Orc"; break;
-    case MonsterType::Skeleton: typeName = "Skeleton"; break;
-    }
+std::string Monster::getName() const {
+    return name;
+}
 
-    std::cout << "=== 몬스터 정보 ===\n";
-    std::cout << "이름: " << name << "\n";
-    std::cout << "유형: " << typeName << "\n";
-    std::cout << "체력: " << health << "\n";
-    std::cout << "공격력: " << damage << "\n";
-    std::cout << "스테이지: " << stage << "\n";
-    std::cout << "방어구드랍율: " << armorDropRate << "%\n";
-    std::cout << "무기드랍율: " << swordDropRate << "%\n";
-    std::cout << "골드 드랍: " << goldDrop << "G\n" << goldDropMin <<" ///" << goldDropMax;
+// 몬스터 현재 체력 반환
+int Monster::getCurrHP() const {
+    return currentHP;
+}
+
+// 몬스터 현재 체력 설정
+void Monster::setCurrHP(int hp) {
+    if (hp < 0) {
+        currentHP = 0; // 체력은 0 이하로 내려가지 않음
+    }
+    else if (hp > health) {
+        currentHP = health; // 최대 체력을 초과하지 않음
+    }
+    else {
+        currentHP = hp; // 유효한 체력 설정
+    }
+}
+
+// 몬스터 공격력 반환
+int Monster::getAttack() const {
+    return damage;
 }

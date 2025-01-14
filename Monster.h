@@ -20,6 +20,7 @@ private:
     int damage;
     int stage;
     int exp;
+    int currentHP;
 
     double swordDropRate; // Sword 드랍율
     double armorDropRate; // Armor 드랍율
@@ -33,6 +34,15 @@ private:
 public:
     Monster(int stage);
 
+    std::string getName() const;
+
+ 
+    int getCurrentHP() const;
+ 
+    void setCurrentHP(int hp);
+
+    // 몬스터 공격력 
+    int getAttack() const;
 
     void generateRandomMonster();
 

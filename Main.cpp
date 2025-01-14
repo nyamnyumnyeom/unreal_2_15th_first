@@ -80,11 +80,9 @@ int main() {
     Battle battle;
 
     // 몬스터 예시 : 5스테이지
-    Monster monster(40);
+    Monster monster(5);
 
-    // 몬스터 정보 출력
-    cout << "\n--- 몬스터 정보 ---\n";
-    monster.printMonsterInfo();
+   
 
     // 게임 루프
     while (true) {
