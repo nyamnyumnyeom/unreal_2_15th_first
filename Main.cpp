@@ -26,7 +26,7 @@ bool isValidName(const string& name) {
     }
 
     for (unsigned char c : name) {
-        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) 
+        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')))
         {
             return false;
         }
@@ -93,11 +93,7 @@ int main() {
         // 전투 후 선택
         ChoiceMenu(player, shop);
 
-        // 종료 여기도 수정?
-        cout << "\n";
-
-        print_img1();
-        
+        // 종료 선택
         cout << "\n게임을 계속하시겠습니까? (1: 계속, 0: 종료): ";
         int continueGame;
         cin >> continueGame;
@@ -109,4 +105,4 @@ int main() {
     }
 
     return 0;
-    }
+}
