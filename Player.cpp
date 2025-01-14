@@ -107,3 +107,13 @@ void Player::attackMonster() {
     std::cout << name << "가 "<<attack<<"의 데미지로 공격합니다! " << endl;
 }
 
+//player쪽 반환함수 추가
+std::string Player::getName() const {
+    return name;
+}
+int Player::getCurrHP()const {
+    return currentHealth;
+}
+void Player::setCurrHP(int newHP) {
+    currentHealth = newHP;
+}

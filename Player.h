@@ -51,6 +51,12 @@ public:
     
     //몬스터 공격시 출력
     void attackMonster();
+
+    //getter setter 추가
+    std::string getName() const;
+    int getCurrHP()const;
+    void setCurrHP(int newHP);
+    
 };
 
 #endif
