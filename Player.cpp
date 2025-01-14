@@ -142,6 +142,6 @@ void Player::displayHealthBar() {
     int emptyBars = totalBars - filledBars;
 
     std::string bar = std::string(filledBars, '=') + std::string(emptyBars, ' ');
-    std::cout << "\r[" << bar << "] " << currentHealth/maxHealth << "%"; // 캐리지 리턴으로 한 줄에 출력
+    std::cout << "\r[" << bar << "] " << double(currentHealth) / double(maxHealth) * 100 << "%"; // 캐리지 리턴으로 한 줄에 출력
     std::cout.flush();
 }
