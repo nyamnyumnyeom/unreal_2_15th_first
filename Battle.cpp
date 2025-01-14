@@ -1,7 +1,6 @@
 ﻿#include "Battle.h"
 #include <iostream>
 #include <random>
-
 using namespace std;
 
 //랜덤 엔진을 사용해 확률 구현
@@ -56,13 +55,9 @@ void Battle::playerBehavior()
 	{
 		playerAttack();
 	}
-	else if (ran < 80)
+	else if (ran <= 100)
 	{
 		playerSkill();
-	}
-	else
-	{
-		playerItem();
 	}
 }
 
@@ -109,6 +104,7 @@ void Battle::startBattle()
 		cout << "[ " << nowPlayer->getName() << " 선공 | " << nowMonster->getName() << " 후공 ] 플레이어의 레벨이 알 수 없는 힘에 저항했다!" << endl;
 		while (nowPlayer->getCurrHP() > 0 || nowMonster->getCurrentHP() > 0)
 		{
+			//플레이어 행동, 몬스터 처치시 전투 종료
 			playerBehavior();
 			if (nowMonster->getCurrentHP() < 0) 
 			{
@@ -116,6 +112,7 @@ void Battle::startBattle()
 				cout << "[ 승리 ] " << nowMonster->getName() << "을/를 처치했습니다. 승리를 축하합니다!" << endl;
 				break; 
 			}
+			//몬스터 행동, 플레이어 사망시 전투 종료
 			monsterAttack();
 			if (nowPlayer->getCurrHP() < 0)
 			{
@@ -123,6 +120,7 @@ void Battle::startBattle()
 				cout << "[ 패배 ] " << nowMonster->getName() << "의 강력한 일격에 " << nowPlayer->getName() << "(이)가 사망했습니다." << endl;
 				break;
 			}
+			turn = 1;
 		}
 	}
 	else
@@ -130,6 +128,7 @@ void Battle::startBattle()
 		cout << "[ " << nowMonster->getName() << " 선공 | " << nowPlayer->getName() << " 후공 ] 스테이지의 알 수 없는 힘이 플레이어를 짓누른다!" << endl;
 		while (nowPlayer->getCurrHP() != 0 || nowMonster->getCurrentHP() != 0)
 		{
+			//몬스터 행동, 플레이어 사망시 전투 종료
 			monsterAttack();
 			if (nowPlayer->getCurrHP() < 0)
 			{
@@ -137,7 +136,9 @@ void Battle::startBattle()
 				cout << "[ 패배 ] " << nowMonster->getName() << "의 강력한 일격에 " << nowPlayer->getName() << "(이)가 쓰러졌습니다." << endl;
 				break;
 			}
+			//플레이어 행동, 몬스터 처치시 전투 종료
 			playerBehavior();
+			if (nowMonster->getCurrentHP() < 0)
 			{
 				isPlayerLive = true;
 				cout << "[ 승리 ] " << nowMonster->getName() << "을/를 처치했습니다. 승리를 축하합니다!" << endl;
