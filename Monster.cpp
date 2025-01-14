@@ -1,4 +1,4 @@
-#include "Monster.h"
+ï»¿#include "Monster.h"
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
@@ -7,11 +7,11 @@
 Monster::Monster(int stage)
     : type(type), name(name), stage(stage) {
     generateRandomMonster();
-    currentHP = health; // ÇöÀç Ã¼·ÂÀ» ÃÖ´ë Ã¼·ÂÀ¸·Î ÃÊ±âÈ­
-    swordDropRate = calculateSwordDropRate(stage); // ¹«±â µå¶øÀ² °è»ê
-    armorDropRate = calculateArmorDropRate(stage); // ¹æ¾î±¸ µå¶øÀ² °è»ê
-    calculateGoldDrop(stage);                      // °ñµå °è»ê
-    calculateExp(stage);                           // °æÇèÄ¡ °è»ê
+    currentHP = health; // í˜„ì¬ ì²´ë ¥ì„ ìµœëŒ€ ì²´ë ¥ìœ¼ë¡œ ì´ˆê¸°í™”
+    swordDropRate = calculateSwordDropRate(stage); // ë¬´ê¸° ë“œëìœ¨ ê³„ì‚°
+    armorDropRate = calculateArmorDropRate(stage); // ë°©ì–´êµ¬ ë“œëìœ¨ ê³„ì‚°
+    calculateGoldDrop(stage);                      // ê³¨ë“œ ê³„ì‚°
+    calculateExp(stage);                           // ê²½í—˜ì¹˜ ê³„ì‚°
 }
 
 
@@ -41,11 +41,11 @@ void Monster::generateRandomMonster() {
     }
 }
 
-// ¹«±â µå¶øÀ² °è»ê
+// ë¬´ê¸° ë“œëìœ¨ ê³„ì‚°
 double Monster::calculateSwordDropRate(int stage) {
-    double minDrop = 5.0; // ÃÖ¼Ò µå¶øÀ²
-    double maxDrop = 45.0; // ÃÖ´ë µå¶øÀ²
-    int maxStage = 50; // ÃÖ´ë ½ºÅ×ÀÌÁö
+    double minDrop = 5.0; // ìµœì†Œ ë“œëìœ¨
+    double maxDrop = 45.0; // ìµœëŒ€ ë“œëìœ¨
+    int maxStage = 50; // ìµœëŒ€ ìŠ¤í…Œì´ì§€
 
     double expMax = std::exp(0.1 * (maxStage - 1)) - 1;
     double expStage = std::exp(0.1 * (stage - 1)) - 1;
@@ -53,11 +53,11 @@ double Monster::calculateSwordDropRate(int stage) {
     return minDrop + (maxDrop - minDrop) * (expStage / expMax);
 }
 
-// ¹æ¾î±¸ µå¶øÀ² °è»ê
+// ë°©ì–´êµ¬ ë“œëìœ¨ ê³„ì‚°
 double Monster::calculateArmorDropRate(int stage) {
-    double minDrop = 5.0; // ÃÖ¼Ò µå¶øÀ²
-    double maxDrop = 45.0; // ÃÖ´ë µå¶øÀ²
-    int maxStage = 50; // ÃÖ´ë ½ºÅ×ÀÌÁö
+    double minDrop = 5.0; // ìµœì†Œ ë“œëìœ¨
+    double maxDrop = 45.0; // ìµœëŒ€ ë“œëìœ¨
+    int maxStage = 50; // ìµœëŒ€ ìŠ¤í…Œì´ì§€
 
     double expMax = std::exp(0.1 * (maxStage - 1)) - 1;
     double expStage = std::exp(0.1 * (stage - 1)) - 1;
@@ -72,21 +72,21 @@ void Monster::calculateGoldDrop(int stage) {
     goldDropMax = 10;
 
 
-    // ½ºÅ×ÀÌÁöº° °ñµå °è»ê
+    // ìŠ¤í…Œì´ì§€ë³„ ê³¨ë“œ ê³„ì‚°
     for (int i = 2; i <= stage; ++i) {
         goldDropMin = static_cast<int>(std::round(goldDropMin * 1.1));
         goldDropMax = static_cast<int>(std::round(goldDropMax * 1.1));
     }
 
-    // ÃÖÁ¾ ·£´ı °ª »ı¼º
+    // ìµœì¢… ëœë¤ ê°’ ìƒì„±
     goldDrop = goldDropMin + (std::rand() % (goldDropMax - goldDropMin + 1));
 
 }
 
 void Monster::calculateExp(int stage) {
-    exp = 80; // ÃÊ±â °æÇèÄ¡
+    exp = 80; // ì´ˆê¸° ê²½í—˜ì¹˜
 
-    // ½ºÅ×ÀÌÁöº° °æÇèÄ¡ °è»ê
+    // ìŠ¤í…Œì´ì§€ë³„ ê²½í—˜ì¹˜ ê³„ì‚°
     for (int i = 2; i <= stage; ++i) {
         exp += (i * 10);
     }
@@ -94,14 +94,14 @@ void Monster::calculateExp(int stage) {
 
 //-------------------------------------------------------------------------------------------\\
 
-// ¿ÀÅ© Ã¼·Â
+// ì˜¤í¬ ì²´ë ¥
 int Monster::calculateOrcHealth(int stage) {
     if (stage == 1) return 116;
     int previousHealth = calculateOrcHealth(stage - 1);
     return static_cast<int>(previousHealth + stage + std::round(previousHealth / 6.5));
 }
 
-// ¿ÀÅ© µ¥¹ÌÁö 
+// ì˜¤í¬ ë°ë¯¸ì§€ 
 int Monster::calculateOrcDamage(int stage) {
     if (stage == 1) return 5;
     int previousDamage = calculateOrcDamage(stage - 1);
@@ -110,14 +110,14 @@ int Monster::calculateOrcDamage(int stage) {
 
 //-------------------------------------------------------------------------------------------\\
 
-// ½ºÄÌ·¹Åæ Ã¼·Â
+// ìŠ¤ì¼ˆë ˆí†¤ ì²´ë ¥
 int Monster::calculateSkeletonHealth(int stage) {
     if (stage == 1) return 114;
     int previousHealth = calculateSkeletonHealth(stage - 1);
     return static_cast<int>(previousHealth + stage + std::round(previousHealth / 7.5));
 }
 
-// ½ºÄÌ·¹Åæ µ¥¹ÌÁö 
+// ìŠ¤ì¼ˆë ˆí†¤ ë°ë¯¸ì§€ 
 int Monster::calculateSkeletonDamage(int stage) {
     if (stage == 1) return 6;
     int previousDamage = calculateSkeletonDamage(stage - 1);
@@ -126,14 +126,14 @@ int Monster::calculateSkeletonDamage(int stage) {
 
 //-------------------------------------------------------------------------------------------\\
 
-// °íºí¸° Ã¼·Â 
+// ê³ ë¸”ë¦° ì²´ë ¥ 
 int Monster::calculateGoblinHealth(int stage) {
-    if (stage == 1) return 115; // Slime ÃÊ±â Ã¼·Â
+    if (stage == 1) return 115; // Slime ì´ˆê¸° ì²´ë ¥
     int previousHealth = calculateGoblinHealth(stage - 1);
     return static_cast<int>(previousHealth + stage + std::round(previousHealth / 7.0));
 }
 
-// °íºí¸° µ¥¹ÌÁö 
+// ê³ ë¸”ë¦° ë°ë¯¸ì§€ 
 int Monster::calculateGoblinDamage(int stage) {
     if (stage == 1) return 5;
     int previousDamage = calculateGoblinDamage(stage - 1);
@@ -144,25 +144,25 @@ std::string Monster::getName() const {
     return name;
 }
 
-// ¸ó½ºÅÍ ÇöÀç Ã¼·Â ¹İÈ¯
-int Monster::getCurrHP() const {
+// ëª¬ìŠ¤í„° í˜„ì¬ ì²´ë ¥ ë°˜í™˜
+int Monster::getCurrentHP() const {
     return currentHP;
 }
 
-// ¸ó½ºÅÍ ÇöÀç Ã¼·Â ¼³Á¤
-void Monster::setCurrHP(int hp) {
+// ëª¬ìŠ¤í„° í˜„ì¬ ì²´ë ¥ ì„¤ì •
+void Monster::setCurrentHP(int hp) {
     if (hp < 0) {
-        currentHP = 0; // Ã¼·ÂÀº 0 ÀÌÇÏ·Î ³»·Á°¡Áö ¾ÊÀ½
+        currentHP = 0; 
     }
     else if (hp > health) {
-        currentHP = health; // ÃÖ´ë Ã¼·ÂÀ» ÃÊ°úÇÏÁö ¾ÊÀ½
+        currentHP = health; 
     }
     else {
-        currentHP = hp; // À¯È¿ÇÑ Ã¼·Â ¼³Á¤
+        currentHP = hp; 
     }
 }
 
-// ¸ó½ºÅÍ °ø°İ·Â ¹İÈ¯
+// ëª¬ìŠ¤í„° ê³µê²©ë ¥ ë°˜í™˜
 int Monster::getAttack() const {
     return damage;
 }

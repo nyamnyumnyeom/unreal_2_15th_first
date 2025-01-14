@@ -1,4 +1,4 @@
-#ifndef MONSTER_H
+ï»¿#ifndef MONSTER_H
 #define MONSTER_H
 
 #include <string>
@@ -22,12 +22,12 @@ private:
     int exp;
     int currentHP;
 
-    double swordDropRate; // Sword µå¶øÀ²
-    double armorDropRate; // Armor µå¶øÀ²
+    double swordDropRate; // Sword ë“œëìœ¨
+    double armorDropRate; // Armor ë“œëìœ¨
 
-    int goldDropMin;      // °ñµå ÃÖ¼Ò°ª
-    int goldDropMax;      // °ñµå ÃÖ´ë°ª
-    int goldDrop;         // ½ÇÁ¦ µå¶øµÉ °ñµå
+    int goldDropMin;      // ê³¨ë“œ ìµœì†Œê°’
+    int goldDropMax;      // ê³¨ë“œ ìµœëŒ€ê°’
+    int goldDrop;         // ì‹¤ì œ ë“œëë  ê³¨ë“œ
 
  
 
@@ -41,26 +41,26 @@ public:
  
     void setCurrentHP(int hp);
 
-    // ¸ó½ºÅÍ °ø°İ·Â 
+    // ëª¬ìŠ¤í„° ê³µê²©ë ¥ 
     int getAttack() const;
 
     void generateRandomMonster();
 
-    // °¢ ¸ó½ºÅÍ Ã¼·Â °è»ê 
+    // ê° ëª¬ìŠ¤í„° ì²´ë ¥ ê³„ì‚° 
     int calculateGoblinHealth(int stage);
     int calculateSkeletonHealth(int stage);
     int calculateOrcHealth(int stage);
 
-    // °¢ ¸ó½ºÅÍ µ¥¹ÌÁö °è»ê 
+    // ê° ëª¬ìŠ¤í„° ë°ë¯¸ì§€ ê³„ì‚° 
     int calculateGoblinDamage(int stage);
     int calculateSkeletonDamage(int stage);
     int calculateOrcDamage(int stage);
 
-    // ¹«±â, ¹æ¾î±¸ µå¶øÀ² °è»ê
+    // ë¬´ê¸°, ë°©ì–´êµ¬ ë“œëìœ¨ ê³„ì‚°
     double calculateSwordDropRate(int stage);
     double calculateArmorDropRate(int stage);
 
-    // °ñµå °è»ê ¹× °æÇèÄ¡ °è»ê
+    // ê³¨ë“œ ê³„ì‚° ë° ê²½í—˜ì¹˜ ê³„ì‚°
     void calculateGoldDrop(int stage);
     void calculateExp(int stage);
 

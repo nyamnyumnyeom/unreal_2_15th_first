@@ -1,20 +1,4 @@
-﻿  Battle.cpp
-  Main.cpp
-  Monster.cpp
+﻿  Monster.cpp
   SkillManager.cpp
-C:\Users\하정빈\source\repos\unreal_2_15th_first\Monster.cpp(148,14): error C2039: 'getCurrHP': 'Monster'의 멤버가 아닙니다.
-      C:\Users\하정빈\source\repos\unreal_2_15th_first\Monster.h(14,7):
-      'Monster' 선언을 참조하십시오.
-  
-C:\Users\하정빈\source\repos\unreal_2_15th_first\Monster.cpp(148,14): error C2270: 'getCurrHP': 비멤버 함수에 한정자를 사용할 수 없습니다.
-C:\Users\하정빈\source\repos\unreal_2_15th_first\Monster.cpp(149,12): error C2065: 'currentHP': 선언되지 않은 식별자입니다.
-C:\Users\하정빈\source\repos\unreal_2_15th_first\Monster.cpp(153,15): error C2039: 'setCurrHP': 'Monster'의 멤버가 아닙니다.
-      C:\Users\하정빈\source\repos\unreal_2_15th_first\Monster.h(14,7):
-      'Monster' 선언을 참조하십시오.
-  
-C:\Users\하정빈\source\repos\unreal_2_15th_first\Monster.cpp(155,9): error C2065: 'currentHP': 선언되지 않은 식별자입니다.
-C:\Users\하정빈\source\repos\unreal_2_15th_first\Monster.cpp(157,19): error C2065: 'health': 선언되지 않은 식별자입니다.
-C:\Users\하정빈\source\repos\unreal_2_15th_first\Monster.cpp(158,9): error C2065: 'currentHP': 선언되지 않은 식별자입니다.
-C:\Users\하정빈\source\repos\unreal_2_15th_first\Monster.cpp(158,21): error C2065: 'health': 선언되지 않은 식별자입니다.
-C:\Users\하정빈\source\repos\unreal_2_15th_first\Monster.cpp(161,9): error C2065: 'currentHP': 선언되지 않은 식별자입니다.
   코드를 생성하고 있습니다...
+  Text_RPG.vcxproj -> C:\Users\하정빈\source\repos\unreal_2_15th_first\x64\Debug\Text_RPG.exe

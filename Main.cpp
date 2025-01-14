@@ -79,8 +79,7 @@ int main() {
     Shop shop;
     Battle battle;
 
-    // 몬스터 예시 : 5스테이지
-    Monster monster(5);
+    Monster monster();
 
    
 
