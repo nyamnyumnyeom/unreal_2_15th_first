@@ -1,4 +1,4 @@
-#ifndef PLAYER_H
+ï»¿#ifndef PLAYER_H
 #define PLAYER_H
 #include <string>
 #include <map>
@@ -6,7 +6,7 @@
 using namespace std;
 
 
-// ¼öÁ¤!!
+// ìˆ˜ì •!!
 class Player {
 private:
     string name;
@@ -28,19 +28,19 @@ public:
 
     void showStat() const;
 
-    // ±İ¾× °ü·Ã ÇÔ¼ö
+    // ê¸ˆì•¡ ê´€ë ¨ í•¨ìˆ˜
     int getGold() const;
     void setGold(int newGold);
 
-    // °ø°İ·Â °ü·Ã ÇÔ¼ö
+    // ê³µê²©ë ¥ ê´€ë ¨ í•¨ìˆ˜
     int getAttack() const;
     void setAttack(int newAttack);
 
-    // ÀÎº¥Åä¸® °ü·Ã ÇÔ¼ö
+    // ì¸ë²¤í† ë¦¬ ê´€ë ¨ í•¨ìˆ˜
     void addItem(const string& item, int count);
     void delItem(const string& item, int count);
   
-    //Ã¼·Â È¸º¹ °ü·Ã ÇÔ¼ö
+    //ì²´ë ¥ íšŒë³µ ê´€ë ¨ í•¨ìˆ˜
     void recoverHealth();
 };
 
