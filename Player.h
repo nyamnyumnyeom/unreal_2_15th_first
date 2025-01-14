@@ -40,6 +40,8 @@ public:
     void addItem(const string& item, int count);
     void delItem(const string& item, int count);
   
+    //체력 회복 관련 함수
+    void recoverHealth();
 };
 
 #endif

@@ -50,7 +50,7 @@ void ChoiceMenu(Player& player, Shop& shop) {
             choiceMade = true;
         }
         else if (choice == 2) {
-            
+            player.recoverHealth();
             cout << "체력을 회복했습니다!\n";
             choiceMade = true;
         }
