@@ -57,14 +57,26 @@ void Player::delItem(const std::string& item, int count) {
 }
 //레벨업
 void Player::levelUp() {
+    std::string levelUpEffect[5] = {
+        "    * LEVEL UP *    ",
+        "  *-----------------*  ",
+        " * Congratulations! * ",
+        "  *-----------------*  ",
+        "    * LEVEL UP *    "
+    };
+    for (const std::string& line : levelUpEffect) {
+        std::cout << line << std::endl;
+    }
     level++;
     maxHealth += level + (maxHealth / 7);
     currentHealth = maxHealth;
     attack += level + (attack / 10);
     exp = 0;
+    
     std::cout << "Level up! current level is: " << level << ", MaxHealth: " << currentHealth
         << ", Attack: " << attack << endl;
 }
+
 //경험치 획득
 void Player::gainExp(int amount) {
     exp += amount;
@@ -75,6 +87,7 @@ void Player::gainExp(int amount) {
 
     }
 }
+
 //입은 데미지를 입력받아 현재체력 수정,음수 일시 0으로 고정
 void Player::takeDamage(int amount) {
     currentHealth -= amount;
@@ -83,6 +96,7 @@ void Player::takeDamage(int amount) {
     }
     std::cout << name << "가 " << amount << "의 피해를 입습니다, 남은체력: " << currentHealth << endl;
 }
+
 
 //몬스터 공격시 문구 출력
 void Player::attackMonster() {
