@@ -1,5 +1,6 @@
 #include "Shop.h"
 #include "printimg.cpp"
+#include "Skillinterfaces.h"
 #include <thread> 
 #include <chrono>
 #include <Windows.h>
@@ -7,10 +8,11 @@
 #include <cstdlib>  // rand()
 #include <ctime>    // time()
 
+
 using namespace std;
 
 // 상점 열기
-void Shop::openShop(Player& player) {
+void Shop::openShop(Player& player, SkillManager& skillManager) {
     while (true) {
         cout << "\n=== 상점 ===\n";
         cout << "1. 구매 HP 포션 (100 Gold)\n";
@@ -32,7 +34,7 @@ void Shop::openShop(Player& player) {
             }
         }
         else if (choice == 2) {
-                buySkill(player);
+                buySkill(player,skillManager);
         }
         else if (choice == 3) {
             cout << "상점을 나갑니다.\n";
@@ -48,7 +50,7 @@ void Shop::openShop(Player& player) {
 }
 
 
-void Shop::buySkill(Player& player) {
+void Shop::buySkill(Player& player, SkillManager& skillManager) {
     if (player.getGold() >= 1000) {
         player.setGold(player.getGold() - 1000);  
         cout << "스킬상자를 구매했습니다.\n";
@@ -81,16 +83,31 @@ void Shop::buySkill(Player& player) {
         srand(time(0));  
         int randomChance = rand() % 100 + 1;  
 
-        if (randomChance <= 3) {  // 3% 확률
-            // attack_1 레벨 1증가
+        if (randomChance <= 3) {  // 3% 확률 , SkillManager에 따라 수정
             cout << "1!!!" << endl;
+            if (!skillManager.HasSkill("데미지 증가 스킬")) {   //스킬 보유여부 확인 
+                skillManager.AddSkill(make_unique<Skill1>());  
+                cout << "[새로운 스킬 획득!] 데미지 증가 스킬을 얻었습니다!\n"; 
+            }
+            skillManager.LevelUpSkill("데미지 증가 스킬");// Skill1 레벨 1증가
+            
         }
         else if(randomChance >= 4 && randomChance <= 6) {
-            // attack_2 레벨 1증가
+            if (!skillManager.HasSkill("체력 회복 스킬")) {
+                skillManager.AddSkill(make_unique<Skill2>());
+                cout << "[새로운 스킬 획득!] 체력 회복 스킬을 얻었습니다!\n";
+            }
+            skillManager.LevelUpSkill("체력 회복 스킬");// Skill2 레벨 1증가
+            
             cout << "2!!!" << endl;
         }
         else if (randomChance >= 7 && randomChance <= 9) {
-            // attack_3 레벨 1증가
+            if (!skillManager.HasSkill("보상 증가 스킬")) {
+                skillManager.AddSkill(make_unique<Skill3>());
+                cout << "[새로운 스킬 획득!] 보상 증가 스킬을 얻었습니다!\n";
+            }
+            skillManager.LevelUpSkill("보상 증가 스킬");// Skill3 레벨 1증가
+            
             cout << "3!!!" << endl;
         }
         else {

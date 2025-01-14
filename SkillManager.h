@@ -19,6 +19,9 @@ public:
     // 스킬 추가
     void AddSkill(unique_ptr<ISkill> skill);
 
+    // 스킬 보유 여부 확인     ****** 추가 *******
+    bool HasSkill(const string& skillName) const;
+
     // 스킬 레벨 증가
     void LevelUpSkill(const string& skillName);
 
