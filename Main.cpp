@@ -2,6 +2,8 @@
 #include <algorithm>
 #include <string>
 #include <cctype>
+#include <chrono>
+#include <Windows.h>
 #include "Player.h"   // 플레이어 클래스
 #include "Monster.h"  // 몬스터 클래스
 #include "Battle.h"   // 전투 클래스
@@ -48,7 +50,7 @@ void ChoiceMenu(Player& player, Shop& shop) {
             choiceMade = true;
         }
         else if (choice == 2) {
-
+            player.recoverHealth();
             cout << "체력을 회복했습니다!\n";
             choiceMade = true;
         }
@@ -63,7 +65,10 @@ int main() {
 
     // 캐릭터 이름 입력
     while (true) {
-        cout << "캐릭터 이름을 입력하세요 (2~8글자, 영어만 허용, 공백 및 특수문자 금지): ";
+        cout << "\n\n묻지마 ! 용사 \n" << endl;
+        Sleep(1000);
+        print_img1();
+        cout << "\n\n\n캐릭터 이름을 입력하세요 (2~8글자, 영어만 허용, 공백 및 특수문자 금지): ";
         cin >> characterName;
 
         if (isValidName(characterName)) {
@@ -77,16 +82,13 @@ int main() {
 
     Player player(characterName);
     Shop shop;
-    Battle battle;
-
-    Monster monster();
-
-   
+    Monster monster; // 기본 몬스터 생성
+	Battle battle(player, monster);
 
     // 게임 루프
     while (true) {
         // 전투 시작
-        battle.startBattle(player, monster);
+        battle.startBattle();
 
         // 전투 후 선택
         ChoiceMenu(player, shop);

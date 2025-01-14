@@ -6,7 +6,7 @@
 using namespace std;
 
 
-// ¼öÁ¤!!
+// ï¿½ï¿½ï¿½ï¿½!!
 class Player {
 private:
     string name;
@@ -28,21 +28,20 @@ public:
 
     void showStat() const;
 
-    // ±Ý¾× °ü·Ã ÇÔ¼ö
+    // ï¿½Ý¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     int getGold() const;
     void setGold(int newGold);
 
-    // °ø°Ý·Â °ü·Ã ÇÔ¼ö
+    // ï¿½ï¿½ï¿½Ý·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     int getAttack() const;
     void setAttack(int newAttack);
 
-    // ÀÎº¥Åä¸® °ü·Ã ÇÔ¼ö
+    // ï¿½Îºï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     void addItem(const string& item, int count);
     void delItem(const string& item, int count);
   
-    //°æÇèÄ¡ È¹µæ°ú ·¹º§¾÷ °ü·Ã ÇÔ¼ö
-    void levelUp();
-    void gainExp(int amount);
+    //Ã¼ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
+    void recoverHealth();
 };
 
 #endif

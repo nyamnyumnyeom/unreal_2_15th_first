@@ -2,22 +2,22 @@
 #include <iostream>
 #include <cmath>
 
-// ÀÏ´Ü ´ëÃæ ¼³Á¤ÇØ³ö¼­ ´Ù½Ã ÇØ¾ß ÇÕ´Ï´Ù ...
+// .
 Player::Player(const std::string& playerName)
     : name(playerName), level(1), maxHealth(200), currentHealth(200), attack(30), exp(0) , gold(100) {
 }
 
 void Player::calculateMaxHealth() {
     if (level == 1) {
-        maxHealth = 100; // ·¹º§ 1ÀÇ ÃÊ±â HP
+        maxHealth = 100; // ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½Ê±ï¿½ HP
     }
     else {
-        maxHealth = static_cast<int>(maxHealth + level + std::round(maxHealth / 7.0)); // ¹Ý¿Ã¸² Ã³¸®
+        maxHealth = static_cast<int>(maxHealth + level + std::round(maxHealth / 7.0)); // ï¿½Ý¿Ã¸ï¿½ Ã³ï¿½ï¿½
     }
-    currentHealth = maxHealth; // ÇöÀç Ã¼·ÂÀ» ÃÖ´ë Ã¼·ÂÀ¸·Î ¼³Á¤
+    currentHealth = maxHealth; // ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 }
 
-// ÃßÈÄ Ãß°¡
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 void Player::showStat() const {
         std::cout << "Name: " << name << std::endl;
         std::cout << "Level: " << level << std::endl;
@@ -55,23 +55,8 @@ void Player::delItem(const std::string& item, int count) {
     inventory[item] -= count;
 }
 
-//·¹º§¾÷°ú °æÇèÄ¡ È¹µæ °ü·Ã ÇÔ¼ö
-void Player::levelUp() {
-    level++;
-    maxHealth += level + (maxHealth / 7);
-    currentHealth = maxHealth;
-    attack += level + (attack / 10);
-    exp = 0;
-    std::cout << "Level up, current level is: " << level << ", Max Hp: " << currentHealth
-        << ", Damage: " << attack << "\n";
-}
-//°æÇèÄ¡
-void Player::gainExp(int amount) {
-    exp += amount;
-    int maxExp = (100 * (1 + level) * level) / 2;
-    if (exp >= maxExp) {
-        exp -= maxExp;
-        levelUp();
-
-    }
+void Player::recoverHealth() {
+    int recoveryAmount = maxHealth / 2;
+    currentHealth = std::min(currentHealth + recoveryAmount, maxHealth);
+    std::cout << "ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ï¿½ï¿½ " << recoveryAmount << "ï¿½ï¿½Å­ È¸ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½! ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ : " << currentHealth << "/" << maxHealth << std::endl;
 }

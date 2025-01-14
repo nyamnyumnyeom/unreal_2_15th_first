@@ -1,6 +1,6 @@
 ﻿#ifndef MONSTER_H
 #define MONSTER_H
-
+#include <iostream>
 #include <string>
 #include <cmath>
 #include <iostream>
