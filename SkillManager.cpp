@@ -11,6 +11,15 @@ void SkillManager::AddSkill(unique_ptr<ISkill> skill) {
     skillLevels[name] = 0; // 초기 레벨 설정
 }
 
+bool SkillManager::HasSkill(const string& skillName) const {
+    for (const auto& skill : skills) {
+        if (skill->GetName() == skillName) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void SkillManager::LevelUpSkill(const string& skillName) {
     if (skillLevels.find(skillName) != skillLevels.end()) {
         skillLevels[skillName]++;

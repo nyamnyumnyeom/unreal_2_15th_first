@@ -1,4 +1,4 @@
-#ifndef PLAYER_H
+ï»¿#ifndef PLAYER_H
 #define PLAYER_H
 #include <string>
 #include <map>
@@ -6,7 +6,7 @@
 using namespace std;
 
 
-// ¼öÁ¤!!
+// ìˆ˜ì •!!
 class Player {
 private:
     string name;
@@ -28,20 +28,39 @@ public:
 
     void showStat() const;
 
-    // ±İ¾× °ü·Ã ÇÔ¼ö
+    // ê¸ˆì•¡ ê´€ë ¨ í•¨ìˆ˜
     int getGold() const;
     void setGold(int newGold);
 
-    // °ø°İ·Â °ü·Ã ÇÔ¼ö
+    // ê³µê²©ë ¥ ê´€ë ¨ í•¨ìˆ˜
     int getAttack() const;
     void setAttack(int newAttack);
 
-    // ÀÎº¥Åä¸® °ü·Ã ÇÔ¼ö
+    // ì¸ë²¤í† ë¦¬ ê´€ë ¨ í•¨ìˆ˜
     void addItem(const string& item, int count);
     void delItem(const string& item, int count);
   
-    //Ã¼·Â È¸º¹ °ü·Ã ÇÔ¼ö
-    void recoverHealth();
+    //ì²´ë ¥ íšŒë³µ ê´€ë ¨ í•¨ìˆ˜
+    void recoverHealth();                                     
+    int getMaxHealth() const;    //    ***** ì¶”ê°€ *****   Skillinterfaces ì°¸ì¡°
+    void Heal(int amount);
+
+    //ê²½í—˜ì¹˜ íšë“ê³¼ ë ˆë²¨ì—… ê´€ë ¨ í•¨ìˆ˜
+    int getLevel()const;
+    void levelUp();
+    void gainExp(int amount);
+
+    //ë°ë¯¸ì§€ì™€ ê´€ë ¨ëœ í•¨ìˆ˜
+    void takeDamage(int amount);
+
+    //ëª¬ìŠ¤í„° ê³µê²©ì‹œ ì¶œë ¥
+    void attackMonster();
+
+    //getter setter ì¶”ê°€
+    std::string getName() const;
+    int getCurrHP()const;
+    void setCurrHP(int newHP);
+
 };
 
 #endif
