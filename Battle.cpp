@@ -1,6 +1,7 @@
 ﻿#include "Battle.h"
 #include <iostream>
 #include <random>
+#include <iomanip>
 using namespace std;
 
 //랜덤 엔진을 사용해 확률 구현
@@ -16,11 +17,17 @@ int random(int min, int max)
 //플레이어와 몬스터의 스텟을 출력하는 함수
 void Battle::showStats()
 {
-	nowPlayer->showStat();
-	cout << "~~~플레이어~~~\n\n\n\n" << endl;
+	cout << setw(32) << left << "┌ ------------- " << nowPlayer->getLevel() << right << " -------------┐" <<  "          " << setw(32) << "┌ ------------- " <<               stage                 << right << " -------------┐" << endl;
+	cout <<                   "|" << setw(16) << left << "   "            << setw(16) << right <<                       "|" << "          " <<                    "|" << setw(16) << left << "   "               << setw(16) << right <<               "|" << endl;
+	 
+	cout << "|" << setw(15) << left << "HP : " << setw(16) << right << "( " << nowPlayer->getCurrHP() << " / " << nowPlayer->getMaxHealth() << " ) " << "|" << "          " <<
+				"|" << setw(15) << left << "HP : " << setw(16) << right << "( " << nowMonster->getCurrentHP() << " ) " << "|" << endl;
 
-	nowMonster->printMonsterInfo();
-	cout << "~~~몬스터~~~" << endl;
+	cout << "|" << setw(15) << left << "AttackDamage : " << setw(16) << right << "( " << nowPlayer->getAttack() << " ) " << "|" << "          " <<
+		"|" << setw(15) << left << "AttackDamage : " << setw(16) << right << "( " << nowMonster->getAttack() << " ) " << "|" << endl;
+
+	cout <<                              "|" << setw(16) << left << "   "            << setw(16) << right <<             "|" << "          " <<                    "|" << setw(16) << left << "   "               << setw(16) << right <<              "|" << endl;
+	cout << setw(32) << left << "└ ------------- " << nowPlayer->getName() << right << " -------------┘" << "          " <<                    "└ ------------- " << nowMonster->getName() << right << " -------------┘" << endl;
 }
 
 //-------플레이어 행동-------
@@ -120,7 +127,7 @@ void Battle::startBattle()
 				cout << "[ 패배 ] " << nowMonster->getName() << "의 강력한 일격에 " << nowPlayer->getName() << "(이)가 사망했습니다." << endl;
 				break;
 			}
-			turn = 1;
+			setTurn(getTurn() + 1);
 		}
 	}
 	else
@@ -144,6 +151,7 @@ void Battle::startBattle()
 				cout << "[ 승리 ] " << nowMonster->getName() << "을/를 처치했습니다. 승리를 축하합니다!" << endl;
 				break;
 			}
+			setTurn(getTurn() + 1);
 		}
 	}
 

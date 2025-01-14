@@ -8,6 +8,7 @@ class Battle
 {
 private:
 	int stage = 1;
+	int turn = 1;
 	bool canKeepGoing = false;
 
 	Player* nowPlayer;
@@ -20,10 +21,14 @@ public:
 	Battle(const Player& playerV, const Monster& monsterV) { nowPlayer = new Player(playerV); nowMonster = new Monster(monsterV); }
 	~Battle() { delete nowPlayer, nowMonster, skill, item; }
 
-	//현재 stage를 반환하는 getter
+	//stage를 반환하는 getter
 	int getStage() const { return stage; }
 	//stage를 초기화하는 setter
 	void setStage(const int& setS) { stage = setS; }
+	//turn을 반환하는 getter
+	int getTurn() const { return turn; }
+	//turn을 초기화하는 setter
+	void setTurn(const int& setT) { turn = setT; }
 
 	//전투 종료 후 승패 여부를 반환하는 getter
 	bool getCanKeepGoing() const { return canKeepGoing; }
