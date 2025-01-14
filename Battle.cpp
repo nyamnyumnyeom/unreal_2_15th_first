@@ -1,40 +1,40 @@
-#include "Battle.h"
+ï»¿#include "Battle.h"
 #include <iostream>
 #include <random>
 
 using namespace std;
 
-//ÇÃ·¹ÀÌ¾î¿Í ¸ó½ºÅÍÀÇ ½ºÅİÀ» Ãâ·ÂÇÏ´Â ÇÔ¼ö
+//í”Œë ˆì´ì–´ì™€ ëª¬ìŠ¤í„°ì˜ ìŠ¤í…Ÿì„ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
 void Battle::showStats()
 {
 	nowPlayer->showStat();
-	cout << "~~~ÇÃ·¹ÀÌ¾î~~~\n\n\n\n" << endl;
+	cout << "~~~í”Œë ˆì´ì–´~~~\n\n\n\n" << endl;
 
 	nowMonster->showStat();
-	cout << "~~~¸ó½ºÅÍ~~~" << endl;
+	cout << "~~~ëª¬ìŠ¤í„°~~~" << endl;
 }
 
-//-------ÇÃ·¹ÀÌ¾î Çàµ¿-------
-//ÇÃ·¹ÀÌ¾î ÅÏ : ¸Ş¼¼Áö Ãâ·Â
+//-------í”Œë ˆì´ì–´ í–‰ë™-------
+//í”Œë ˆì´ì–´ í„´ : ë©”ì„¸ì§€ ì¶œë ¥
 void Battle::playerAttack() 
 {
-	cout << nowPlayer->getName() << "Àº/´Â ±âº» °ø°İÀ» ½ÃµµÇß´Ù!\n" << "ÀÔÈù ÇÇÇØ·® : " << nowPlayer->getAttack() << endl;
+	cout << nowPlayer->getName() << "ì€/ëŠ” ê¸°ë³¸ ê³µê²©ì„ ì‹œë„í–ˆë‹¤!\n" << "ì…íŒ í”¼í•´ëŸ‰ : " << nowPlayer->getAttack() << endl;
 	nowMonster->setCurrHP(nowMonster->getCurrHP() - nowPlayer->getAttack());
 }
 
-//ÇÃ·¹ÀÌ¾î ÅÏ : ½ºÅ³ »ç¿ë
+//í”Œë ˆì´ì–´ í„´ : ìŠ¤í‚¬ ì‚¬ìš©
 void Battle::playerSkill() 
 {
 		skill->UseSkill();
 }
 
-//ÇÃ·¹ÀÌ¾î ÅÏ : ¾ÆÀÌÅÛ »ç¿ë
+//í”Œë ˆì´ì–´ í„´ : ì•„ì´í…œ ì‚¬ìš©
 void Battle::playerItem()
 {
-	cout << nowPlayer->getName() << "Àº/´Â ÀÎº¥Åä¸®¿¡¼­ '" << item->itemUse() << "'À»/¸¦ ²¨³» »ç¿ëÇß´Ù!" << endl;
+	cout << nowPlayer->getName() << "ì€/ëŠ” ì¸ë²¤í† ë¦¬ì—ì„œ '" << item->itemUse() << "'ì„/ë¥¼ êº¼ë‚´ ì‚¬ìš©í–ˆë‹¤!" << endl;
 }
 
-//ÇÃ·¹ÀÌ¾î Çàµ¿ ·£´ıÀ¸·Î ¼±ÅÃ
+//í”Œë ˆì´ì–´ í–‰ë™ ëœë¤ìœ¼ë¡œ ì„ íƒ
 void Battle::playerBehavior()
 {
 	int ran = random();
@@ -52,107 +52,107 @@ void Battle::playerBehavior()
 	}
 }
 
-//-------¸ó½ºÅÍ Çàµ¿-------
-//¸ó½ºÅÍ ÅÏ : ±âº» °ø°İ
+//-------ëª¬ìŠ¤í„° í–‰ë™-------
+//ëª¬ìŠ¤í„° í„´ : ê¸°ë³¸ ê³µê²©
 void Battle::monsterAttack()
 {
-	cout << nowMonster->getName() << "ÀÇ ±âº»°ø°İÀÌ " << nowPlayer->getName() << "¿¡°Ô ÀûÁßÇß´Ù...\n" << "¹ŞÀº ÇÇÇØ·® : " << nowMonster->getAttack() << endl;
+	cout << nowMonster->getName() << "ì˜ ê¸°ë³¸ê³µê²©ì´ " << nowPlayer->getName() << "ì—ê²Œ ì ì¤‘í–ˆë‹¤...\n" << "ë°›ì€ í”¼í•´ëŸ‰ : " << nowMonster->getAttack() << endl;
 	nowPlayer->setCurrHP(nowPlayer->getCurrHP() - nowMonster->getAttack());
 }
 
-//-----------ÀüÅõ ÁøÇà °úÁ¤ ÇÔ¼ö - Battle Å¬·¡½ºÀÇ ÇÔ¼öµéÀ» ÀÚµ¿À¸·Î Àç»ı-------------
+//-----------ì „íˆ¬ ì§„í–‰ ê³¼ì • í•¨ìˆ˜ - Battle í´ë˜ìŠ¤ì˜ í•¨ìˆ˜ë“¤ì„ ìë™ìœ¼ë¡œ ì¬ìƒ-------------
 void Battle::startBattle()
 {
-	//ÀüÅõ 1´Ü°è / ´ÙÀ½ ½ºÅ×ÀÌÁö Á¤º¸ ¾Ë¸², Go or Back ¼±ÅÃ
+	//ì „íˆ¬ 1ë‹¨ê³„ / ë‹¤ìŒ ìŠ¤í…Œì´ì§€ ì •ë³´ ì•Œë¦¼, Go or Back ì„ íƒ
 	bool isPlayerLive = true;
 	int stageChoose = 0;
 	while (stageChoose != 1 || stageChoose != 2)
 	{
 		showStats();
-		cout << "´ÙÀ½ ½ºÅ×ÀÌÁö : " << getStage()+1 << ". µµÀüÇÏ½Ã°Ú½À´Ï±î? (µµÀü : 1 / ÀÌÀü ½ºÅ×ÀÌÁö ÀçµµÀü : 2)" << endl;
+		cout << "ë‹¤ìŒ ìŠ¤í…Œì´ì§€ : " << getStage()+1 << ". ë„ì „í•˜ì‹œê² ìŠµë‹ˆê¹Œ? (ë„ì „ : 1 / ì´ì „ ìŠ¤í…Œì´ì§€ ì¬ë„ì „ : 2)" << endl;
 		cin >> stageChoose;
 
 		if (stageChoose != 1 || stageChoose != 2)
 		{
-			cout << "Àß¸øµÈ ¼ıÀÚ¸¦ ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØ ÁÖ¼¼¿ä." << endl;
+			cout << "ì˜ëª»ëœ ìˆ«ìë¥¼ ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ ì£¼ì„¸ìš”." << endl;
 		}
 	}
 
-	//ÀüÅõ 2´Ü°è / ½ºÅ×ÀÌÁö ¼³Á¤
+	//ì „íˆ¬ 2ë‹¨ê³„ / ìŠ¤í…Œì´ì§€ ì„¤ì •
 	if (stageChoose == 1)
 	{
 		setStage(getStage() + 1);
-		cout << "[ STAGE : " << getStage() << " ]" << " ¿ë»ç´ÔÀÇ µµÀü¿¡ Çà¿îÀÌ ÇÔ²²ÇÏ±æ ¹Ù¶ø´Ï´Ù..." << endl;
+		cout << "[ STAGE : " << getStage() << " ]" << " ìš©ì‚¬ë‹˜ì˜ ë„ì „ì— í–‰ìš´ì´ í•¨ê»˜í•˜ê¸¸ ë°”ëë‹ˆë‹¤..." << endl;
 	}
 	else if (stageChoose == 2)
 	{
-		cout << "[ STAGE : " << getStage() << " ]" << " µµÀüÀ» À§ÇØ¼­ ¼ö·ÃÀ» ÅÃÇÑ ¿ë»ç´ÔÀ» ÀÀ¿øÇÕ´Ï´Ù..." << endl;
+		cout << "[ STAGE : " << getStage() << " ]" << " ë„ì „ì„ ìœ„í•´ì„œ ìˆ˜ë ¨ì„ íƒí•œ ìš©ì‚¬ë‹˜ì„ ì‘ì›í•©ë‹ˆë‹¤..." << endl;
 	}
 
-	//ÀüÅõ 3´Ü°è / ÀüÅõ °³½Ã, ½Â¸® ¶Ç´Â »ç¸Á½Ã ÀüÅõ Á¾·á
+	//ì „íˆ¬ 3ë‹¨ê³„ / ì „íˆ¬ ê°œì‹œ, ìŠ¹ë¦¬ ë˜ëŠ” ì‚¬ë§ì‹œ ì „íˆ¬ ì¢…ë£Œ
 	if (nowPlayer->getLevel() > getStage())
 	{
-		cout << "[ " << nowPlayer->getName() << " ¼±°ø | " << nowMonster->getName() << " ÈÄ°ø ] ÇÃ·¹ÀÌ¾îÀÇ ·¹º§ÀÌ ¾Ë ¼ö ¾ø´Â Èû¿¡ ÀúÇ×Çß´Ù!" << endl;
-		while (nowPlayer->getCurrHP() > 0 || nowMonster->getCurrHP() > 0)
+		cout << "[ " << nowPlayer->getName() << " ì„ ê³µ | " << nowMonster->getName() << " í›„ê³µ ] í”Œë ˆì´ì–´ì˜ ë ˆë²¨ì´ ì•Œ ìˆ˜ ì—†ëŠ” í˜ì— ì €í•­í–ˆë‹¤!" << endl;
+		while (nowPlayer->currHP() > 0 || nowMonster->currHP() > 0)
 		{
 			playerBehavior();
-			if (nowMonster->getCurrHP() < 0)
+			if (nowMonster->currHP() < 0) 
 			{
 				isPlayerLive = true;
-				cout << "[ ½Â¸® ] " << nowMonster->getName() << "À»/¸¦ Ã³Ä¡Çß½À´Ï´Ù. ½Â¸®¸¦ ÃàÇÏÇÕ´Ï´Ù!" << endl;
+				cout << "[ ìŠ¹ë¦¬ ] " << nowMonster->getName() << "ì„/ë¥¼ ì²˜ì¹˜í–ˆìŠµë‹ˆë‹¤. ìŠ¹ë¦¬ë¥¼ ì¶•í•˜í•©ë‹ˆë‹¤!" << endl;
 				break; 
 			}
 			monsterAttack();
 			if (nowPlayer->currHP() < 0)
 			{
 				isPlayerLive = false;
-				cout << "[ ÆĞ¹è ] " << nowMonster->getName() << "ÀÇ °­·ÂÇÑ ÀÏ°İ¿¡ " << nowPlayer->getName() << "(ÀÌ)°¡ »ç¸ÁÇß½À´Ï´Ù." << endl;
+				cout << "[ íŒ¨ë°° ] " << nowMonster->getName() << "ì˜ ê°•ë ¥í•œ ì¼ê²©ì— " << nowPlayer->getName() << "(ì´)ê°€ ì‚¬ë§í–ˆìŠµë‹ˆë‹¤." << endl;
 				break;
 			}
 		}
 	}
 	else
 	{
-		cout << "[ " << nowMonster->getName() << " ¼±°ø | " << nowPlayer->getName() << " ÈÄ°ø ] ½ºÅ×ÀÌÁöÀÇ ¾Ë ¼ö ¾ø´Â ÈûÀÌ ÇÃ·¹ÀÌ¾î¸¦ Áş´©¸¥´Ù!" << endl;
-		while (nowPlayer->getCurrHP() != 0 || nowMonster->getCurrHP() != 0)
+		cout << "[ " << nowMonster->getName() << " ì„ ê³µ | " << nowPlayer->getName() << " í›„ê³µ ] ìŠ¤í…Œì´ì§€ì˜ ì•Œ ìˆ˜ ì—†ëŠ” í˜ì´ í”Œë ˆì´ì–´ë¥¼ ì§“ëˆ„ë¥¸ë‹¤!" << endl;
+		while (nowPlayer->currHP() != 0 || nowMonster->currHP() != 0)
 		{
 			monsterAttack();
-			if (nowPlayer->getCurrHP() < 0)
+			if (nowPlayer->currHP() < 0)
 			{
 				isPlayerLive = false;
-				cout << "[ ÆĞ¹è ] " << nowMonster->getName() << "ÀÇ °­·ÂÇÑ ÀÏ°İ¿¡ " << nowPlayer->getName() << "(ÀÌ)°¡ ¾²·¯Á³½À´Ï´Ù." << endl;
+				cout << "[ íŒ¨ë°° ] " << nowMonster->getName() << "ì˜ ê°•ë ¥í•œ ì¼ê²©ì— " << nowPlayer->getName() << "(ì´)ê°€ ì“°ëŸ¬ì¡ŒìŠµë‹ˆë‹¤." << endl;
 				break;
 			}
 			playerBehavior();
 			{
 				isPlayerLive = true;
-				cout << "[ ½Â¸® ] " << nowMonster->getName() << "À»/¸¦ Ã³Ä¡Çß½À´Ï´Ù. ½Â¸®¸¦ ÃàÇÏÇÕ´Ï´Ù!" << endl;
+				cout << "[ ìŠ¹ë¦¬ ] " << nowMonster->getName() << "ì„/ë¥¼ ì²˜ì¹˜í–ˆìŠµë‹ˆë‹¤. ìŠ¹ë¦¬ë¥¼ ì¶•í•˜í•©ë‹ˆë‹¤!" << endl;
 				break;
 			}
 		}
 	}
 
-	//ÀüÅõ 4´Ü°è / ½Â¸®½Ã º¸»ó Á¤»ê ¹× ÁøÇà °¡´É ¿©ºÎ È®ÀÎ / »ç¸Á½Ã ÀÎº¥Åä¸®¿¡ ºÎÈ°±Ç ¼ÒÀ¯¿©ºÎ °Ë»ç ¹× ÁøÇà °¡´É ¿©ºÎ È®ÀÎ
+	//ì „íˆ¬ 4ë‹¨ê³„ / ìŠ¹ë¦¬ì‹œ ë³´ìƒ ì •ì‚° ë° ì§„í–‰ ê°€ëŠ¥ ì—¬ë¶€ í™•ì¸ / ì‚¬ë§ì‹œ ì¸ë²¤í† ë¦¬ì— ë¶€í™œê¶Œ ì†Œìœ ì—¬ë¶€ ê²€ì‚¬ ë° ì§„í–‰ ê°€ëŠ¥ ì—¬ë¶€ í™•ì¸
 	if (isPlayerLive == true)
 	{
 		canKeepGoing = true;
-		//º¸»ó Á¤»ê
+		//ë³´ìƒ ì •ì‚°
 	}
 	else if (isPlayerLive == false)
 	{
 		canKeepGoing = false;
-		if (item->getConsumable().find("ºÎÈ°±Ç") != item->getConsumable().end())
+		if (item->getConsumable().find("ë¶€í™œê¶Œ") != item->getConsumable().end())
 		{
 			canKeepGoing = true;
-			item->itemUse("ºÎÈ°±Ç");
-			cout << "´«ÀÌ Á¡Á¡ °¨±â´Â Áß¿¡ ÀÎº¥Åä¸®¿¡¼­ ºÎÈ°±ÇÀÌ Èñ¹ÌÇÏ°Ô ºû³ª°í ÀÖ½À´Ï´Ù. ½Åºñ·Î¿î ÈûÀÌ " << nowPlayer->getName() << "À»/¸¦ °¨½Ô´Ï´Ù." << endl;
+			item->itemUse("ë¶€í™œê¶Œ");
+			cout << "ëˆˆì´ ì ì  ê°ê¸°ëŠ” ì¤‘ì— ì¸ë²¤í† ë¦¬ì—ì„œ ë¶€í™œê¶Œì´ í¬ë¯¸í•˜ê²Œ ë¹›ë‚˜ê³  ìˆìŠµë‹ˆë‹¤. ì‹ ë¹„ë¡œìš´ í˜ì´ " << nowPlayer->getName() << "ì„/ë¥¼ ê°ìŒ‰ë‹ˆë‹¤." << endl;
 		}
 	}
 }
 
 
 
-//·£´ı ¿£ÁøÀ» »ç¿ëÇØ È®·ü ±¸Çö
+//ëœë¤ ì—”ì§„ì„ ì‚¬ìš©í•´ í™•ë¥  êµ¬í˜„
 int random()
 {
 	random_device rd;

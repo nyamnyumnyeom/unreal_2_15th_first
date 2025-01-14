@@ -1,4 +1,4 @@
-#ifndef BATTLE_H
+ï»¿#ifndef BATTLE_H
 #define BATTLE_H
 
 #include "Player.h"
@@ -18,39 +18,39 @@ private:
 	Consumable* item;
 
 public:
-	//»ı¼ºÀÚ, ¼Ò¸êÀÚ
+	//ìƒì„±ì, ì†Œë©¸ì
 	Battle(Player& player, Monster& monster) : nowPlayer(&player), nowMonster(&monster) {}
 	~Battle() { delete nowPlayer, nowMonster; }
 
-	//ÇöÀç stage¸¦ ¹İÈ¯ÇÏ´Â getter
+	//í˜„ì¬ stageë¥¼ ë°˜í™˜í•˜ëŠ” getter
 	int getStage() const { return stage; }
-	//stage¸¦ ÃÊ±âÈ­ÇÏ´Â setter
+	//stageë¥¼ ì´ˆê¸°í™”í•˜ëŠ” setter
 	void setStage(const int& setS) { stage = setS; }
 
-	//ÀüÅõ Á¾·á ÈÄ ½ÂÆĞ ¿©ºÎ¸¦ ¹İÈ¯ÇÏ´Â getter
+	//ì „íˆ¬ ì¢…ë£Œ í›„ ìŠ¹íŒ¨ ì—¬ë¶€ë¥¼ ë°˜í™˜í•˜ëŠ” getter
 	bool getCanKeepGoing() const { return canKeepGoing; }
 
-	//ÇÃ·¹ÀÌ¾î¿Í ¸ó½ºÅÍÀÇ ½ºÅİÀ» µ¿½Ã¿¡ Ãâ·Â
+	//í”Œë ˆì´ì–´ì™€ ëª¬ìŠ¤í„°ì˜ ìŠ¤í…Ÿì„ ë™ì‹œì— ì¶œë ¥
 	void showStats();
 
-	//-------ÇÃ·¹ÀÌ¾î Çàµ¿-------
-	//ÇÃ·¹ÀÌ¾î ÅÏ : ±âº» °ø°İ
+	//-------í”Œë ˆì´ì–´ í–‰ë™-------
+	//í”Œë ˆì´ì–´ í„´ : ê¸°ë³¸ ê³µê²©
 	void playerAttack();
 
-	//ÇÃ·¹ÀÌ¾î ÅÏ : ½ºÅ³ »ç¿ë
+	//í”Œë ˆì´ì–´ í„´ : ìŠ¤í‚¬ ì‚¬ìš©
 	void playerSkill();
 
-	//ÇÃ·¹ÀÌ¾î ÅÏ : ¾ÆÀÌÅÛ »ç¿ë
+	//í”Œë ˆì´ì–´ í„´ : ì•„ì´í…œ ì‚¬ìš©
 	void playerItem();
 
-	//ÇÃ·¹ÀÌ¾î Çàµ¿ ·£´ıÀ¸·Î ¼±ÅÃ
+	//í”Œë ˆì´ì–´ í–‰ë™ ëœë¤ìœ¼ë¡œ ì„ íƒ
 	void playerBehavior();
 
-	//-------¸ó½ºÅÍ Çàµ¿-------
-	//¸ó½ºÅÍ ÅÏ : ±âº» °ø°İ
+	//-------ëª¬ìŠ¤í„° í–‰ë™-------
+	//ëª¬ìŠ¤í„° í„´ : ê¸°ë³¸ ê³µê²©
 	void monsterAttack();
 
-	//ÀüÅõ ÁøÇà °úÁ¤ ÇÔ¼ö - Battle Å¬·¡½ºÀÇ ÇÔ¼öµéÀ» ÀÚµ¿À¸·Î Àç»ı
+	//ì „íˆ¬ ì§„í–‰ ê³¼ì • í•¨ìˆ˜ - Battle í´ë˜ìŠ¤ì˜ í•¨ìˆ˜ë“¤ì„ ìë™ìœ¼ë¡œ ì¬ìƒ
 	void startBattle();
 };
 
