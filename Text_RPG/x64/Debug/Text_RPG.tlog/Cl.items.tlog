@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 C:\Users\jinca\OneDrive\바탕 화면\texr\Battle.cpp;C:\Users\jinca\OneDrive\바탕 화면\texr\Text_RPG\x64\Debug\Battle.obj
 C:\Users\jinca\OneDrive\바탕 화면\texr\Inventory.cpp;C:\Users\jinca\OneDrive\바탕 화면\texr\Text_RPG\x64\Debug\Inventory.obj
 C:\Users\jinca\OneDrive\바탕 화면\texr\Main.cpp;C:\Users\jinca\OneDrive\바탕 화면\texr\Text_RPG\x64\Debug\Main.obj
@@ -6,3 +7,13 @@ C:\Users\jinca\OneDrive\바탕 화면\texr\Player.cpp;C:\Users\jinca\OneDrive\�
 C:\Users\jinca\OneDrive\바탕 화면\texr\printimg.cpp;C:\Users\jinca\OneDrive\바탕 화면\texr\Text_RPG\x64\Debug\printimg.obj
 C:\Users\jinca\OneDrive\바탕 화면\texr\Shop.cpp;C:\Users\jinca\OneDrive\바탕 화면\texr\Text_RPG\x64\Debug\Shop.obj
 C:\Users\jinca\OneDrive\바탕 화면\texr\SkillManager.cpp;C:\Users\jinca\OneDrive\바탕 화면\texr\Text_RPG\x64\Debug\SkillManager.obj
+=======
+C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\Battle.cpp;C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\Text_RPG\x64\Debug\Battle.obj
+C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\Inventory.cpp;C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\Text_RPG\x64\Debug\Inventory.obj
+C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\Main.cpp;C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\Text_RPG\x64\Debug\Main.obj
+C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\Monster.cpp;C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\Text_RPG\x64\Debug\Monster.obj
+C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\Player.cpp;C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\Text_RPG\x64\Debug\Player.obj
+C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\printimg.cpp;C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\Text_RPG\x64\Debug\printimg.obj
+C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\Shop.cpp;C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\Text_RPG\x64\Debug\Shop.obj
+C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\SkillManager.cpp;C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\Text_RPG\x64\Debug\SkillManager.obj
+>>>>>>> Stashed changes

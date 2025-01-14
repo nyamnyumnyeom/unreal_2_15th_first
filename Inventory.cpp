@@ -23,7 +23,7 @@ void Consumable::showInventory()
 }
 
 //아이템 획득
-void Consumable::itemGet(string itemName)
+void Consumable::itemGet(const string& itemName)
 {
 	//인벤토리에 해당 아이템이 있는지 검사하여 [아이템 추가 or 아이템 갯수 증가]
 	map<string, int>::iterator iter = slot_consum.find(itemName);
@@ -40,7 +40,7 @@ void Consumable::itemGet(string itemName)
 }
 
 //아이템 사용
-int Consumable::itemUse(string itemName)
+int Consumable::itemUse(const string& itemName)
 {
 	map<string, int>::iterator iter = slot_consum.find(itemName);
 	if (iter == slot_consum.end())
@@ -79,7 +79,7 @@ void Equipment::showInventory()
 }
 
 //아이템 획득
-void Equipment::itemGet(string itemName)
+void Equipment::itemGet(const string& itemName)
 {
 	//인벤토리에 해당 아이템이 있는지 검사하여 [아이템 추가 or 아이템 갯수 증가]
 	map<string, int>::iterator iter = slot_Equip.find(itemName);

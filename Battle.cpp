@@ -93,10 +93,10 @@ void Battle::startBattle()
 	if (nowPlayer->getLevel() > getStage())
 	{
 		cout << "[ " << nowPlayer->getName() << " 선공 | " << nowMonster->getName() << " 후공 ] 플레이어의 레벨이 알 수 없는 힘에 저항했다!" << endl;
-		while (nowPlayer->currHP() > 0 || nowMonster->currHP() > 0)
+		while (nowPlayer->getCurrHP() > 0 || nowMonster->getCurrHP() > 0)
 		{
 			playerBehavior();
-			if (nowMonster->currHP() < 0) 
+			if (nowMonster->getCurrHP() < 0)
 			{
 				isPlayerLive = true;
 				cout << "[ 승리 ] " << nowMonster->getName() << "을/를 처치했습니다. 승리를 축하합니다!" << endl;
@@ -114,10 +114,10 @@ void Battle::startBattle()
 	else
 	{
 		cout << "[ " << nowMonster->getName() << " 선공 | " << nowPlayer->getName() << " 후공 ] 스테이지의 알 수 없는 힘이 플레이어를 짓누른다!" << endl;
-		while (nowPlayer->currHP() != 0 || nowMonster->currHP() != 0)
+		while (nowPlayer->getCurrHP() != 0 || nowMonster->getCurrHP() != 0)
 		{
 			monsterAttack();
-			if (nowPlayer->currHP() < 0)
+			if (nowPlayer->getCurrHP() < 0)
 			{
 				isPlayerLive = false;
 				cout << "[ 패배 ] " << nowMonster->getName() << "의 강력한 일격에 " << nowPlayer->getName() << "(이)가 쓰러졌습니다." << endl;
