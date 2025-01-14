@@ -23,7 +23,7 @@ private:
     
     void calculateMaxHealth();
 public:
-   
+    
     Player(const string& playerName);
 
     void showStat() const;
@@ -40,6 +40,13 @@ public:
     void addItem(const string& item, int count);
     void delItem(const string& item, int count);
   
+    //경험치 획득과 레벨업 관련 함수
+    void levelUp();
+    void gainExp(int amount);
+
+    //체력 관련 함수    ***** 추가 *****
+    int getMaxHealth() const;
+    void Heal(int amount);
 };
 
 #endif
