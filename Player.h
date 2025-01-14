@@ -61,6 +61,8 @@ public:
     int getCurrHP()const;
     void setCurrHP(int newHP);
 
+    //체력바 구현
+    void displayHealthBar();
 };
 
 #endif
