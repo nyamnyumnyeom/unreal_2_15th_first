@@ -1,19 +1,47 @@
 ﻿#include <iostream>
-#include <algorithm>
 #include <string>
-#include <cctype>
-#include <chrono>
-#include <Windows.h>
+#include <windows.h>
+#include <cstdlib>
+#include <ctime>
 #include "Player.h"   // 플레이어 클래스
 #include "Monster.h"  // 몬스터 클래스
 #include "Battle.h"   // 전투 클래스
 #include "Shop.h"     // 상점 클래스
 #include "printimg.cpp"      // 이미지 출력
 #include "SkillManager.h"
-#include "Bgm.h"
+
+#pragma comment(lib, "winmm.lib")
 
 using namespace std;
-BgmManager bgmManager; // BGM 관리 객체
+
+class GameBGM {
+private:
+    wstring currentBgm;
+
+    wstring stringToWstring(const string& str) {
+        return wstring(str.begin(), str.end());
+    }
+
+public:
+    void playBgm(const string& fileName) {
+        stopBgm();
+        currentBgm = stringToWstring("Bgm\\" + fileName);
+        if (!PlaySound(currentBgm.c_str(), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP)) {
+            cerr << "Error: Unable to play " << fileName << endl;
+        }
+        else {
+            cout << "Playing: " << fileName << endl;
+        }
+    }
+
+    void stopBgm() {
+        PlaySound(NULL, NULL, SND_PURGE);
+        cout << "BGM stopped." << endl;
+    }
+};
+
+GameBGM bgmManager; // BGM 관리 객체
+SkillManager skill;
 
 void playLobbyBgm() {
     int randomChoice = rand() % 2 + 1;
@@ -32,11 +60,8 @@ void playBattleBgm(int stage) {
     bgmManager.playBgm(battleBgm);
 }
 
-SkillManager skill;
-
 // 이름 유효성 검사 함수
 bool isValidName(const string& name) {
-
     if (name.length() < 2 || name.length() > 8 || name.find(' ') != string::npos) {
         return false;
     }
@@ -48,22 +73,18 @@ bool isValidName(const string& name) {
     }
 
     for (unsigned char c : name) {
-        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')))
-        {
+        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
             return false;
         }
     }
     return true;
 }
 
-
-
 // 전투 후 선택 메뉴
 void ChoiceMenu(shared_ptr<Player> player, Shop& shop) {
     bool choiceMade = false;
 
     while (!choiceMade) {
-        
         cout << "\n=== 전투 후 선택 ===\n";
         cout << "1. 상점 이용\n2. 체력 회복\n선택: ";
         int choice;
@@ -86,6 +107,7 @@ void ChoiceMenu(shared_ptr<Player> player, Shop& shop) {
 }
 
 int main() {
+    srand(static_cast<unsigned>(time(nullptr))); // 랜덤 초기화
     string characterName;
 
     // 캐릭터 이름 입력
@@ -107,19 +129,16 @@ int main() {
 
     Player player(characterName);
     Shop shop;
-    
     Battle battle(player);
+    shared_ptr<Player> playerPointer = battle.getNowPlayer();
 
-	shared_ptr<Player> playerPointer; 
-	playerPointer =	 battle.getNowPlayer();
-
-    playLobbyBgm();
+    playLobbyBgm(); // 로비 BGM 재생
 
     // 게임 루프
     while (true) {
-        // 전투 시작
-        battle.startBattle();
-        playBattleBgm(battle.getStage());
+        battle.startBattle(); // 전투 시작
+        playBattleBgm(battle.getStage()); // 스테이지별 BGM 재생
+
         // 전투 후 선택
         ChoiceMenu(playerPointer, shop);
 

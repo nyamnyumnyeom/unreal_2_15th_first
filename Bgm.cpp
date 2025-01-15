@@ -16,6 +16,7 @@ BgmManager::~BgmManager() {
 // BGM 재생
 void BgmManager::playBgm(const std::string& filePath, bool loop) {
     stopBgm();
+    std::cout << "현재 BGM 경로: " << currentBgm << std::endl;
     currentBgm = stringToWstring(filePath);
     isPlaying = true;
 

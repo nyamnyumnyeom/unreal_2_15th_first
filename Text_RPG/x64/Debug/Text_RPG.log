@@ -1,1 +1,9 @@
-﻿  Text_RPG.vcxproj -> C:\Users\jinca\OneDrive\바탕 화면\text_rpg\x64\Debug\Text_RPG.exe
+﻿  Battle.cpp
+  Main.cpp
+C:\Users\jinca\OneDrive\바탕 화면\text_rpg\Main.cpp(94,17): error C2664: 'void Shop::openShop(Player &,SkillManager &)': 인수 1을(를) 'std::shared_ptr<Player>'에서 'Player &'(으)로 변환할 수 없습니다.
+      C:\Users\jinca\OneDrive\바탕 화면\text_rpg\Shop.h(11,10):
+      'Shop::openShop' 선언을 참조하십시오.
+      C:\Users\jinca\OneDrive\바탕 화면\text_rpg\Main.cpp(94,17):
+      인수 목록 '(std::shared_ptr<Player>, SkillManager)'을(를) 일치시키는 동안
+  
+  코드를 생성하고 있습니다...
