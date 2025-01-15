@@ -154,3 +154,21 @@ void Monster::setCurrentHP(int hp) {
 int Monster::getAttack() const {
     return damage;
 }
+
+void Monster::TakeDamage(int damage) {
+    currentHP -= damage;
+    if (currentHP < 0) currentHP = 0;
+    std::cout << name << "이(가) " << damage << "의 데미지를 입었습니다. 남은 체력: " << currentHP << "\n";
+}
+
+void Monster::RewardBonus(double bonus) {
+    // 보상 증가율을 골드와 경험치에 적용
+    int additionalGold = static_cast<int>(goldDrop * bonus); // 보상 증가율에 의한 추가 골드
+    goldDrop += additionalGold;
+
+    int additionalExp = static_cast<int>(exp * bonus); // 보상 증가율에 의한 추가 경험치
+    exp += additionalExp;
+
+    // 보상 증가 출력
+    std::cout << name << "의 보상 증가! 골드: " << additionalGold << ", 경험치: " << additionalExp << std::endl;
+}

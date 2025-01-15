@@ -46,7 +46,7 @@ void ChoiceMenu(Player& player, Shop& shop) {
         cin >> choice;
 
         if (choice == 1) {
-            //shop.openShop(player); // 상점 이용
+            shop.openShop(player); // 상점 이용
             choiceMade = true;
         }
         else if (choice == 2) {
