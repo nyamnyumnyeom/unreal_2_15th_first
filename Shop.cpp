@@ -31,26 +31,39 @@ void Shop::openShop(shared_ptr<Player> player, SkillManager& skillManager) {
                 player->setGold(player->getGold() - 100);
                 player->addItem("HP Potion", 1);
                 cout << "HP 포션을 구매했습니다.\n";
+                Sleep(1250);
+                system("cls");
             }
             else {
                 cout << "돈이 부족합니다.\n";
+                Sleep(1250);
+                system("cls");
             }
         }
         else if (choice == 2) { // 스킬 구매
+            system("cls");
             buySkill(*player, skillManager);
+            Sleep(1250);
+            system("cls");
         }
         else if (choice == 3) { // 부활석 구매
             if (player->getGold() >= 5000) {
                 player->setGold(player->getGold() - 5000);
                 player->addItem("Resurrection Stone", 1);
                 cout << "부활석을 구매했습니다.\n";
+                Sleep(1250);
+                system("cls");
             }
             else {
                 cout << "돈이 부족합니다.\n";
+                Sleep(1250);
+                system("cls");
             }
         }
         else if (choice == 4) { // 상점 나가기
             cout << "상점을 나갑니다.\n";
+            Sleep(1250);
+            system("cls");
             break;
         }
         else if (choice == 99) { // 디버그 모드: 골드 추가

@@ -104,12 +104,13 @@ void ChoiceMenu(shared_ptr<Player> player, Shop& shop) {
             cout << "잘못된 입력입니다. 다시 선택해주세요.\n";
         }
     }
-    playLobbyBgm();
+    //playLobbyBgm();
 }
 
 int main() {
     srand(static_cast<unsigned>(time(nullptr))); // 랜덤 초기화
     string characterName;
+    playLobbyBgm();
 
     // 캐릭터 이름 입력
     while (true) {
@@ -133,13 +134,11 @@ int main() {
     Battle battle(player);
     shared_ptr<Player> playerPointer = battle.getNowPlayer();
 
-    playLobbyBgm(); // 로비 BGM 재생
-
     // 게임 루프
     while (true) {
-        battle.startBattle(); // 전투 시작
         playBattleBgm(battle.getStage()); // 스테이지별 BGM 재생
-
+        battle.startBattle(); // 전투 시작
+        playLobbyBgm();
         // 전투 후 선택
         ChoiceMenu(playerPointer, shop);
 
