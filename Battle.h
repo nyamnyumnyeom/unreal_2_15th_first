@@ -15,11 +15,12 @@ private:
 	Monster* nowMonster;
 	SkillManager* skill = new SkillManager();
 	Consumable* item = new Consumable();
+	Equipment* equip = new Equipment();
 	
 public:
 	//생성자, 소멸자
 	Battle(const Player& playerV, const Monster& monsterV) { nowPlayer = new Player(playerV); nowMonster = new Monster(monsterV); }
-	~Battle() { delete nowPlayer, nowMonster, skill, item; }
+	~Battle() { delete nowPlayer, nowMonster, skill, item, equip; }
 
 	//stage를 반환하는 getter
 	int getStage() const { return stage; }

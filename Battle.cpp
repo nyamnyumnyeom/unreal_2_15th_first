@@ -17,17 +17,22 @@ int random(int min, int max)
 //플레이어와 몬스터의 스텟을 출력하는 함수
 void Battle::showStats()
 {
-	cout << setw(32) << left << "┌ ------------- " << nowPlayer->getLevel() << right << " -------------┐" <<  "          " << setw(32) << "┌ ------------- " <<               stage                 << right << " -------------┐" << endl;
-	cout <<                   "|" << setw(16) << left << "   "            << setw(16) << right <<                       "|" << "          " <<                    "|" << setw(16) << left << "   "               << setw(16) << right <<               "|" << endl;
-	 
-	cout << "|" << setw(15) << left << "HP : " << setw(16) << right << "( " << nowPlayer->getCurrHP() << " / " << nowPlayer->getMaxHealth() << " ) " << "|" << "          " <<
-				"|" << setw(15) << left << "HP : " << setw(16) << right << "( " << nowMonster->getCurrentHP() << " ) " << "|" << endl;
+	cout << setw(20) << left << "┌------------- Level " << setw(8) << right << nowPlayer->getLevel() << setw(15) << right << " -------------┐" << "          " << setw(20) << left << "┌------------- Stage " << setw(8) << right << stage << setw(15) << right << " -------------┐" << endl;
+	cout << "|" << setw(21) << left << " " << setw(22) << right << "|" << "          " << "|" << setw(21) << left << " " << setw(22) << right << "|" << endl;
+	//HP 출력
+	cout << "|" << setw(15) << left << " HP : " << setw(7) << right << "( " << setw(7) << right << nowPlayer->getCurrHP() << " / " << setw(7) << right << nowPlayer->getMaxHealth() << " ) " << "|" << "          " <<
+		"|" << setw(15) << left << " HP : " << setw(17) << right << "( " << setw(7) << right << nowMonster->getCurrentHP() << " ) " << "|" << endl;
+	//AD 출력
+	cout << "|" << setw(18) << left << " Attack Damage : " << setw(14) << right << "( " << setw(7) << right << nowPlayer->getAttack() << " ) " << "|" << "          " <<
+		"|" << setw(18) << left << " Attack Damage : " << setw(14) << right << "( " << setw(7) << right << nowMonster->getAttack() << " ) " << "|" << endl;
+	//공백
+	cout << "|" << setw(21) << left << " " << setw(22) << right << "|" << "          " << "|" << setw(21) << left << " " << setw(22) << right << "|" << endl;
+	//인벤토리-장비로 인한 스텟 증가량 출력
+	cout << "|" << setw(27) << left << "AD increase from sword  : " << setw(4) << right << "( " << setw(8) << right << equip->equipStat_Sword() << setw(3) << right << " ) " << "|" << "          " << setw(16) << left << "└-------------[  " << setw(10) << right << nowMonster->getName() << setw(16) << right << "  ]-------------┘" << endl;
+	cout << "|" << setw(27) << left << "HP increase from armor  : " << setw(4) << right << "( " << setw(8) << right << equip->equipStat_Armor() << setw(3) << right << " ) " << "|" << endl;
 
-	cout << "|" << setw(15) << left << "AttackDamage : " << setw(16) << right << "( " << nowPlayer->getAttack() << " ) " << "|" << "          " <<
-		"|" << setw(15) << left << "AttackDamage : " << setw(16) << right << "( " << nowMonster->getAttack() << " ) " << "|" << endl;
-
-	cout <<                              "|" << setw(16) << left << "   "            << setw(16) << right <<             "|" << "          " <<                    "|" << setw(16) << left << "   "               << setw(16) << right <<              "|" << endl;
-	cout << setw(32) << left << "└ ------------- " << nowPlayer->getName() << right << " -------------┘" << "          " <<                    "└ ------------- " << nowMonster->getName() << right << " -------------┘" << endl;
+	cout << "|" << setw(21) << left << " " << setw(22) << right << "|" << endl;
+	cout << setw(16) << left << "└-------------[  " << setw(10) << nowPlayer->getName() << setw(16) << right << "  ]-------------┘" << endl;
 }
 
 //-------플레이어 행동-------
