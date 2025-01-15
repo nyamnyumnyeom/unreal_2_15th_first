@@ -50,6 +50,10 @@ public:
     int getCurrentHP() const;
     void setCurrentHP(int hp);
     int getAttack() const;
+
+    void TakeDamage(int damage);
+
+    void RewardBonus(double bonus);
 };
 
 #endif // MONSTER_H
