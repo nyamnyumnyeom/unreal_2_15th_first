@@ -17,7 +17,7 @@ int random(int min, int max)
 
 // 생성자
 Battle::Battle(const Player& playerV) {
-	nowPlayer = std::make_unique<Player>(playerV);
+	nowPlayer = std::make_shared<Player>(playerV);
 	nowMonster = std::make_unique<Monster>(stage); // 초기 Monster 생성
 }
 
@@ -67,7 +67,6 @@ void Battle::playerAttack()
 	Sleep(1000);
 }
 
-//플레이어 턴 : 스킬 사용
 //플레이어 턴 : 스킬 사용
 void Battle::playerSkill() {
 	// 스킬 목록 가져오기
@@ -145,18 +144,24 @@ void Battle::startBattle() {
 	bool isPlayerLive = true;
 	int stageChoose = 0;
 
-	while (stageChoose != 1 && stageChoose != 2) {
-		showStats();
-		cout << "다음 스테이지 : " << getStage() + 1 << ". 도전하시겠습니까? (도전 : 1 / 이전 스테이지 재도전 : 2)" << endl;
-		cin >> stageChoose;
+	if (getStage() == 1)
+	{
+		stageChoose = 1;
+	}
+	else
+	{
+		while (stageChoose != 1 && stageChoose != 2) {
+			showStats();
+			cout << "다음 스테이지 : " << getStage() << ". 도전하시겠습니까? (도전 : 1 / 이전 스테이지 재도전 : 2)" << endl;
+			cin >> stageChoose;
 
-		if (stageChoose != 1 && stageChoose != 2) {
-			cout << "잘못된 숫자를 입력하셨습니다. 다시 입력해 주세요." << endl;
+			if (stageChoose != 1 && stageChoose != 2) {
+				cout << "잘못된 숫자를 입력하셨습니다. 다시 입력해 주세요." << endl;
+			}
 		}
 	}
 
 	if (stageChoose == 1) {
-		setStage(getStage() + 1);
 		cout << "[ STAGE : " << getStage() << " ]" << " 용사님의 도전에 행운이 함께하길 바랍니다..." << endl;
 	}
 	else if (stageChoose == 2) {
@@ -171,6 +176,7 @@ void Battle::startBattle() {
 			isPlayerLive = true;
 			cout << "[ 승리 ] " << nowMonster->getName() << "을/를 처치했습니다. 승리를 축하합니다!" << endl;
 			break;
+			setStage(getStage() + 1);
 		}
 
 		Sleep(500);
@@ -183,8 +189,8 @@ void Battle::startBattle() {
 		setTurn(getTurn() + 1);
 	}
 
-	if (!isPlayerLive && item->getConsumable().find("부활권") != item->getConsumable().end()) {
-		item->itemUse("부활권");
+	if (!isPlayerLive && item->getConsumable().find("Resurrection") != item->getConsumable().end()) {
+		item->itemUse("Resurrection");
 		nowPlayer->setCurrHP(nowPlayer->getMaxHealth());
 		cout << "부활권으로 " << nowPlayer->getName() << "이/가 부활했습니다!" << endl;
 	}

@@ -12,7 +12,7 @@ private:
 	int turn = 1;
 	bool canKeepGoing = false;
 
-	unique_ptr<Player> nowPlayer;    // 스마트 포인터로 변경
+	shared_ptr<Player> nowPlayer;    // 스마트 포인터로 변경
 	unique_ptr<Monster> nowMonster;
 	unique_ptr<SkillManager> skill = make_unique<SkillManager>();
 	unique_ptr<Consumable> item = make_unique<Consumable>();
@@ -63,6 +63,8 @@ public:
 
 	//보스 공격
 	void bossAttack();
+
+	shared_ptr<Player> getNowPlayer() { return nowPlayer; }
 
 };
 

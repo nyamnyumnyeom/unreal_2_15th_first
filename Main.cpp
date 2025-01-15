@@ -59,7 +59,7 @@ bool isValidName(const string& name) {
 
 
 // 전투 후 선택 메뉴
-void ChoiceMenu(Player& player, Shop& shop) {
+void ChoiceMenu(shared_ptr<Player> player, Shop& shop) {
     bool choiceMade = false;
 
     while (!choiceMade) {
@@ -74,7 +74,7 @@ void ChoiceMenu(Player& player, Shop& shop) {
             choiceMade = true;
         }
         else if (choice == 2) {
-            player.recoverHealth();
+            player->recoverHealth();
             cout << "체력을 회복했습니다!\n";
             choiceMade = true;
         }
@@ -110,6 +110,9 @@ int main() {
     
     Battle battle(player);
 
+	shared_ptr<Player> playerPointer; 
+	playerPointer =	 battle.getNowPlayer();
+
     playLobbyBgm();
 
     // 게임 루프
@@ -118,7 +121,7 @@ int main() {
         battle.startBattle();
         playBattleBgm(battle.getStage());
         // 전투 후 선택
-        ChoiceMenu(player, shop);
+        ChoiceMenu(playerPointer, shop);
 
         // 종료 선택
         cout << "\n게임을 계속하시겠습니까? (1: 계속, 0: 종료): ";
