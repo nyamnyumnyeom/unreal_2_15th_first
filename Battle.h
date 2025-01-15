@@ -3,6 +3,7 @@
 
 #include "SkillManager.h"
 #include "Inventory.h"
+#include <memory>
 
 class Battle 
 {
