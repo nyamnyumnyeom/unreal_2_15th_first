@@ -2,9 +2,8 @@
 #define MONSTER_H
 
 #include <string>
-
-// Forward declaration of Battle class
-class Battle;
+#include <cstdlib> // For std::rand
+#include <algorithm> // For std::max
 
 enum class MonsterType {
     Goblin,
@@ -28,12 +27,11 @@ private:
     double armorDropRate; // 방어구 드랍율
 
 public:
-    // 생성자
-    Monster(const Battle& battle); // Battle 객체를 참조하는 생성자
+    // 생성자: stage 값을 직접 전달받음
+    Monster(int stage);
 
     // 몬스터 생성 및 속성 계산
     void generateRandomMonster();
-    void calculateAttributes();
     double calculateSwordDropRate(int stage);
     double calculateArmorDropRate(int stage);
     void calculateGoldDrop(int stage);
@@ -54,4 +52,4 @@ public:
     int getAttack() const;
 };
 
-#endif
+#endif // MONSTER_H

@@ -11,21 +11,21 @@ private:
 	int turn = 1;
 	bool canKeepGoing = false;
 
-	Player* nowPlayer;
-	Monster* nowMonster;
-	SkillManager* skill = new SkillManager();
-	Consumable* item = new Consumable();
-	Equipment* equip = new Equipment();
+	unique_ptr<Player> nowPlayer;    // 스마트 포인터로 변경
+	unique_ptr<Monster> nowMonster;
+	unique_ptr<SkillManager> skill = make_unique<SkillManager>();
+	unique_ptr<Consumable> item = make_unique<Consumable>();
+	unique_ptr<Equipment> equip = make_unique<Equipment>();
 	
 public:
 	//생성자, 소멸자
-	Battle(const Player& playerV, const Monster& monsterV) { nowPlayer = new Player(playerV); nowMonster = new Monster(monsterV); }
-	~Battle() { delete nowPlayer, nowMonster, skill, item, equip; }
+	Battle(const Player& playerV);
+	~Battle() = default;
 
 	//stage를 반환하는 getter
 	int getStage() const { return stage; }
 	//stage를 초기화하는 setter
-	void setStage(const int& setS) { stage = setS; }
+	void setStage(const int& setS);
 	//turn을 반환하는 getter
 	int getTurn() const { return turn; }
 	//turn을 초기화하는 setter
@@ -33,6 +33,9 @@ public:
 
 	//전투 종료 후 승패 여부를 반환하는 getter
 	bool getCanKeepGoing() const { return canKeepGoing; }
+
+	void resetMonster();
+	void nextStage();
 
 	//플레이어와 몬스터의 스텟을 동시에 출력
 	void showStats();
