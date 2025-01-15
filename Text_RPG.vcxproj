@@ -80,6 +80,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -96,6 +97,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -108,6 +110,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -124,10 +127,12 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Battle.cpp" />
+    <ClCompile Include="Bgm.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Monster.cpp" />
@@ -138,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battle.h" />
+    <ClInclude Include="Bgm.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="ISkill.h" />
     <ClInclude Include="Monster.h" />
@@ -145,6 +151,16 @@
     <ClInclude Include="Shop.h" />
     <ClInclude Include="SkillInterfaces.h" />
     <ClInclude Include="SkillManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Bgm\Battle_Bgm1.wav" />
+    <Media Include="Bgm\Battle_Bgm2.wav" />
+    <Media Include="Bgm\Battle_Bgm3.wav" />
+    <Media Include="Bgm\Battle_Bgm4.wav" />
+    <Media Include="Bgm\Battle_Bgm5.wav" />
+    <Media Include="Bgm\Battle_Bgm6.wav" />
+    <Media Include="Bgm\Lobby.wav" />
+    <Media Include="Bgm\Lobby2.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

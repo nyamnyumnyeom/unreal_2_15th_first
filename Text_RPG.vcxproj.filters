@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Bgm">
+      <UniqueIdentifier>{5310b4e7-aee6-454a-ac0d-0bd27c3a52a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -37,6 +40,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SkillManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Bgm.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,5 +71,34 @@
     <ClInclude Include="SkillManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Bgm.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Bgm\Battle_Bgm3.wav">
+      <Filter>Bgm</Filter>
+    </Media>
+    <Media Include="Bgm\Battle_Bgm4.wav">
+      <Filter>Bgm</Filter>
+    </Media>
+    <Media Include="Bgm\Battle_Bgm5.wav">
+      <Filter>Bgm</Filter>
+    </Media>
+    <Media Include="Bgm\Battle_Bgm6.wav">
+      <Filter>Bgm</Filter>
+    </Media>
+    <Media Include="Bgm\Lobby.wav">
+      <Filter>Bgm</Filter>
+    </Media>
+    <Media Include="Bgm\Lobby2.wav">
+      <Filter>Bgm</Filter>
+    </Media>
+    <Media Include="Bgm\Battle_Bgm1.wav">
+      <Filter>Bgm</Filter>
+    </Media>
+    <Media Include="Bgm\Battle_Bgm2.wav">
+      <Filter>Bgm</Filter>
+    </Media>
   </ItemGroup>
 </Project>

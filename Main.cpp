@@ -10,9 +10,27 @@
 #include "Shop.h"     // 상점 클래스
 #include "printimg.cpp"      // 이미지 출력
 #include "SkillManager.h"
+#include "Bgm.h"
 
 using namespace std;
+BgmManager bgmManager; // BGM 관리 객체
 
+void playLobbyBgm() {
+    int randomChoice = rand() % 2 + 1;
+    bgmManager.playBgm("Lobby" + to_string(randomChoice) + ".wav");
+}
+
+void playBattleBgm(int stage) {
+    string battleBgm;
+    if (stage <= 10) battleBgm = "Battle_Bgm1.wav";
+    else if (stage <= 20) battleBgm = "Battle_Bgm2.wav";
+    else if (stage <= 30) battleBgm = "Battle_Bgm3.wav";
+    else if (stage <= 40) battleBgm = "Battle_Bgm4.wav";
+    else if (stage <= 50) battleBgm = "Battle_Bgm5.wav";
+    else battleBgm = "Battle_Bgm6.wav";
+
+    bgmManager.playBgm(battleBgm);
+}
 
 SkillManager skill;
 
@@ -45,6 +63,7 @@ void ChoiceMenu(Player& player, Shop& shop) {
     bool choiceMade = false;
 
     while (!choiceMade) {
+        
         cout << "\n=== 전투 후 선택 ===\n";
         cout << "1. 상점 이용\n2. 체력 회복\n선택: ";
         int choice;
@@ -63,6 +82,7 @@ void ChoiceMenu(Player& player, Shop& shop) {
             cout << "잘못된 입력입니다. 다시 선택해주세요.\n";
         }
     }
+    playLobbyBgm();
 }
 
 int main() {
@@ -90,11 +110,13 @@ int main() {
     
     Battle battle(player);
 
+    playLobbyBgm();
+
     // 게임 루프
     while (true) {
         // 전투 시작
         battle.startBattle();
-
+        playBattleBgm(battle.getStage());
         // 전투 후 선택
         ChoiceMenu(player, shop);
 
@@ -108,6 +130,6 @@ int main() {
             break;
         }
     }
-
+    bgmManager.stopBgm();
     return 0;
 }
