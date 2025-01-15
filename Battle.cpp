@@ -56,6 +56,7 @@ void Battle::showStats() {
 
 	cout << "|" << setw(21) << left << " " << setw(22) << right << "|" << endl;
 	cout << setw(16) << left << "└-------------[  " << setw(10) << nowPlayer->getName() << setw(16) << right << "  ]-------------┘" << endl;
+	cout << nowPlayer->getGold() << endl;
 }
 
 //-------플레이어 행동-------
@@ -174,12 +175,20 @@ void Battle::startBattle() {
 		playerBehavior();
 		if (nowMonster->getCurrentHP() <= 0) {
 			isPlayerLive = true;
-			cout << "[ 승리 ] " << nowMonster->getName() << "을/를 처치했습니다. 승리를 축하합니다!" << endl;
+			std::cout << "[ 승리 ] " << nowMonster->getName() << "을/를 처치했습니다. 승리를 축하합니다!\n";
+
+			// 몬스터 보상을 플레이어에게 전달
+			int goldEarned = nowMonster->getGoldDrop();
+			int expEarned = nowMonster->getExp();
+
+			nowPlayer->addGold(goldEarned);  // 골드 추가
+			//nowPlayer->addExp(expEarned);    // 경험치 추가
+
+			setStage(getStage() + 1);  // 다음 스테이지로 이동
 			break;
-			setStage(getStage() + 1);
 		}
 
-		Sleep(500);
+		//Sleep(500);
 		monsterAttack();
 		if (nowPlayer->getCurrHP() <= 0) {
 			isPlayerLive = false;
@@ -189,9 +198,15 @@ void Battle::startBattle() {
 		setTurn(getTurn() + 1);
 	}
 
-	if (!isPlayerLive && item->getConsumable().find("Resurrection") != item->getConsumable().end()) {
-		item->itemUse("Resurrection");
-		nowPlayer->setCurrHP(nowPlayer->getMaxHealth());
-		cout << "부활권으로 " << nowPlayer->getName() << "이/가 부활했습니다!" << endl;
+	if (!isPlayerLive) {
+		auto it = item->getConsumable().find("Resurrection");
+		if (it != item->getConsumable().end()) {
+			// 부활권 사용
+			item->itemUse("Resurrection");  // 내부적으로 삭제 처리
+			cout << "부활권을 사용했습니다.\n";
+		}
+		else {
+			cout << "부활권이 없어 부활할 수 없습니다.\n";
+		}
 	}
 }

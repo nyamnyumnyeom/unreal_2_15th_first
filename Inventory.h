@@ -18,8 +18,7 @@ private:
 public:
 	//생성자 및 인벤토리-소모품 getter
 	Consumable() = default;
-	map<string, int> getConsumable() { return slot_consum; }
-
+	const map<string, int>& getConsumable() const { return slot_consum; }
 	//인벤토리-소모품 아이템 조회
 	void showInventory();
 	//인벤토리-소모품 내역 출력

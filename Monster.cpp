@@ -189,3 +189,11 @@ void Monster::RewardBonus(double bonus) {
 bool Monster::bossManage() const {
     return isBoss;
 }
+
+int Monster::getGoldDrop() const {
+    return goldDrop;
+}
+
+int Monster::getExp() const {
+    return exp;
+}

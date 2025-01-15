@@ -3,8 +3,10 @@
 #ifndef SHOP_H
 #define SHOP_H
 
+#include <memory>
 #include "Player.h" 
 #include "SkillManager.h"
+
 
 class Shop {
 public:

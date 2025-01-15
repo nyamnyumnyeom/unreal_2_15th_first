@@ -53,12 +53,16 @@ public:
     void setCurrentHP(int hp);
     int getAttack() const;
 
+    int getGoldDrop() const;
+    int getExp() const;
     void TakeDamage(int damage);
 
     void RewardBonus(double bonus);
 
     //보스 확인 여부
     bool bossManage() const;
+
+
 
 };
 

@@ -17,6 +17,7 @@ void Player::calculateMaxHealth() {
     currentHealth = maxHealth; // 현재 체력을 최대 체력으로 설정
 }
 
+
 // 추후 추가
 void Player::showStat() const {
         std::cout << "Name: " << name << std::endl;
@@ -145,3 +146,18 @@ void Player::displayHealthBar() {
     std::cout << "\r[" << bar << "] " << double(currentHealth) / double(maxHealth) * 100 << "%"; // 캐리지 리턴으로 한 줄에 출력
     std::cout.flush();
 }
+
+void Player::addGold(int amount) {
+    gold += amount;
+    std::cout << name << "가 " << amount << " 골드를 획득했습니다. 현재 골드: " << gold << std::endl;
+}
+
+/*void Player::gainExp(int amount) {
+    exp += amount;
+    int maxExp = (100 * (1 + level) * level) / 2;
+    if (exp >= maxExp) {
+        exp -= maxExp;
+        levelUp();
+    }
+    std::cout << name << "가 " << amount << " 경험치를 획득했습니다. (현재 경험치: " << exp << "/" << maxExp << ")\n";
+}*/
