@@ -114,13 +114,13 @@ void Battle::startBattle()
 	//전투 1단계 / 다음 스테이지 정보 알림, Go or Back 선택
 	bool isPlayerLive = true;
 	int stageChoose = 0;
-	while (stageChoose != 1 || stageChoose != 2)
+	while (stageChoose != 1 && stageChoose != 2)
 	{
 		showStats();
 		cout << "다음 스테이지 : " << getStage()+1 << ". 도전하시겠습니까? (도전 : 1 / 이전 스테이지 재도전 : 2)" << endl;
 		cin >> stageChoose;
 
-		if (stageChoose != 1 || stageChoose != 2)
+		if (stageChoose != 1 && stageChoose != 2)
 		{
 			cout << "잘못된 숫자를 입력하셨습니다. 다시 입력해 주세요." << endl;
 		}
@@ -141,7 +141,7 @@ void Battle::startBattle()
 	if (nowPlayer->getLevel() > getStage())
 	{
 		cout << "[ " << nowPlayer->getName() << " 선공 | " << nowMonster->getName() << " 후공 ] 플레이어의 레벨이 알 수 없는 힘에 저항했다!" << endl;
-		while (nowPlayer->getCurrHP() > 0 && nowMonster->getCurrentHP() > 0)
+		while (nowPlayer->getCurrHP() > 0 || nowMonster->getCurrentHP() > 0)
 		{
 			//플레이어 행동, 몬스터 처치시 전투 종료
 			playerBehavior();
