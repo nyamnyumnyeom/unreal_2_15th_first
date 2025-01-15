@@ -85,6 +85,7 @@ void ChoiceMenu(shared_ptr<Player> player, Shop& shop) {
     bool choiceMade = false;
 
     while (!choiceMade) {
+        system("cls");
         cout << "\n=== 전투 후 선택 ===\n";
         cout << "1. 상점 이용\n2. 체력 회복\n선택: ";
         int choice;

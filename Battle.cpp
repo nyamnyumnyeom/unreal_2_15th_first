@@ -73,7 +73,7 @@ void Battle::playerAttack()
 {
 	cout << nowPlayer->getName() << "은/는 기본 공격을 시도했다!\n" << "입힌 피해량 : " << nowPlayer->getAttack() << endl;
 	nowMonster->setCurrentHP(nowMonster->getCurrentHP() - nowPlayer->getAttack());
-	Sleep(1000);
+	Sleep(750);
 }
 
 //플레이어 턴 : 스킬 사용
@@ -99,7 +99,7 @@ void Battle::playerItem()
 void Battle::playerBehavior()
 {
 	int ran = random(1, 100);
-	if(ran < 60)
+	if(ran < 70)
 	{
 		playerAttack();
 	}
@@ -145,6 +145,7 @@ void Battle::monsterAttack()
 	{
 		cout << nowMonster->getName() << "의 기본공격이 " << nowPlayer->getName() << "에게 적중했다...\n" << "받은 피해량 : " << nowMonster->getAttack() << endl;
 		nowPlayer->setCurrHP(nowPlayer->getCurrHP() - nowMonster->getAttack());
+		Sleep(750);
 	}
 }
 
@@ -179,7 +180,7 @@ void Battle::startBattle() {
 
 	while (nowPlayer->getCurrHP() > 0 && nowMonster->getCurrentHP() > 0) {
 		showStats();
-		Sleep(500);
+		Sleep(1000);
 		playerBehavior();
 		if (nowMonster->getCurrentHP() <= 0) {
 			isPlayerLive = true;
