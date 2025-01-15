@@ -22,9 +22,11 @@ public:
 
 	//인벤토리-소모품 아이템 조회
 	void showInventory();
+	//인벤토리-소모품 내역 출력
+	void printConsumable(int index);
+
 	//아이템 획득
 	void itemGet(string itemName);
-
 	//아이템 사용
 	int itemUse(string itemName);
 };
@@ -41,6 +43,9 @@ public:
 
 	//인벤토리 - 장비 아이템 조회
 	void showInventory();
+	//인벤토리- 장비 내역 출력
+	void printEquipment(int index);
+
 	//아이템 획득
 	void itemGet(string itemName);
 
