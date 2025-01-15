@@ -37,7 +37,9 @@ int Player::getGold() const {
 }
 
 void Player::setGold(int newGold) {
-    gold = newGold;
+    gold += newGold;
+    std::cout << name << "가 " << newGold << " 골드를 획득했습니다. 현재 골드: " << gold << std::endl;
+   
 }
 
 int Player::getAttack() const {
@@ -147,10 +149,6 @@ void Player::displayHealthBar() {
     std::cout.flush();
 }
 
-void Player::addGold(int amount) {
-    gold += amount;
-    std::cout << name << "가 " << amount << " 골드를 획득했습니다. 현재 골드: " << gold << std::endl;
-}
 
 /*void Player::gainExp(int amount) {
     exp += amount;

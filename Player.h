@@ -32,7 +32,7 @@ public:
     int getGold() const;
     void setGold(int newGold);
 
-    void addGold(int amount); // 헤더 선언
+    void addGold(int amount);
 
 
     // 공격력 관련 함수
