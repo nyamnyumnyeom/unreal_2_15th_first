@@ -10,7 +10,7 @@ using namespace std;
 class Player {
 private:
     string name;
-    int level;
+    int level = 1;
     int maxHealth;
     int currentHealth;
     int attack;
@@ -52,6 +52,8 @@ public:
     int getLevel()const;
     void levelUp();
     void gainExp(int amount);
+	int getEXP() { return exp; }
+	int getMaxEXP() { int maxExp = (100 * (1 + level) * level) / 2; return exp; }
 
     //데미지와 관련된 함수
     void takeDamage(int amount);

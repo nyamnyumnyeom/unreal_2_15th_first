@@ -51,12 +51,20 @@ void Battle::showStats() {
 	//공백
 	cout << "|" << setw(21) << left << " " << setw(22) << right << "|" << "          " << "|" << setw(21) << left << " " << setw(22) << right << "|" << endl;
 	//인벤토리-장비로 인한 스텟 증가량 출력
-	cout << "|" << setw(27) << left << "AD increase from sword  : " << setw(4) << right << "( " << setw(8) << right << equip->equipStat_Sword() << setw(3) << right << " ) " << "|" << "          " << setw(16) << left << "└-------------[  " << setw(10) << right << nowMonster->getName() << setw(16) << right << "  ]-------------┘" << endl;
-	cout << "|" << setw(27) << left << "HP increase from armor  : " << setw(4) << right << "( " << setw(8) << right << equip->equipStat_Armor() << setw(3) << right << " ) " << "|" << endl;
+	cout << "|" << setw(27) << left << " AD increase from sword  : " << setw(4) << right << "( " << setw(8) << right << equip->equipStat_Sword() << setw(3) << right << " ) " << "|" << "          " << setw(16) << left << "└-------------[  " << setw(10) << right << nowMonster->getName() << setw(16) << right << "  ]-------------┘" << endl;
+	cout << "|" << setw(27) << left << " HP increase from armor  : " << setw(4) << right << "( " << setw(8) << right << equip->equipStat_Armor() << setw(3) << right << " ) " << "|" << endl;
+	//공백
+	cout << "|" << setw(21) << left << " " << setw(22) << right << "|" << endl;
+	//플레이어-골드, Exp
+	cout << "|" << setw(15) << left << " Gold : " << setw(4) << right << "( " << setw(20) << right << nowPlayer->getGold() << setw(3) << right << " ) " << "|" << endl;
+	cout << "|" << setw(15) << left << " EXP  : " << setw(7) << right << "( " << setw(7) << right << nowPlayer->getEXP() << " / " << setw(7) << right << nowPlayer->getMaxEXP() << " ) " << "|" << endl;
 
 	cout << "|" << setw(21) << left << " " << setw(22) << right << "|" << endl;
 	cout << setw(16) << left << "└-------------[  " << setw(10) << nowPlayer->getName() << setw(16) << right << "  ]-------------┘" << endl;
-	cout << nowPlayer->getGold() << endl;
+
+	//체력바
+	nowPlayer->displayHealthBar();
+	cout << "\n" << endl;
 }
 
 //-------플레이어 행동-------
@@ -180,6 +188,8 @@ void Battle::startBattle() {
 			// 몬스터 보상을 플레이어에게 전달
 			int goldEarned = nowMonster->getGoldDrop();
 			int expEarned = nowMonster->getExp();
+
+			nowPlayer->gainExp(expEarned);
 
 			nowPlayer->setGold(goldEarned);  // 골드 추가
 			//nowPlayer->addExp(expEarned);    // 경험치 추가

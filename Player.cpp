@@ -106,7 +106,9 @@ int Player::getLevel()const {
 //경험치 획득
 void Player::gainExp(int amount) {
     exp += amount;
-    int maxExp = (100 * (1 + level) * level) / 2;
+
+	int maxExp = (100 * (1 + level) * level) / 2;
+    
     if (exp >= maxExp) {
         exp -= maxExp;
         levelUp();
