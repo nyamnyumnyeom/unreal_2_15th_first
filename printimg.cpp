@@ -631,7 +631,7 @@ static void Skill_Attack_img() {
 , ------ * *****
 ---- - ~****;
 , , , .;; -
-)"
+)";
 }
 
 static void skill_Heal_img() {
@@ -681,7 +681,7 @@ static void skill_Heal_img() {
                          ,-        --             
                          ,-        ,-             
                          ,-        .-             
-)"
+)";
 }
 
 static void skill_Gold_img() {
@@ -732,7 +732,7 @@ static void skill_Gold_img() {
             .;*!:.              -;!!,             
               ,~*!;:~-,....,-::!!;-               
                  -~!*!!!!!!!!!:-       
-)"
+)";
 }
 
 static void attack_img() {
@@ -782,7 +782,7 @@ static void attack_img() {
      ,@@@@~                                       
       ,@@=                                        
        .$                      
-)"
+)";
 }
 
 static void monster_Attack_img() {
@@ -834,7 +834,7 @@ static void monster_Attack_img() {
              *:                                   
              -;                                   
               -.                 
-)"
+)";
 }
 
 static void Boss_img() {
@@ -889,7 +889,7 @@ static void Boss_img() {
                                               **$;@@@@@@@#                                          
                                                 ..,:!$=#;                                           
                                                       ;                                             
-)"
+)";
 }
 
 static void Boss_Skill_img() {
@@ -944,7 +944,7 @@ static void Boss_Skill_img() {
               .=@@@@@@@#$=$@@@@@@@@,              
                 -*@@@@@@@@@@@@@@$~                
                   .:*@@@@@@@@=:,                  
-)"
+)";
 }
 
 static void Boss_Heal() {
@@ -996,5 +996,5 @@ static void Boss_Heal() {
   .           .   .,,!#@@@@#!...    .          .. 
         ..   .           .    .           .       
     .                .                            
-)"
+)";
 }
