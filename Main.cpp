@@ -9,8 +9,12 @@
 #include "Battle.h"   // 전투 클래스
 #include "Shop.h"     // 상점 클래스
 #include "printimg.cpp"      // 이미지 출력
+#include "SkillManager.h"
 
 using namespace std;
+
+
+SkillManager skill;
 
 // 이름 유효성 검사 함수
 bool isValidName(const string& name) {
@@ -35,6 +39,7 @@ bool isValidName(const string& name) {
 }
 
 
+
 // 전투 후 선택 메뉴
 void ChoiceMenu(Player& player, Shop& shop) {
     bool choiceMade = false;
@@ -46,7 +51,7 @@ void ChoiceMenu(Player& player, Shop& shop) {
         cin >> choice;
 
         if (choice == 1) {
-            shop.openShop(player); // 상점 이용
+            shop.openShop(player, skill); // 상점 이용
             choiceMade = true;
         }
         else if (choice == 2) {
@@ -82,8 +87,8 @@ int main() {
 
     Player player(characterName);
     Shop shop;
-    Monster monster; // 기본 몬스터 생성
-	Battle battle(player, monster);
+    
+    Battle battle(player);
 
     // 게임 루프
     while (true) {

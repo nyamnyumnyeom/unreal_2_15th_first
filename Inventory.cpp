@@ -14,12 +14,22 @@ void Consumable::showInventory()
 		return;
 	}
 
-	cout << "┌ ------------- 소모품 -------------┐" << endl;
+	cout << "┌------------- 소모품 -------------┐" << endl;
 	for (auto iter = slot_consum.begin(); iter != slot_consum.end(); iter++)
 	{
-		cout << "|" << setw(15) << left << iter->first << "  : " << setw(16) << right << iter->second << "|" << endl;
+		cout << "|" << setw(26) << left << iter->first << "  : " << setw(3) << right << iter->second << " |" << endl;
 	}
-	cout << "└ ------------ 인벤토리 ------------┘" << endl;
+	cout << "└------------ 인벤토리 ------------┘" << endl;
+}
+//인벤토리-소모품 내역 출력
+void Consumable::printConsumable(int index)
+{
+	auto iter = slot_consum.begin();
+	for (int i = 0; i <= index; i++)
+	{
+		iter++;
+	}
+	cout << "|" << setw(15) << left << iter->first << "  : " << setw(16) << right << iter->second << "|" << endl;
 }
 
 //아이템 획득
@@ -76,6 +86,16 @@ void Equipment::showInventory()
 		cout << "|" << setw(15) << left << iter->first << "  : " << setw(16) << right << iter->second << "|" << endl;
 	}
 	cout << "└ ------------ 획득장비 ------------┘" << endl;
+}
+//인벤토리- 장비 내역 출력
+void Equipment::printEquipment(int index)
+{
+	auto iter = slot_Equip.begin();
+	for (int i = 0; i <= index; i++)
+	{
+		iter++;
+	}
+	cout << "|" << setw(15) << left << iter->first << "  : " << setw(16) << right << iter->second << "|" << endl;
 }
 
 //아이템 획득

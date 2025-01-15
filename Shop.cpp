@@ -37,6 +37,16 @@ void Shop::openShop(Player& player, SkillManager& skillManager) {
                 buySkill(player,skillManager);
         }
         else if (choice == 3) {
+            if (player.getGold() >= 5000) {
+                player.setGold(player.getGold() - 5000);
+                player.addItem("Resurrection", 1);
+                cout << "부활권 을 구매했습니다.\n";
+            }
+            else {
+                cout << "돈이 부족합니다.\n";
+            }
+        }
+        else if (choice == 4) {
             cout << "상점을 나갑니다.\n";
             break;
         }
@@ -86,7 +96,7 @@ void Shop::buySkill(Player& player, SkillManager& skillManager) {
         if (randomChance <= 3) {  // 3% 확률 , SkillManager에 따라 수정
             cout << "1!!!" << endl;
             if (!skillManager.HasSkill("데미지 증가 스킬")) {   //스킬 보유여부 확인 
-                skillManager.AddSkill(make_unique<Skill1>());  
+                skillManager.AddSkill(new Skill1());  
                 cout << "[새로운 스킬 획득!] 데미지 증가 스킬을 얻었습니다!\n"; 
             }
             skillManager.LevelUpSkill("데미지 증가 스킬");// Skill1 레벨 1증가
@@ -94,7 +104,7 @@ void Shop::buySkill(Player& player, SkillManager& skillManager) {
         }
         else if(randomChance >= 4 && randomChance <= 6) {
             if (!skillManager.HasSkill("체력 회복 스킬")) {
-                skillManager.AddSkill(make_unique<Skill2>());
+                skillManager.AddSkill(new Skill2());
                 cout << "[새로운 스킬 획득!] 체력 회복 스킬을 얻었습니다!\n";
             }
             skillManager.LevelUpSkill("체력 회복 스킬");// Skill2 레벨 1증가
@@ -103,7 +113,7 @@ void Shop::buySkill(Player& player, SkillManager& skillManager) {
         }
         else if (randomChance >= 7 && randomChance <= 9) {
             if (!skillManager.HasSkill("보상 증가 스킬")) {
-                skillManager.AddSkill(make_unique<Skill3>());
+                skillManager.AddSkill(new Skill3());
                 cout << "[새로운 스킬 획득!] 보상 증가 스킬을 얻었습니다!\n";
             }
             skillManager.LevelUpSkill("보상 증가 스킬");// Skill3 레벨 1증가

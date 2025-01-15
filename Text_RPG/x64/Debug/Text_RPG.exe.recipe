@@ -2,11 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-<<<<<<< Updated upstream
-      <FullPath>C:\Users\jinca\OneDrive\바탕 화면\texr\x64\Debug\Text_RPG.exe</FullPath>
-=======
-      <FullPath>C:\Users\민재\Desktop\Sparta\projects\unreal_2_15th_first\x64\Debug\Text_RPG.exe</FullPath>
->>>>>>> Stashed changes
+      <FullPath>C:\Users\jinca\OneDrive\바탕 화면\text_rpg\x64\Debug\Text_RPG.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
