@@ -7,51 +7,55 @@
 #include <iostream>
 #include <cstdlib>  // rand()
 #include <ctime>    // time()
+#include <memory>
+
 
 
 using namespace std;
 
 // 상점 열기
-void Shop::openShop(Player& player, SkillManager& skillManager) {
+void Shop::openShop(shared_ptr<Player> player, SkillManager& skillManager) {
     while (true) {
         cout << "\n=== 상점 ===\n";
         cout << "1. 구매 HP 포션 (100 Gold)\n";
         cout << "2. 스킬 구매 (1000 Gold)\n";
-        cout << "3. 상점 나가기\n";
+        cout << "3. 부활석 구매 (5000 Gold)\n";
+        cout << "4. 상점 나가기\n";
         cout << "선택: ";
 
         int choice;
         cin >> choice;
 
-        if (choice == 1) {
-            if (player.getGold() >= 100) {
-                player.setGold(player.getGold() - 100);
-                player.addItem("hppotion", 1); 
+        if (choice == 1) { // HP 포션 구매
+            if (player->getGold() >= 100) {
+                player->setGold(player->getGold() - 100);
+                player->addItem("HP Potion", 1);
                 cout << "HP 포션을 구매했습니다.\n";
             }
             else {
                 cout << "돈이 부족합니다.\n";
             }
         }
-        else if (choice == 2) {
-                buySkill(player,skillManager);
+        else if (choice == 2) { // 스킬 구매
+            buySkill(*player, skillManager);
         }
-        else if (choice == 3) {
-            if (player.getGold() >= 5000) {
-                player.setGold(player.getGold() - 5000);
-                player.addItem("Resurrection", 1);
-                cout << "부활권 을 구매했습니다.\n";
+        else if (choice == 3) { // 부활석 구매
+            if (player->getGold() >= 5000) {
+                player->setGold(player->getGold() - 5000);
+                player->addItem("Resurrection Stone", 1);
+                cout << "부활석을 구매했습니다.\n";
             }
             else {
                 cout << "돈이 부족합니다.\n";
             }
         }
-        else if (choice == 4) {
+        else if (choice == 4) { // 상점 나가기
             cout << "상점을 나갑니다.\n";
             break;
         }
-        else if (choice == 99) {
-            player.setGold(player.getGold() + 100000);
+        else if (choice == 99) { // 디버그 모드: 골드 추가
+            player->setGold(player->getGold() + 100000);
+            cout << "디버그 모드: 100000 Gold가 추가되었습니다.\n";
         }
         else {
             cout << "잘못된 선택입니다. 다시 입력해주세요.\n";
