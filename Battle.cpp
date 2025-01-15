@@ -2,6 +2,7 @@
 #include <iostream>
 #include <random>
 #include <iomanip>
+#include <Windows.h>
 using namespace std;
 
 //랜덤 엔진을 사용해 확률 구현
@@ -144,6 +145,7 @@ void Battle::startBattle()
 		while (nowPlayer->getCurrHP() > 0 || nowMonster->getCurrentHP() > 0)
 		{
 			//플레이어 행동, 몬스터 처치시 전투 종료
+			Sleep(500);
 			playerBehavior();
 			if (nowMonster->getCurrentHP() < 0) 
 			{
@@ -152,6 +154,7 @@ void Battle::startBattle()
 				break; 
 			}
 			//몬스터 행동, 플레이어 사망시 전투 종료
+			Sleep(500);
 			monsterAttack();
 			if (nowPlayer->getCurrHP() < 0)
 			{
@@ -168,6 +171,7 @@ void Battle::startBattle()
 		while (nowPlayer->getCurrHP() != 0 || nowMonster->getCurrentHP() != 0)
 		{
 			//몬스터 행동, 플레이어 사망시 전투 종료
+			Sleep(500);
 			monsterAttack();
 			if (nowPlayer->getCurrHP() < 0)
 			{
@@ -176,6 +180,7 @@ void Battle::startBattle()
 				break;
 			}
 			//플레이어 행동, 몬스터 처치시 전투 종료
+			Sleep(500);
 			playerBehavior();
 			if (nowMonster->getCurrentHP() < 0)
 			{
