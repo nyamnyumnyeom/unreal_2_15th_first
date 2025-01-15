@@ -102,12 +102,42 @@ void Battle::playerBehavior()
 }
 
 //-------몬스터 행동-------
+//보스 공격
+void Battle::bossAttack()
+{
+	int chance = std::rand() % 100;
+	if (chance < 3)
+	{
+		int damage = nowPlayer->getCurrHP() / 10; // 플레이어 현재 체력의 10%
+		nowPlayer->setCurrHP(nowPlayer->getCurrHP() - damage); // 플레이어 체력 감소
+		std::cout << "보스의 강력한 공격으로 인해 플레이어의 현재 체력의 10%만큼의 데미지가 들어옵니다!!\n";
+	}
+	else if (chance < 6)
+	{
+		int healAmount = 15000; // 체력의 5% 회복
+		nowMonster->setCurrentHP(nowMonster->getCurrentHP() + healAmount);
+		if (nowMonster->getCurrentHP() > 300000) nowMonster->setCurrentHP(300000); // 최대 체력 초과 방지
+		std::cout << "보스가 체력을 회복했습니다!\n";
+	}
+	else
+	{
+		cout << " 보스의 기본공격이 " << nowPlayer->getName() << "에게 적중했다...\n" << "받은 피해량 : 15000" << endl;
+		nowPlayer->setCurrHP(nowPlayer->getCurrHP() - nowMonster->getAttack());
+	}
+}
+
 //몬스터 턴 : 기본 공격
 void Battle::monsterAttack()
 {
-	cout << nowMonster->getName() << "의 기본공격이 " << nowPlayer->getName() << "에게 적중했다...\n" << "받은 피해량 : " << nowMonster->getAttack() << endl;
-	nowPlayer->setCurrHP(nowPlayer->getCurrHP() - nowMonster->getAttack());
-	Sleep(1000);
+	if (nowMonster->bossManage())
+	{
+		bossAttack();  //보스 공격 및 스킬 호출
+	}
+	else
+	{
+		cout << nowMonster->getName() << "의 기본공격이 " << nowPlayer->getName() << "에게 적중했다...\n" << "받은 피해량 : " << nowMonster->getAttack() << endl;
+		nowPlayer->setCurrHP(nowPlayer->getCurrHP() - nowMonster->getAttack());
+	}
 }
 
 //-----------전투 진행 과정 함수 - Battle 클래스의 함수들을 자동으로 재생-------------

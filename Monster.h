@@ -8,7 +8,8 @@
 enum class MonsterType {
     Goblin,
     Skeleton,
-    Orc
+    Orc,
+    Boss
 };
 
 class Monster {
@@ -25,6 +26,7 @@ private:
     int exp;           // 경험치
     double swordDropRate; // 무기 드랍율
     double armorDropRate; // 방어구 드랍율
+    bool isBoss;
 
 public:
     // 생성자: stage 값을 직접 전달받음
@@ -54,6 +56,10 @@ public:
     void TakeDamage(int damage);
 
     void RewardBonus(double bonus);
+
+    //보스 확인 여부
+    bool bossManage() const;
+
 };
 
 #endif // MONSTER_H

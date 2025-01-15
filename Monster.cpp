@@ -4,14 +4,27 @@
 #include <cmath>
 
 // Monster 생성자: stage 값을 직접 전달
-Monster::Monster(int stage) : stage(stage) {
+Monster::Monster(int stage) : stage(stage), isBoss(false) {
     // 몬스터 속성 초기화
-    generateRandomMonster();
-    currentHP = health; // 현재 체력을 최대 체력으로 초기화
-    swordDropRate = calculateSwordDropRate(stage);
-    armorDropRate = calculateArmorDropRate(stage);
-    calculateGoldDrop(stage);
-    calculateExp(stage);
+    if (stage == 50)
+    {
+        isBoss = true;
+        type = MonsterType::Boss;
+        name = "Boss";
+        health = 300000;
+        damage = 15000;
+        currentHP = health;
+    }
+    else
+    {
+        generateRandomMonster();
+        currentHP = health; // 현재 체력을 최대 체력으로 초기화
+        swordDropRate = calculateSwordDropRate(stage);
+        armorDropRate = calculateArmorDropRate(stage);
+        calculateGoldDrop(stage);
+        calculateExp(stage);
+    }
+    
 }
 
 // 랜덤 몬스터 생성
@@ -171,4 +184,8 @@ void Monster::RewardBonus(double bonus) {
 
     // 보상 증가 출력
     std::cout << name << "의 보상 증가! 골드: " << additionalGold << ", 경험치: " << additionalExp << std::endl;
+}
+
+bool Monster::bossManage() const {
+    return isBoss;
 }

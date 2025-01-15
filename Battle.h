@@ -60,6 +60,10 @@ public:
 
 	//전투 진행 과정 함수 - Battle 클래스의 함수들을 자동으로 재생
 	void startBattle();
+
+	//보스 공격
+	void bossAttack();
+
 };
 
 #endif
