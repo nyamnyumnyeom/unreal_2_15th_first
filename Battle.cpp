@@ -66,13 +66,18 @@ void Battle::playerAttack()
 }
 
 //플레이어 턴 : 스킬 사용
-void Battle::playerSkill()
-{
-	int skillSize = skill->getSkills().size();
-	int num = random(0, skillSize - 1);
+//플레이어 턴 : 스킬 사용
+void Battle::playerSkill() {
+	// 스킬 목록 가져오기
+	if (skill->GetSkills().empty()) {
+		std::cout << "사용 가능한 스킬이 없습니다!\n";
+		return;
+	}
 
-	skill->getSkills()[num];
-	skill->UseSkill();
+	// 무작위 스킬 선택 및 사용
+	ISkill* selectedSkill = skill->GetSkills()[rand() % skill->GetSkills().size()];
+	std::cout << "플레이어가 " << selectedSkill->GetName() << " 스킬을 사용합니다!\n";
+	skill->UseSkill(selectedSkill->GetName(), *nowPlayer, *nowMonster);
 }
 
 //플레이어 턴 : 아이템 사용
