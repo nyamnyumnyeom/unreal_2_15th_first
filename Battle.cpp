@@ -14,6 +14,28 @@ int random(int min, int max)
 	return rdPrint(rdEngine);
 }
 
+// 생성자
+Battle::Battle(const Player& playerV) {
+	nowPlayer = std::make_unique<Player>(playerV);
+	nowMonster = std::make_unique<Monster>(stage); // 초기 Monster 생성
+}
+
+// 스테이지를 설정
+void Battle::setStage(const int& setS) {
+	stage = setS;
+	resetMonster(); // 스테이지 변경 시 몬스터 재생성
+}
+
+// 몬스터 재생성
+void Battle::resetMonster() {
+	nowMonster = std::make_unique<Monster>(stage); // 새로운 몬스터 생성
+}
+
+// 다음 스테이지로 이동
+void Battle::nextStage() {
+	setStage(stage + 1);
+}
+
 //플레이어와 몬스터의 스텟을 출력하는 함수
 void Battle::showStats()
 {
@@ -44,7 +66,7 @@ void Battle::playerAttack()
 }
 
 //플레이어 턴 : 스킬 사용
-void Battle::playerSkill() 
+void Battle::playerSkill()
 {
 	int skillSize = skill->getSkills().size();
 	int num = random(0, skillSize - 1);

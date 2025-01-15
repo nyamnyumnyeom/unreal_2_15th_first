@@ -1,14 +1,10 @@
 ﻿#include "Monster.h"
-#include "Battle.h"
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
 
-// Monster 생성자
-Monster::Monster(const Battle& battle) {
-    // Battle 객체의 stage 값을 가져옴
-    stage = battle.getStage();
-
+// Monster 생성자: stage 값을 직접 전달
+Monster::Monster(int stage) : stage(stage) {
     // 몬스터 속성 초기화
     generateRandomMonster();
     currentHP = health; // 현재 체력을 최대 체력으로 초기화
