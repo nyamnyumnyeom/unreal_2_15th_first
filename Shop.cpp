@@ -37,6 +37,16 @@ void Shop::openShop(Player& player, SkillManager& skillManager) {
                 buySkill(player,skillManager);
         }
         else if (choice == 3) {
+            if (player.getGold() >= 5000) {
+                player.setGold(player.getGold() - 5000);
+                player.addItem("Resurrection", 1);
+                cout << "부활권 을 구매했습니다.\n";
+            }
+            else {
+                cout << "돈이 부족합니다.\n";
+            }
+        }
+        else if (choice == 4) {
             cout << "상점을 나갑니다.\n";
             break;
         }
