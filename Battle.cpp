@@ -74,7 +74,12 @@ void Battle::playerAttack()
 {
 	cout << nowPlayer->getName() << "은/는 기본 공격을 시도했다!\n" << "입힌 피해량 : " << nowPlayer->getAttack() << endl;
 	nowMonster->setCurrentHP(nowMonster->getCurrentHP() - nowPlayer->getAttack());
+
+	attack_img();
+
 	Sleep(750);
+	system("cls");
+	showStats();
 }
 
 //플레이어 턴 : 스킬 사용
@@ -88,7 +93,23 @@ void Battle::playerSkill() {
 	ISkill* selectedSkill = skill->GetSkills()[rand() % skill->GetSkills().size()];
 	std::cout << "플레이어가 " << selectedSkill->GetName() << " 스킬을 사용합니다!\n";
 	skill->UseSkill(selectedSkill->GetName(), *nowPlayer, *nowMonster);
+
+	if (selectedSkill->GetName() == "데미지 증가 스킬")
+	{
+		Skill_Attack_img();
+	} 
+	else if (selectedSkill->GetName() == "체력 회복 스킬")
+	{
+		skill_Heal_img();
+	}
+	else if (selectedSkill->GetName() == "보상 증가 스킬")
+	{
+		skill_Gold_img();
+	}
+
 	Sleep(750);
+	system("cls");
+	showStats();
 }
 
 //플레이어 턴 : 아이템 사용
@@ -121,6 +142,12 @@ void Battle::bossAttack()
 		int damage = nowPlayer->getCurrHP() / 10; // 플레이어 현재 체력의 10%
 		nowPlayer->setCurrHP(nowPlayer->getCurrHP() - damage); // 플레이어 체력 감소
 		std::cout << "보스의 강력한 공격으로 인해 플레이어의 현재 체력의 10%만큼의 데미지가 들어옵니다!!\n";
+
+		Boss_Skill_img();
+
+		Sleep(750);
+		system("cls");
+		showStats();
 	}
 	else if (chance < 12)
 	{
@@ -128,11 +155,23 @@ void Battle::bossAttack()
 		nowMonster->setCurrentHP(nowMonster->getCurrentHP() + healAmount);
 		if (nowMonster->getCurrentHP() > 300000) nowMonster->setCurrentHP(300000); // 최대 체력 초과 방지
 		std::cout << "보스가 체력을 회복했습니다!\n";
+
+		Boss_Heal();
+
+		Sleep(750);
+		system("cls");
+		showStats();
 	}
 	else
 	{
 		cout << " 보스의 기본공격이 " << nowPlayer->getName() << "에게 적중했다...\n" << "받은 피해량 : 15000" << endl;
 		nowPlayer->setCurrHP(nowPlayer->getCurrHP() - nowMonster->getAttack());
+
+		monster_Attack_img();
+
+		Sleep(750);
+		system("cls");
+		showStats();
 	}
 }
 
@@ -147,7 +186,13 @@ void Battle::monsterAttack()
 	{
 		cout << nowMonster->getName() << "의 기본공격이 " << nowPlayer->getName() << "에게 적중했다...\n" << "받은 피해량 : " << nowMonster->getAttack() << endl;
 		nowPlayer->setCurrHP(nowPlayer->getCurrHP() - nowMonster->getAttack());
+
+		monster_Attack_img();
+
 		Sleep(750);
+		system("cls");
+		showStats();
+
 	}
 }
 
