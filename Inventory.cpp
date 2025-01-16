@@ -120,24 +120,28 @@ void Equipment::itemGet(string itemName)
 int Equipment::equipStat_Sword()
 {
 	map<string, int>::iterator iter = slot_Equip.find("sword");
+	int perdmg = iter->second;
 	if (iter == slot_Equip.end())
 	{
 		return 0;
 	}
 	else
 	{
-		return iter->second * 10;
+		int totaldmg = perdmg + (perdmg*0.05);
+		return totaldmg;
 	}
 }
 int Equipment::equipStat_Armor()
 {
 	map<string, int>::iterator iter = slot_Equip.find("armor");
+	int perhealth = iter->second;
 	if (iter == slot_Equip.end())
 	{
 		return 0;
 	}
 	else
 	{
-		return iter->second * 30;
+		int totalhealth = perhealth + (perhealth * 0.05);
+		return totalhealth;
 	}
 }
