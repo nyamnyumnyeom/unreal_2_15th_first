@@ -27,10 +27,7 @@ void Player::showStat() const {
         std::cout << "Gold: " << gold << std::endl;
         std::cout << "EXP: " << exp << std::endl;
 
-        std::cout << "Inventory: \n";
-        for (const auto& item : inventory) {
-            std::cout << item.first << ": " << item.second << std::endl;
-        }
+		inventory->showInventory();
     }
 int Player::getGold() const {
     return gold;
@@ -59,12 +56,12 @@ void Player::setAttack(int newAttack) {
     attack = newAttack;
 }
 
-void Player::addItem(const std::string& item, int count) {
-    inventory[item] += count;
+void Player::addItem(const std::string& item) {
+    inventory->itemGet(item);
 }
 
-void Player::delItem(const std::string& item, int count) {
-    inventory[item] -= count;
+void Player::delItem(const std::string& item) {
+	inventory->itemUse(item);
 }
 
 void Player::recoverHealth() {

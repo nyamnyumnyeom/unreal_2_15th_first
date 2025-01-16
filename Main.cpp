@@ -3,12 +3,14 @@
 #include <windows.h>
 #include <cstdlib>
 #include <ctime>
+#include <memory>
 #include "Player.h"   // 플레이어 클래스
 #include "Monster.h"  // 몬스터 클래스
 #include "Battle.h"   // 전투 클래스
 #include "Shop.h"     // 상점 클래스
 #include "printimg.cpp"      // 이미지 출력
 #include "SkillManager.h"
+#include "Inventory.h"
 
 #pragma comment(lib, "winmm.lib")
 
@@ -134,13 +136,17 @@ int main() {
     Shop shop;
     Battle battle(player);
     shared_ptr<Player> playerPointer = battle.getNowPlayer();
+	shared_ptr<Consumable> consum = make_shared<Consumable>();
 
     // 게임 루프
     while (true) {
         playBattleBgm(battle.getStage()); // 스테이지별 BGM 재생
+		player.setInventory(consum);
+		consum->showInventory();
         battle.startBattle(); // 전투 시작
         playLobbyBgm();
         // 전투 후 선택
+		player.setInventory(consum);
         ChoiceMenu(playerPointer, shop);
 
         // 종료 선택

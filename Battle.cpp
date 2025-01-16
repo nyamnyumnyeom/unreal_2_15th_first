@@ -210,10 +210,10 @@ void Battle::startBattle() {
 	}
 
 	if (!isPlayerLive) {
-		auto it = item->getConsumable().find("Resurrection");
+		auto it = item->getConsumable().find("Resurrection Stone");
 		if (it != item->getConsumable().end()) {
 			// 부활권 사용
-			item->itemUse("Resurrection");  // 내부적으로 삭제 처리
+			item->itemUse("Resurrection Stone");  // 내부적으로 삭제 처리
 			cout << "부활권을 사용했습니다.\n";
 		}
 		else {

@@ -29,7 +29,7 @@ void Shop::openShop(shared_ptr<Player> player, SkillManager& skillManager) {
         if (choice == 1) { // HP 포션 구매
             if (player->getGold() >= 100) {
                 player->useGold(100);
-                player->addItem("HP Potion", 1);
+                player->addItem("HP Potion");
                 cout << "HP 포션을 구매했습니다.\n";
                 Sleep(1250);
                 system("cls");
@@ -49,7 +49,7 @@ void Shop::openShop(shared_ptr<Player> player, SkillManager& skillManager) {
         else if (choice == 3) { // 부활석 구매
             if (player->getGold() >= 5000) {
                 player->useGold(5000);
-                player->addItem("Resurrection Stone", 1);
+                player->addItem("Resurrection Stone");
                 cout << "부활석을 구매했습니다.\n";
                 Sleep(1250);
                 system("cls");

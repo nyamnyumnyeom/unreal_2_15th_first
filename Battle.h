@@ -15,7 +15,7 @@ private:
 	shared_ptr<Player> nowPlayer;    // 스마트 포인터로 변경
 	unique_ptr<Monster> nowMonster;
 	unique_ptr<SkillManager> skill = make_unique<SkillManager>();
-	unique_ptr<Consumable> item = make_unique<Consumable>();
+	shared_ptr<Consumable> item = make_shared<Consumable>();
 	unique_ptr<Equipment> equip = make_unique<Equipment>();
 	
 public:
@@ -65,7 +65,7 @@ public:
 	void bossAttack();
 
 	shared_ptr<Player> getNowPlayer() { return nowPlayer; }
-
+	shared_ptr<Consumable> getConsumable() { return item; }
 };
 
 #endif

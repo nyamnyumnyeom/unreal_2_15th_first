@@ -2,6 +2,8 @@
 #define PLAYER_H
 #include <string>
 #include <map>
+#include <memory>
+#include "Inventory.h"
 
 using namespace std;
 
@@ -19,7 +21,7 @@ private:
     int attack_1;
     int attack_2;
     int attack_3;
-    map<string, int> inventory;
+	shared_ptr<Consumable> inventory;
     
     void calculateMaxHealth();
 public:
@@ -38,8 +40,9 @@ public:
     void setAttack(int newAttack);
 
     // 인벤토리 관련 함수
-    void addItem(const string& item, int count);
-    void delItem(const string& item, int count);
+    void addItem(const string& item);
+    void delItem(const string& item);
+	void setInventory(shared_ptr<Consumable> inven) { inventory = inven; }
   
     //체력 회복 관련 함수
     void recoverHealth();                                     
