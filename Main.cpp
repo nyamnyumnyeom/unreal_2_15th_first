@@ -83,19 +83,20 @@ bool isValidName(const string& name) {
 }
 
 // 전투 후 선택 메뉴
-void ChoiceMenu(shared_ptr<Player> player, Shop& shop) {
+void ChoiceMenu(shared_ptr<Player> player, Shop& shop, shared_ptr<Consumable> consum) {
     bool choiceMade = false;
 
     while (!choiceMade) {
         Sleep(1750);
         system("cls");
+		consum->showInventory();
         cout << "\n=== 전투 후 선택 ===\n";
         cout << "1. 상점 이용\n2. 체력 회복\n선택: ";
         int choice;
         cin >> choice;
 
         if (choice == 1) {
-            shop.openShop(player, skill); // 상점 이용
+            shop.openShop(player, skill, consum); // 상점 이용
             choiceMade = true;
         }
         else if (choice == 2) {
@@ -135,24 +136,44 @@ int main() {
 
     shared_ptr<Player> player = make_shared<Player>(characterName);
     Shop shop;
-    Battle battle(player);
-    shared_ptr<Player> playerPointer = battle.getNowPlayer();
+    Battle* battle = new Battle(player);
+   // shared_ptr<Player> playerPointer = battle.getNowPlayer();
 	shared_ptr<Consumable> consum = make_shared<Consumable>();
 
 	player->setInventory(consum);
+	battle->setItem(consum);
 
     // 게임 루프
     while (true) {
-        playBattleBgm(battle.getStage()); // 스테이지별 BGM 재생
-		consum->showInventory();
-        battle.startBattle(); // 전투 시작
+        playBattleBgm(battle->getStage()); // 스테이지별 BGM 재생
+        battle->startBattle(); // 전투 시작
         playLobbyBgm();
-        if (battle.getStage() > 50) {
-            cout << "보스를 클리어하셨습니다! 게임이 종료됩니다!\n";
+        if (battle->getStage() > 50) {
+            cout << "보스를 클리어하셨습니다! 축하드립니다!\n";
+			Sleep(1000);
+			
+			int i = 0;
+			while (i < 7)
+			{
+				system("cls");
+				ending1_img();
+				Sleep(300);
+				system("cls");
+				ending2_img();
+				Sleep(300);
+				i++;
+			}
+			system("cls");
+			cout << "[ENDING CREDIT]\n조장 : 박진념 \n 조원 : \n고건호\n박규태\n정세훈\n하정빈\n김민재\n\n\n플레이 해주셔서 감사합니다!";
             break;
         }
+		if (!battle->getCanKeepGoing())
+		{
+			break;
+		}
+
         // 전투 후 선택
-        ChoiceMenu(playerPointer, shop);
+        ChoiceMenu(player, shop, consum);
 
         // 종료 선택
         cout << "\n게임을 계속하시겠습니까? (1: 계속, 0: 종료): ";

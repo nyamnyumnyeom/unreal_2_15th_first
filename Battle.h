@@ -10,7 +10,7 @@ class Battle
 private:
 	int stage = 1;
 	int turn = 1;
-	bool canKeepGoing = false;
+	bool isPlayerLive = true;
 
 	shared_ptr<Player> nowPlayer;    // 스마트 포인터로 변경
 	unique_ptr<Monster> nowMonster;
@@ -35,7 +35,7 @@ public:
 	void setTurn(const int& setT) { turn = setT; }
 
 	//전투 종료 후 승패 여부를 반환하는 getter
-	bool getCanKeepGoing() const { return canKeepGoing; }
+	bool getCanKeepGoing() const { return isPlayerLive; }
 
 	void resetMonster();
 	void nextStage();

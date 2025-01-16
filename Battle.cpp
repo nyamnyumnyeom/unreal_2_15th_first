@@ -3,6 +3,7 @@
 #include <random>
 #include <iomanip>
 #include <Windows.h>
+#include "printimg.cpp"
 using namespace std;
 
 //랜덤 엔진을 사용해 확률 구현
@@ -87,6 +88,7 @@ void Battle::playerSkill() {
 	ISkill* selectedSkill = skill->GetSkills()[rand() % skill->GetSkills().size()];
 	std::cout << "플레이어가 " << selectedSkill->GetName() << " 스킬을 사용합니다!\n";
 	skill->UseSkill(selectedSkill->GetName(), *nowPlayer, *nowMonster);
+	Sleep(750);
 }
 
 //플레이어 턴 : 아이템 사용
@@ -151,8 +153,32 @@ void Battle::monsterAttack()
 
 //-----------전투 진행 과정 함수 - Battle 클래스의 함수들을 자동으로 재생-------------
 void Battle::startBattle() {
-	bool isPlayerLive = true;
 	int stageChoose = 0;
+
+	if (nowMonster->getName() == "Orc")
+	{
+		system("cls");
+		ork_img();
+		Sleep(2000);
+	}
+	else if (nowMonster->getName() == "Skeleton")
+	{
+		system("cls");
+		skeleton_img();
+		Sleep(2000);
+	}
+	else if (nowMonster->getName() == "Goblin")
+	{
+		system("cls");
+		goblin_img();
+		Sleep(2000);
+	}
+	else if (nowMonster->getName() == "Boss")
+	{
+		system("cls");
+		Boss_img();
+		Sleep(2000);
+	}
 
 	if (getStage() == 1)
 	{
@@ -179,6 +205,7 @@ void Battle::startBattle() {
 	}
 
 	while (nowPlayer->getCurrHP() > 0 && nowMonster->getCurrentHP() > 0) {
+		system("cls");
 		showStats();
 		Sleep(1000);
 		playerBehavior();
@@ -217,10 +244,13 @@ void Battle::startBattle() {
 				// 부활권 사용
 				item->itemUse("Resurrection Stone");  // 내부적으로 삭제 처리
 				cout << "부활권을 사용했습니다.\n";
+				isPlayerLive = true;
+				nowPlayer->setCurrHP(nowPlayer->getMaxHealth());
 			}
 			else {
 				cout << "부활권이 없어 부활할 수 없습니다.\n";
 			}
 		}
 	}
+	Sleep(1000);
 }
