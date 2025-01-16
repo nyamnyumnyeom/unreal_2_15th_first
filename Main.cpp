@@ -147,6 +147,10 @@ int main() {
 		consum->showInventory();
         battle.startBattle(); // 전투 시작
         playLobbyBgm();
+        if (battle.getStage() > 50) {
+            cout << "보스를 클리어하셨습니다! 게임이 종료됩니다!\n";
+            break;
+        }
         // 전투 후 선택
         ChoiceMenu(playerPointer, shop);
 
