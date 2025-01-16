@@ -120,28 +120,23 @@ void Equipment::itemGet(string itemName)
 int Equipment::equipStat_Sword()
 {
 	map<string, int>::iterator iter = slot_Equip.find("sword");
-	int perdmg = iter->second;
 	if (iter == slot_Equip.end())
 	{
-		return 0;
+		return 0; // 키가 없으면 0 반환
 	}
-	else
-	{
-		int totaldmg = perdmg + (perdmg*0.05);
-		return totaldmg;
-	}
+	int perdmg = iter->second;
+	int totaldmg = perdmg + static_cast<int>(perdmg * 0.05); // 정수 계산을 위해 캐스팅
+	return totaldmg;
 }
+
 int Equipment::equipStat_Armor()
 {
 	map<string, int>::iterator iter = slot_Equip.find("armor");
-	int perhealth = iter->second;
 	if (iter == slot_Equip.end())
 	{
-		return 0;
+		return 0; // 키가 없으면 0 반환
 	}
-	else
-	{
-		int totalhealth = perhealth + (perhealth * 0.05);
-		return totalhealth;
-	}
+	int perhealth = iter->second;
+	int totalhealth = perhealth + static_cast<int>(perhealth * 0.05); // 정수 계산을 위해 캐스팅
+	return totalhealth;
 }
