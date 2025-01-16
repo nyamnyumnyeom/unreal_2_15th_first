@@ -114,13 +114,13 @@ void Battle::playerBehavior()
 void Battle::bossAttack()
 {
 	int chance = std::rand() % 100;
-	if (chance < 3)
+	if (chance < 6)
 	{
 		int damage = nowPlayer->getCurrHP() / 10; // 플레이어 현재 체력의 10%
 		nowPlayer->setCurrHP(nowPlayer->getCurrHP() - damage); // 플레이어 체력 감소
 		std::cout << "보스의 강력한 공격으로 인해 플레이어의 현재 체력의 10%만큼의 데미지가 들어옵니다!!\n";
 	}
-	else if (chance < 6)
+	else if (chance < 12)
 	{
 		int healAmount = 15000; // 체력의 5% 회복
 		nowMonster->setCurrentHP(nowMonster->getCurrentHP() + healAmount);
