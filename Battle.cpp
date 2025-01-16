@@ -152,7 +152,6 @@ void Battle::bossAttack()
 
 		Sleep(750);
 		system("cls");
-		showStats();
 	}
 	else if (chance < 12)
 	{
@@ -165,7 +164,6 @@ void Battle::bossAttack()
 
 		Sleep(750);
 		system("cls");
-		showStats();
 	}
 	else
 	{
@@ -176,7 +174,6 @@ void Battle::bossAttack()
 
 		Sleep(750);
 		system("cls");
-		showStats();
 	}
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
@@ -199,7 +196,6 @@ void Battle::monsterAttack()
 		Sleep(750);
 		system("cls");
 		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-		showStats();
 
 	}
 }
