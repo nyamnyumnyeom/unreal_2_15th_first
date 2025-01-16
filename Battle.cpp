@@ -228,10 +228,19 @@ void Battle::startBattle() {
 
 		//Sleep(500);
 		monsterAttack();
-		if (nowPlayer->getCurrHP() <= 0) {
-			isPlayerLive = false;
-			cout << "[ 패배 ] " << nowMonster->getName() << "의 강력한 일격에 " << nowPlayer->getName() << "(이)가 사망했습니다." << endl;
-			break;
+		if (nowPlayer->getCurrHP() <= nowPlayer->getMaxHealth() / 2) {
+			auto it = item->getConsumable().find("HP Potion");
+			if (nowPlayer->getCurrHP() <= 0) {
+				isPlayerLive = false;
+				cout << "[ 패배 ] " << nowMonster->getName() << "의 강력한 일격에 " << nowPlayer->getName() << "(이)가 사망했습니다." << endl;
+				break;
+			}
+			else if(it != item->getConsumable().end()) {
+				item->itemUse("HP Potion");
+				cout << "체력포션을 사용했습니다.\n";
+				Sleep(500);
+				nowPlayer->setCurrHP(nowPlayer->getCurrHP()+nowPlayer->getMaxHealth()/5);
+			}
 		}
 		setTurn(getTurn() + 1);
 	}
