@@ -1,3 +1,15 @@
-﻿  Player.cpp
+﻿  Battle.cpp
+  Main.cpp
+  Player.cpp
 C:\unreal_proj_1\unreal_2_15th_first\Player.cpp(155,20): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Shop.cpp
+C:\unreal_proj_1\unreal_2_15th_first\Skillinterfaces.h(15,25): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'Shop.cpp'을(를) 컴파일하는 중)
+  
+C:\unreal_proj_1\unreal_2_15th_first\Skillinterfaces.h(34,24): warning C4244: '초기화 중': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'Shop.cpp'을(를) 컴파일하는 중)
+  
+C:\unreal_proj_1\unreal_2_15th_first\Shop.cpp(112,19): warning C4244: '인수': 'time_t'에서 'unsigned int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  SkillManager.cpp
+  코드를 생성하고 있습니다...
   Text_RPG.vcxproj -> C:\unreal_proj_1\unreal_2_15th_first\x64\Debug\Text_RPG.exe

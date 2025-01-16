@@ -61,7 +61,7 @@ public:
     void levelUp();
     void gainExp(int amount);
 	int getEXP() { return exp; }
-	int getMaxEXP() { int maxExp = (100 * (1 + level) * level) / 2; return exp; }
+	int getMaxEXP() { int maxExp = (100 * (1 + level) * level) / 2; return maxExp; }
 
     //데미지와 관련된 함수
     void takeDamage(int amount);
