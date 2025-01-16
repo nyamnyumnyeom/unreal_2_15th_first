@@ -115,6 +115,7 @@ int main() {
     string characterName;
     playLobbyBgm();
 
+
     // 캐릭터 이름 입력
     while (true) {
         cout << "\n\n묻지마 ! 용사 \n" << endl;
@@ -132,21 +133,21 @@ int main() {
         }
     }
 
-    Player player(characterName);
+    shared_ptr<Player> player = make_shared<Player>(characterName);
     Shop shop;
     Battle battle(player);
     shared_ptr<Player> playerPointer = battle.getNowPlayer();
 	shared_ptr<Consumable> consum = make_shared<Consumable>();
 
+	player->setInventory(consum);
+
     // 게임 루프
     while (true) {
         playBattleBgm(battle.getStage()); // 스테이지별 BGM 재생
-		player.setInventory(consum);
 		consum->showInventory();
         battle.startBattle(); // 전투 시작
         playLobbyBgm();
         // 전투 후 선택
-		player.setInventory(consum);
         ChoiceMenu(playerPointer, shop);
 
         // 종료 선택

@@ -35,6 +35,7 @@ void Consumable::printConsumable(int index)
 //아이템 획득
 void Consumable::itemGet(string itemName)
 {
+	cout << "asiodajp";
 	//인벤토리에 해당 아이템이 있는지 검사하여 [아이템 추가 or 아이템 갯수 증가]
 	map<string, int>::iterator iter = slot_consum.find(itemName);
 	if (iter == slot_consum.end())

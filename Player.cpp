@@ -4,7 +4,8 @@
 
 // 일단 대충 설정해놔서 다시 해야 합니다 ...
 Player::Player(const std::string& playerName)
-    : name(playerName), level(1), maxHealth(200), currentHealth(200), attack(30), exp(0) , gold(100) {
+    : name(playerName), level(1), maxHealth(200), currentHealth(200), attack(30), exp(0) , gold(100) 
+{
 }
 
 void Player::calculateMaxHealth() {
@@ -46,7 +47,7 @@ void Player::gainGold(int newGold) {
 void Player::useGold(int newGold) {
     gold -= newGold;
     std::cout << name << "가 " << newGold << " 골드를 소모했습니다. 현재 골드: " << gold << std::endl;
-}
+}  
 
 int Player::getAttack() const {
     return attack;

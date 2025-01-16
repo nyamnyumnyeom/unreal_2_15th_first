@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include <memory>
+#include <iostream>
 #include "Inventory.h"
 
 using namespace std;
@@ -11,22 +12,22 @@ using namespace std;
 // 수정!!
 class Player {
 private:
-    string name;
-    int level = 1;
-    int maxHealth;
-    int currentHealth;
-    int attack;
-    int gold;
-    int exp;
-    int attack_1;
-    int attack_2;
-    int attack_3;
+	string name;
+	int level = 1;
+	int maxHealth;
+	int currentHealth;
+	int attack;
+	int gold;
+	int exp;
+	int attack_1;
+	int attack_2;
+	int attack_3;
 	shared_ptr<Consumable> inventory;
-    
-    void calculateMaxHealth();
+
+	void calculateMaxHealth();
 public:
-   
-    Player(const string& playerName);
+
+	Player(const string& playerName);
 
     void showStat() const;
 
@@ -42,7 +43,7 @@ public:
     // 인벤토리 관련 함수
     void addItem(const string& item);
     void delItem(const string& item);
-	void setInventory(shared_ptr<Consumable> inven) { inventory = inven; }
+	void setInventory(shared_ptr<Consumable> inven) { cout << "sadasddd";  inventory = inven; }
   
     //체력 회복 관련 함수
     void recoverHealth();                                     

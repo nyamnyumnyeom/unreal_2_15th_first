@@ -15,13 +15,15 @@ private:
 	shared_ptr<Player> nowPlayer;    // 스마트 포인터로 변경
 	unique_ptr<Monster> nowMonster;
 	unique_ptr<SkillManager> skill = make_unique<SkillManager>();
-	shared_ptr<Consumable> item = make_shared<Consumable>();
+	shared_ptr<Consumable> item;
 	unique_ptr<Equipment> equip = make_unique<Equipment>();
 	
 public:
 	//생성자, 소멸자
-	Battle(const Player& playerV);
+	Battle(shared_ptr<Player> playerV);
 	~Battle() = default;
+
+	void setItem(shared_ptr<Consumable> inven) { item = inven; }
 
 	//stage를 반환하는 getter
 	int getStage() const { return stage; }

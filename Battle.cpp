@@ -16,8 +16,8 @@ int random(int min, int max)
 }
 
 // 생성자
-Battle::Battle(const Player& playerV) {
-	nowPlayer = std::make_shared<Player>(playerV);
+Battle::Battle(shared_ptr<Player> playerV) {
+	nowPlayer = playerV;
 	nowMonster = std::make_unique<Monster>(stage); // 초기 Monster 생성
 }
 
@@ -195,7 +195,7 @@ void Battle::startBattle() {
 			nowPlayer->gainGold(goldEarned);  // 골드 추가
 			//nowPlayer->addExp(expEarned);    // 경험치 추가
 
-			setStage(getStage() + 1);  // 다음 스테이지로 이동
+			setStage(getStage() + 40);  // 다음 스테이지로 이동
 			break;
 		}
 
