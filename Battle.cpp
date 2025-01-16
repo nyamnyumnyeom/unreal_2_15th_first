@@ -246,6 +246,7 @@ void Battle::startBattle() {
 		cout << "[ STAGE : " << getStage() << " ]" << " 용사님의 도전에 행운이 함께하길 바랍니다..." << endl;
 	}
 	else if (stageChoose == 2) {
+		setStage(getStage() - 1);
 		cout << "[ STAGE : " << getStage() << " ]" << " 도전을 위해서 수련을 택한 용사님을 응원합니다..." << endl;
 	}
 
