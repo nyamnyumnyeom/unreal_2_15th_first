@@ -72,6 +72,7 @@ void Battle::showStats() {
 //플레이어 턴 : 메세지 출력
 void Battle::playerAttack() 
 {
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
 	cout << nowPlayer->getName() << "은/는 기본 공격을 시도했다!\n" << "입힌 피해량 : " << nowPlayer->getAttack() << endl;
 	nowMonster->setCurrentHP(nowMonster->getCurrentHP() - nowPlayer->getAttack());
 
@@ -79,6 +80,7 @@ void Battle::playerAttack()
 
 	Sleep(750);
 	system("cls");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 	showStats();
 }
 
@@ -91,6 +93,7 @@ void Battle::playerSkill() {
 
 	// 무작위 스킬 선택 및 사용
 	ISkill* selectedSkill = skill->GetSkills()[rand() % skill->GetSkills().size()];
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
 	std::cout << "플레이어가 " << selectedSkill->GetName() << " 스킬을 사용합니다!\n";
 	skill->UseSkill(selectedSkill->GetName(), *nowPlayer, *nowMonster);
 
@@ -109,6 +112,7 @@ void Battle::playerSkill() {
 
 	Sleep(750);
 	system("cls");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 	showStats();
 }
 
@@ -137,6 +141,7 @@ void Battle::playerBehavior()
 void Battle::bossAttack()
 {
 	int chance = std::rand() % 100;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
 	if (chance < 6)
 	{
 		int damage = nowPlayer->getCurrHP() / 10; // 플레이어 현재 체력의 10%
@@ -173,6 +178,7 @@ void Battle::bossAttack()
 		system("cls");
 		showStats();
 	}
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 }
 
 //몬스터 턴 : 기본 공격
@@ -184,6 +190,7 @@ void Battle::monsterAttack()
 	}
 	else
 	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
 		cout << nowMonster->getName() << "의 기본공격이 " << nowPlayer->getName() << "에게 적중했다...\n" << "받은 피해량 : " << nowMonster->getAttack() << endl;
 		nowPlayer->setCurrHP(nowPlayer->getCurrHP() - nowMonster->getAttack());
 
@@ -191,6 +198,7 @@ void Battle::monsterAttack()
 
 		Sleep(750);
 		system("cls");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 		showStats();
 
 	}

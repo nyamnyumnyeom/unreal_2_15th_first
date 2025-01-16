@@ -112,6 +112,8 @@ void ChoiceMenu(shared_ptr<Player> player, Shop& shop, shared_ptr<Consumable> co
 }
 
 int main() {
+    system("tiTle 묻지마 ! 용사 ver 1.0");
+    system("mode con:cols=200 lines=70");
     srand(static_cast<unsigned>(time(nullptr))); // 랜덤 초기화
     string characterName;
     playLobbyBgm();
