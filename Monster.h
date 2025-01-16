@@ -62,7 +62,7 @@ public:
     //보스 확인 여부
     bool bossManage() const;
 
-
+    std::string displayMHealthBar();
 
 };
 

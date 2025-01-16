@@ -49,7 +49,7 @@ void Battle::showStats() {
 	cout << "|" << setw(18) << left << " Attack Damage : " << setw(14) << right << "( " << setw(7) << right << nowPlayer->getAttack() << " ) " << "|" << "          " <<
 		"|" << setw(18) << left << " Attack Damage : " << setw(14) << right << "( " << setw(7) << right << nowMonster->getAttack() << " ) " << "|" << endl;
 	//공백
-	cout << "|" << setw(21) << left << " " << setw(22) << right << "|" << "          " << "|" << setw(21) << left << " " << setw(22) << right << "|" << endl;
+	cout << nowMonster->displayMHealthBar() << endl;
 	//인벤토리-장비로 인한 스텟 증가량 출력
 	cout << "|" << setw(27) << left << " AD increase from sword  : " << setw(4) << right << "( " << setw(8) << right << equip->equipStat_Sword() << setw(3) << right << " ) " << "|" << "          " << setw(16) << left << "└-------------[  " << setw(10) << right << nowMonster->getName() << setw(16) << right << "  ]-------------┘" << endl;
 	cout << "|" << setw(27) << left << " HP increase from armor  : " << setw(4) << right << "( " << setw(8) << right << equip->equipStat_Armor() << setw(3) << right << " ) " << "|" << endl;
@@ -59,11 +59,11 @@ void Battle::showStats() {
 	cout << "|" << setw(15) << left << " Gold : " << setw(4) << right << "( " << setw(20) << right << nowPlayer->getGold() << setw(3) << right << " ) " << "|" << endl;
 	cout << "|" << setw(15) << left << " EXP  : " << setw(7) << right << "( " << setw(7) << right << nowPlayer->getEXP() << " / " << setw(7) << right << nowPlayer->getMaxEXP() << " ) " << "|" << endl;
 
-	cout << "|" << setw(21) << left << " " << setw(22) << right << "|" << endl;
+	cout << nowPlayer->displayHealthBar() << endl;
 	cout << setw(16) << left << "└-------------[  " << setw(10) << nowPlayer->getName() << setw(16) << right << "  ]-------------┘" << endl;
 
 	//체력바
-	nowPlayer->displayHealthBar();
+	
 	cout << "\n" << endl;
 }
 

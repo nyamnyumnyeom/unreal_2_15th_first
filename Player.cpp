@@ -141,16 +141,23 @@ void Player::setCurrHP(int newHP) {
     currentHealth = newHP;
 }
 //체력바 표시
-void Player::displayHealthBar() {
-    const int totalBars = 10;
-    int filledBars = round(double(currentHealth) / double(maxHealth)*10);
+
+
+std::string Player::displayHealthBar() {
+    const int totalBars = 20;
+    int filledBars = round(double(currentHealth) / double(maxHealth) * 20);
     int emptyBars = totalBars - filledBars;
-
     std::string bar = std::string(filledBars, '=') + std::string(emptyBars, ' ');
-    std::cout << "\r[" << bar << "] " << double(currentHealth) / double(maxHealth) * 100 << "%"; // 캐리지 리턴으로 한 줄에 출력
+    if (round(double(currentHealth) / double(maxHealth) * 100) == 100) {
+        std::cout << "\r| HP:[" << bar << "] " << round(double(currentHealth) / double(maxHealth) * 100) << "%           |";
+    }
+    else {
+        std::cout << "\r| HP:[" << bar << "] " << round(double(currentHealth) / double(maxHealth) * 100) << "%            |";
+    }
+    // 캐리지 리턴으로 한 줄에 출력
     std::cout.flush();
+    return "";
 }
-
 
 /*void Player::gainExp(int amount) {
     exp += amount;

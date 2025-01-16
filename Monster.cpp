@@ -197,3 +197,19 @@ int Monster::getGoldDrop() const {
 int Monster::getExp() const {
     return exp;
 }
+std::string Monster::displayMHealthBar() {
+    const int totalBars = 20;
+    int filledBars = round(double(currentHP) / double(health) * 20);
+    int emptyBars = totalBars - filledBars;
+    std::string bar = std::string(filledBars, '=') + std::string(emptyBars, ' ');
+    if (round(double(currentHP) / double(health) * 100) == 100) {
+        std::cout << "\r|                                          |          | HP:[" << bar << "] " << round(double(currentHP) / double(health) * 100) << "%           |";
+    }
+    else {
+        std::cout << "\r|                                          |          | HP:[" << bar << "] " << round(double(currentHP) / double(health) * 100) << "%            |";
+    }
+    
+    // 캐리지 리턴으로 한 줄에 출력
+    std::cout.flush();
+    return "";
+}

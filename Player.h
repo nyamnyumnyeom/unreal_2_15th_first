@@ -67,7 +67,7 @@ public:
     void setCurrHP(int newHP);
 
     //체력바 구현
-    void displayHealthBar();
+    std::string displayHealthBar();
 };
 
 #endif
