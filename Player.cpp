@@ -99,7 +99,7 @@ void Player::levelUp() {
     maxHealth += level + (maxHealth / 7);
     currentHealth = maxHealth;
     attack += level + (attack / 10);
-    exp = 0;
+    
 
     std::cout << "Level up! current level is: " << level << ", MaxHealth: " << currentHealth
         << ", Attack: " << attack << endl;
