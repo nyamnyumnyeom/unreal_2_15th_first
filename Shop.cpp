@@ -17,6 +17,7 @@ using namespace std;
 void Shop::openShop(shared_ptr<Player> player, SkillManager& skillManager, shared_ptr<Consumable> consum) {
     while (true) {
 		consum->showInventory();
+		cout << "현재 소지금 : " << player->getGold();
         cout << "\n=== 상점 ===\n";
         cout << "1. 구매 HP 포션 (100 Gold)\n";
         cout << "2. 스킬 구매 (1000 Gold)\n";

@@ -126,7 +126,7 @@ int Equipment::equipStat_Sword()
 	}
 	else
 	{
-		return iter->second;
+		return iter->second * 10;
 	}
 }
 int Equipment::equipStat_Armor()
@@ -138,6 +138,6 @@ int Equipment::equipStat_Armor()
 	}
 	else
 	{
-		return iter->second;
+		return iter->second * 30;
 	}
 }

@@ -142,6 +142,7 @@ int main() {
 
 	player->setInventory(consum);
 	battle->setItem(consum);
+	battle->setEquip(player->getEquip());
 
     // 게임 루프
     while (true) {

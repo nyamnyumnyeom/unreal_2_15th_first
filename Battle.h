@@ -16,7 +16,7 @@ private:
 	unique_ptr<Monster> nowMonster;
 	unique_ptr<SkillManager> skill = make_unique<SkillManager>();
 	shared_ptr<Consumable> item;
-	unique_ptr<Equipment> equip = make_unique<Equipment>();
+	shared_ptr<Equipment> equip;
 	
 public:
 	//생성자, 소멸자
@@ -24,6 +24,7 @@ public:
 	~Battle() = default;
 
 	void setItem(shared_ptr<Consumable> inven) { item = inven; }
+	void setEquip(shared_ptr<Equipment> equi) { equip = equi; }
 
 	//stage를 반환하는 getter
 	int getStage() const { return stage; }

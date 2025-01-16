@@ -23,6 +23,7 @@ private:
 	int attack_2;
 	int attack_3;
 	shared_ptr<Consumable> inventory;
+	shared_ptr<Equipment> equipment = make_shared<Equipment>();
 
 	void calculateMaxHealth();
 public:
@@ -34,7 +35,12 @@ public:
     // 금액 관련 함수
     int getGold() const;
     
-
+	void setEquipStat() 
+	{ 
+		attack += equipment->equipStat_Sword();
+		maxHealth += equipment->equipStat_Armor();
+	}
+	shared_ptr<Equipment> getEquip() { return equipment; }
 
     // 공격력 관련 함수
     int getAttack() const;
@@ -43,7 +49,7 @@ public:
     // 인벤토리 관련 함수
     void addItem(const string& item);
     void delItem(const string& item);
-	void setInventory(shared_ptr<Consumable> inven) { cout << "sadasddd";  inventory = inven; }
+	void setInventory(shared_ptr<Consumable> inven) { inventory = inven; }
   
     //체력 회복 관련 함수
     void recoverHealth();                                     

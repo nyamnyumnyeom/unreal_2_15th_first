@@ -244,10 +244,12 @@ void Battle::startBattle() {
 
 	if (stageChoose == 1) {
 		cout << "[ STAGE : " << getStage() << " ]" << " 용사님의 도전에 행운이 함께하길 바랍니다..." << endl;
+		Sleep(1000);
 	}
 	else if (stageChoose == 2) {
 		setStage(getStage() - 1);
 		cout << "[ STAGE : " << getStage() << " ]" << " 도전을 위해서 수련을 택한 용사님을 응원합니다..." << endl;
+		Sleep(1000);
 	}
 
 	while (nowPlayer->getCurrHP() > 0 && nowMonster->getCurrentHP() > 0) {
@@ -262,6 +264,17 @@ void Battle::startBattle() {
 			// 몬스터 보상을 플레이어에게 전달
 			int goldEarned = nowMonster->getGoldDrop();
 			int expEarned = nowMonster->getExp();
+
+			if (nowMonster->calculateSwordDropRate(getStage()) > random(0, 100))
+			{
+				equip->itemGet("sword");
+			}
+			if (nowMonster->calculateArmorDropRate(getStage()) > random(0, 100))
+			{
+				equip->itemGet("armor");
+			}
+
+			nowPlayer->setEquipStat();
 
 			nowPlayer->gainExp(expEarned);
 
