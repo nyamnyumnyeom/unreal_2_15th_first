@@ -165,7 +165,7 @@ std::string Player::displayHealthBar() {
     std::cout.flush();
     return "";
 }
-
+	
 /*void Player::gainExp(int amount) {
     exp += amount;
     int maxExp = (100 * (1 + level) * level) / 2;
