@@ -192,7 +192,7 @@ void Battle::startBattle() {
 
 			nowPlayer->gainExp(expEarned);
 
-			nowPlayer->setGold(goldEarned);  // 골드 추가
+			nowPlayer->gainGold(goldEarned);  // 골드 추가
 			//nowPlayer->addExp(expEarned);    // 경험치 추가
 
 			setStage(getStage() + 1);  // 다음 스테이지로 이동

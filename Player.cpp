@@ -36,10 +36,19 @@ int Player::getGold() const {
     return gold;
 }
 
-void Player::setGold(int newGold) {
+
+void Player::gainGold(int newGold) {
     gold += newGold;
     std::cout << name << "가 " << newGold << " 골드를 획득했습니다. 현재 골드: " << gold << std::endl;
-   
+
+}
+//void Player::setGold(int newGold) {
+//    gold = newGold;
+//    std::cout << name << "의 골드 보유량이 변화했습니다. 현재 골드: " << gold << std::endl;
+//}
+void Player::useGold(int newGold) {
+    gold -= newGold;
+    std::cout << name << "가 " << newGold << " 골드를 소모했습니다. 현재 골드: " << gold << std::endl;
 }
 
 int Player::getAttack() const {

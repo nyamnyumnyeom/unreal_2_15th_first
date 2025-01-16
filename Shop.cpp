@@ -28,7 +28,7 @@ void Shop::openShop(shared_ptr<Player> player, SkillManager& skillManager) {
 
         if (choice == 1) { // HP 포션 구매
             if (player->getGold() >= 100) {
-                player->setGold(player->getGold() - 100);
+                player->useGold(100);
                 player->addItem("HP Potion", 1);
                 cout << "HP 포션을 구매했습니다.\n";
                 Sleep(1250);
@@ -48,7 +48,7 @@ void Shop::openShop(shared_ptr<Player> player, SkillManager& skillManager) {
         }
         else if (choice == 3) { // 부활석 구매
             if (player->getGold() >= 5000) {
-                player->setGold(player->getGold() - 5000);
+                player->useGold(5000);
                 player->addItem("Resurrection Stone", 1);
                 cout << "부활석을 구매했습니다.\n";
                 Sleep(1250);
@@ -67,7 +67,7 @@ void Shop::openShop(shared_ptr<Player> player, SkillManager& skillManager) {
             break;
         }
         else if (choice == 99) { // 디버그 모드: 골드 추가
-            player->setGold(player->getGold() + 100000);
+            player->gainGold(100000);
             cout << "디버그 모드: 100000 Gold가 추가되었습니다.\n";
         }
         else {
@@ -79,7 +79,7 @@ void Shop::openShop(shared_ptr<Player> player, SkillManager& skillManager) {
 
 void Shop::buySkill(Player& player, SkillManager& skillManager) {
     if (player.getGold() >= 1000) {
-        player.setGold(player.getGold() - 1000);  
+        player.useGold(1000);
         cout << "스킬상자를 구매했습니다.\n";
         Sleep(1000);
         print_close();

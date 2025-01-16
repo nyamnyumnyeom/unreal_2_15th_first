@@ -30,9 +30,7 @@ public:
 
     // 금액 관련 함수
     int getGold() const;
-    void setGold(int newGold);
-
-    void addGold(int amount);
+    
 
 
     // 공격력 관련 함수
@@ -68,6 +66,10 @@ public:
 
     //체력바 구현
     std::string displayHealthBar();
+
+    //골드획득 소모
+    void gainGold(int newGold);
+    void useGold(int newGold);
 };
 
 #endif
